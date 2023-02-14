@@ -9,7 +9,7 @@ pygmentsCodeFencesGuessSyntax = true
 #pygmentsUseClassic = true
 #pygmentOptions = "linenos=inline"
 #disqusShortname = "XXX"
-#googleAnalytics = "XXX"
+googleAnalytics = "G-R6V0DXFJEE"
 enableGitInfo = false
 
 [Params]
