@@ -1,6 +1,6 @@
 ---
 title: Why Git is so Popular?
-date: 2018-04-18
+date: 2015-01-10
 tags: ["git", "mercurial", "clarity-ag", "presentation"]
 ---
 
