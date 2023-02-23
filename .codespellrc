@@ -1,0 +1,4 @@
+# https://github.com/codespell-project/codespell#using-a-config-file
+[codespell]
+quiet-level = 3
+check-filenames =
