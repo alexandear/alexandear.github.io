@@ -1,6 +1,6 @@
 baseurl = "https://www.alexandear.tech"
 DefaultContentLanguage = "en"
-title = "Oleksandr Redko"
+title = ""
 theme = "beautifulhugo"
 pygmentsStyle = "trac"
 pygmentsUseClasses = true
@@ -46,7 +46,7 @@ enableGitInfo = false
 
 [Author]
     # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
-    # name = "Oleksandr Redko"
+    name = "Oleksandr Redko"
     website = "www.alexandear.tech"
     email = "oleksandr.red@gmail.com"
     # facebook = "oleksandr.red"
@@ -63,7 +63,7 @@ enableGitInfo = false
 
 [[menu.main]]
     name = "About"
-    url = "page/about/"
+    url = "about/"
     weight = 3
 
 # [[menu.main]]
