@@ -62,8 +62,8 @@ enableGitInfo = false
     weight = 1
 
 [[menu.main]]
-    name = "Talk"
-    url = "talk/"
+    name = "Talks"
+    url = "talks/"
     weight = 2
 
 [[menu.main]]

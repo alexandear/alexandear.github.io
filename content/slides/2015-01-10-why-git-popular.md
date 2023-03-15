@@ -7,7 +7,6 @@ The talk explore the differences between two popular distributed version control
 
 * _Date_: January 10, 2015
 * _Event_: Clarity AG Skill Sharing Session
-* _Location_: Ukraine, Khmelnytskyi
 
 ## Slides
 

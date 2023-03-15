@@ -7,7 +7,6 @@ This talk provide an overview of the main features introduced in C++17, the late
 
 * _Date_: April 18, 2018
 * _Event_: Clarity AG Skill Sharing Session
-* _Location_: Ukraine, Khmelnytskyi
 
 ## Slides
 
