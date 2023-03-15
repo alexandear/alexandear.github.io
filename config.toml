@@ -55,6 +55,7 @@ enableGitInfo = false
     linkedin = "alexandear"
     telegram = "alexandear"
     strava = "23735367"
+    goodreads = "alexandear"
 
 [[menu.main]]
     name = "Blog"
