@@ -48,12 +48,12 @@ enableGitInfo = false
     # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
     name = "Oleksandr Redko"
     website = "www.alexandear.tech"
-    email = "oleksandr.red@gmail.com"
-    # facebook = "oleksandr.red"
+    email = "oleksandr.red@gmail.com?subject=Hello%20from%20alexandear.tech"
+    facebook = "alexandear.tech"
     github = "alexandear"
     # gitlab = "alexandear"
     linkedin = "alexandear"
-    # telegram = "alexandear"
+    telegram = "alexandear"
     strava = "23735367"
 
 [[menu.main]]
@@ -64,35 +64,12 @@ enableGitInfo = false
 [[menu.main]]
     name = "Talk"
     url = "talk/"
-    weight = 1
+    weight = 2
 
 [[menu.main]]
-    name = "About"
+    name = "About / Contact"
     url = "about/"
-    weight = 3
-
-# [[menu.main]]
-    # identifier = "samples"
-    # name = "Samples"
-    # weight = 2
-
-# [[menu.main]]
-    # parent = "samples"
-    # name = "Big Image Sample"
-    # url = "post/2017-03-07-bigimg-sample"
-    # weight = 1
-
-# [[menu.main]]
-    # parent = "samples"
-    # name = "Math Sample"
-    # url = "post/2017-03-05-math-sample"
-    # weight = 2
-
-# [[menu.main]]
-    # parent = "samples"
-    # name = "Code Sample"
-    # url = "post/2016-03-08-code-sample"
-    # weight = 3
+    weight = 2
 
 [[menu.main]]
     name = "Tags"
