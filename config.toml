@@ -48,7 +48,7 @@ enableGitInfo = false
     # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
     name = "Oleksandr Redko"
     website = "www.alexandear.tech"
-    email = "oleksandr.red@gmail.com?subject=Hello%20from%20alexandear.tech"
+    email = "oleksandr.red%2bwebsite@gmail.com?subject=Hello%20from%20alexandear.tech"
     facebook = "alexandear.tech"
     github = "alexandear"
     # gitlab = "alexandear"
