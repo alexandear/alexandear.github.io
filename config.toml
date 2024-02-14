@@ -1,4 +1,4 @@
-baseurl = "https://www.alexandear.tech"
+baseurl = "https://www.alexandear.github.io"
 DefaultContentLanguage = "en"
 title = ""
 theme = "beautifulhugo"
@@ -47,9 +47,9 @@ enableGitInfo = false
 [Author]
     # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
     name = "Oleksandr Redko"
-    website = "www.alexandear.tech"
-    email = "oleksandr.red%2bwebsite@gmail.com?subject=Hello%20from%20alexandear.tech"
-    facebook = "alexandear.tech"
+    website = "www.alexandear.github.io"
+    email = "oleksandr.red%2bwebsite@gmail.com?subject=Hello%20from%20alexandear.github.io"
+    facebook = "alexandear.github.io"
     github = "alexandear"
     # gitlab = "alexandear"
     linkedin = "alexandear"

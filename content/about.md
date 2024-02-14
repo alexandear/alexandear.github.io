@@ -13,7 +13,7 @@ Worked with microservices and monoliths deployed in Cloud and on premise. Intere
 
 # Contact
 
-You can [message me](https://t.me/alexandear), [email me](mailto:oleksandr.red@gmail.com?subject=Hello%20from%20alexandear.tech) or find me on [LinkedIn](https://www.linkedin.com/in/alexandear) if you want to get in touch.
+You can [message me](https://t.me/alexandear), [email me](mailto:oleksandr.red@gmail.com?subject=Hello%20from%20alexandear.github.io) or find me on [LinkedIn](https://www.linkedin.com/in/alexandear) if you want to get in touch.
 
 # My History
 
