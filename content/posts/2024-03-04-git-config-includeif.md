@@ -1,5 +1,5 @@
 ---
-title: Streamlining Project Management in Git Using IncludeIf
+title: Streamlining Email Management in Git Using IncludeIf
 date: 2024-03-04T15:05:32+02:00
 tags: ["git"]
 ---
@@ -111,6 +111,6 @@ Now, let's verify if the correct emails are set:
 
 ## Conclusion
 
-In conclusion, using `includeIf` and setting up related `.gitconfig` files allows you
-to specify your preferred settings for each project or company individually.
-With this setup, you can enjoy hassle-free project management in Git.
+Using config option `includeIf` and setting up related `.gitconfig` files allows you
+to specify your preferred Git settings for each project or company individually.
+For instance, you can have different user names and email addresses for different repositories.
