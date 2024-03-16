@@ -81,6 +81,7 @@ jobs:
     # https://github.com/filiph/linkcheck
     name: Check for wrong links
     runs-on: ubuntu-latest
+    needs: deploy
     steps:
       # https://github.com/marketplace/actions/check-links-with-linkcheck
       - uses: filiph/linkcheck@2.0.23
