@@ -1,0 +1,19 @@
+# GitHub Action to automate link checking on the website with linkcheck.
+# https://github.com/filiph/linkcheck
+# https://github.com/marketplace/actions/check-links-with-linkcheck
+name: linkcheck
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - main
+
+jobs:
+  linkcheck:
+    name: Check for wrong links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: filiph/linkcheck@2.0.23
+        with:
+            arguments: -e https://alexandear.github.io
