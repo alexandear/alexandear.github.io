@@ -76,3 +76,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+  linkcheck:
+    # https://github.com/filiph/linkcheck
+    name: Check for wrong links
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/check-links-with-linkcheck
+      - uses: filiph/linkcheck@2.0.23
+        with:
+            arguments: https://alexandear.github.io
