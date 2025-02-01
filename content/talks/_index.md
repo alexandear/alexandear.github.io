@@ -18,3 +18,4 @@ subtitle: Public Speaking and Recognition
 ### National Technical University of Ukraine
 
 * 2014: Introduction to Data Mining [[slides]](/slides/2014-12-23-intro-data-mining)
+* 2014: Electronic Publishing [[slides]](/slides/2014-12-07-electronic-publishing)
