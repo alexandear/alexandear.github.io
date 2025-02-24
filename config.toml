@@ -44,12 +44,12 @@ enableGitInfo = false
 #  src = "img/hexagon.jpg"
 #  desc = "Hexagon"
 
-[Author]
+[Params.Author]
     # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
     name = "Oleksandr Redko"
     website = "https://alexandear.github.io/"
     email = "oleksandr.red%2bwebsite@gmail.com?subject=Hello%20from%20alexandear.github.io"
-    facebook = "alexandear.github.io"
+    facebook = "oleksandr.red"
     github = "alexandear"
     # gitlab = "alexandear"
     linkedin = "alexandear"
