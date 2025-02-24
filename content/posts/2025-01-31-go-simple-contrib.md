@@ -22,6 +22,8 @@ But I care. Let me fix it.
 
 TL;DR. This [CL](https://go-review.googlesource.com/c/go/+/642037) fixes the grammar nit.
 
+*"was" should be changed to "were" because the sentence is using the [subjunctive mood](https://www.englishoxford.com/2022/04/20/subjunctive-english/), which is used to describe hypothetical or non-real situations. In English, the subjunctive mood often uses "were" instead of "was" for all subjects (I, you, he, she, it, we, they).*
+
 ## Contribution steps
 
 There is an official [Contribution Guide](https://go.dev/doc/contribute), but it's too long and boring to read.
