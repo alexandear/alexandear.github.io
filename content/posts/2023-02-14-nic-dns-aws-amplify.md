@@ -6,6 +6,8 @@ tags: ["free", "dns", "aws", "amplify"]
 
 [NIC.UA](https://nic.ua/en) is a Ukrainian domain registrar which provides ".pp.ua" for [free](https://nic.ua/en/domains/.pp.ua). This domain is often used by individuals or small organizations who are looking for a web presence but don't want to pay for a custom domain name.
 
+<!--more-->
+
 ![Free .pp.ua](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-free-pp-ua.png)
 
 [AWS Amplify](https://aws.amazon.com/amplify/) is a set of development tools and services provided by Amazon Web Services that enables developers to build and deploy web and mobile applications quickly and easily.

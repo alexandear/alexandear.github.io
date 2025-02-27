@@ -8,6 +8,8 @@ I work simultaneously on different companies' projects, open-source projects, an
 
 The Git config manual describes the use of configuration files to better manage such a task through  ["Conditional includes"](https://git-scm.com/docs/git-config#_conditional_includes).
 
+<!--more-->
+
 # Situation
 
 All my projects, both work and non-work, are located under the the `~/src/` directory.

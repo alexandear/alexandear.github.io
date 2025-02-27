@@ -12,6 +12,8 @@ with one commit activity and the caption:
 
 > "Please don't apply for a Senior dev position if your GitHub looks like this..."
 
+<!--more-->
+
 {{< figure src="/img/2023-03-08-import-gitlab-commits/twitter-senior-github.jpg" width="50%" caption="Tweet Senior GitHub" >}}
 
 In this blog post, I will answer the question of how to enrich GitHub statistics to improve your job prospects.

@@ -15,6 +15,8 @@ $ go1.15 version
 go version go1.15 darwin/amd64
 ```
 
+<!--more-->
+
 *Note: You need the latest Go 1.22 installed on your machine.*
 
 Below are the steps detailing how I found it.

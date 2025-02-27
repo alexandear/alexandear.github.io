@@ -8,6 +8,8 @@ In this blog post, I will show that contributing to Go language repositories is 
 This will be a step-by-step guide on how to contribute to Go language repositories.
 For the example, I will use the main Go repo [go.googlesource.com/go](https://go.googlesource.com/go).
 
+<!--more-->
+
 ## What we will contribute
 
 I subscribed to [Boldly Go: Daily](https://boldlygo.tech/) for a year and recently got the [following email](https://boldlygo.tech/archive/2025-01-08-determining-the-size-of-a-variable/):
