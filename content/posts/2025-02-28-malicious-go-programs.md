@@ -5,7 +5,7 @@ tags: ["go", "trojan", "opensource"]
 ---
 
 I accidentally discovered malicious programs in the Go ecosystem that impersonate legitimate tools such
-as the linter [ldez/usetesting](https://github.com/ldez/usetesting),the HCL editor [go.mercari.io/hcledit](https://github.com/mercari/hcledit),
+as the linter [ldez/usetesting](https://github.com/ldez/usetesting), the HCL editor [go.mercari.io/hcledit](https://github.com/mercari/hcledit),
 the official MailerSend Go SDK [mailersend/mailersend-go](https://github.com/mailersend/mailersend-go), and many more.
 These programs are not very popular but are still used by some developers.
 By the time I wrote this article, I had reported the malicious repositories to GitHub support, and most of them have been deleted.
@@ -19,7 +19,7 @@ Three months ago, I created a bugfix [PR](https://github.com/leighmcculloch/goch
 My PR was mentioned by [Adam Bouqdib](https://github.com/abemedia) in his [PR](https://github.com/leighmcculloch/gocheckcompilerdirectives/pull/4) to the same repository.
 I clicked on his profile and noticed that he had created an issue titled "Ignore context.Background() and context.TODO() in cleanup" in the `usetesting` repository.
 
-`usetesting` is familiar to me as it is a Go linter created recently by ldez, which I had reviewed.
+`usetesting` is familiar to me as it is a Go linter created recently by [Ludovic Fernandez](https://github.com/ldez), which I had reviewed.
 However, I realized that the issue was created not in [`ldez/usetesting`](https://github.com/ldez/usetesting) but in `ultimatepate/usetesting`.
 This was strange.
 
