@@ -210,6 +210,11 @@ Here are a partial list:
 - [`unfortunatev/mailersend-go`](https://github.com/unfortunatev/mailersend-go): copy of [`mailersend/mailersend-go`](https://github.com/mailersend/mailersend-go).
 - [`uncommonacc/istio_external_authorization_server`](https://github.com/uncommonacc/istio_external_authorization_server): copy of [`salrashid123/istio_external_authorization_server`](https://github.com/salrashid123/istio_external_authorization_server).
 
+The full list of malicious bots and repositories can be saved to an SQLite database by running [`alexandear/botnet-searcher`](https://github.com/alexandear/botnet-searcher).
+I specifically wrote it for this article.
+
+{{< figure src="/img/2025-02-28-malicious-go-programs/sqlite-with-botnet.png" width="80%" caption="SQLite database containing malicious users with repositories" >}}
+
 What unites these malicious programs is that they clone small Go executable programs with 20-30 stars.
 
 When someone searches for these Go programs, the malicious ones appear at the top because they have more stars.
