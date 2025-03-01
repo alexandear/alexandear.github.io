@@ -1,5 +1,5 @@
 ---
-title: "Found a group of malicious Go projects that steals data"
+title: "Found a group of malicious Go projects injected with trojan"
 date: 2025-02-28
 tags: ["go", "trojan", "opensource"]
 ---
