@@ -69,6 +69,11 @@ enableGitInfo = false
     weight = 2
 
 [[menu.main]]
+    name = "Courses"
+    url = "courses/"
+    weight = 2
+
+[[menu.main]]
     name = "About / Contact"
     url = "about/"
     weight = 2
