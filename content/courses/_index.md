@@ -75,7 +75,7 @@ It's created to provide a comprehensive view of my professional development whil
 - [LinkedIn: C++: Building a String Library](https://www.linkedin.com/learning/c-plus-plus-building-a-string-library) [(*certificate*)](https://www.linkedin.com/learning/certificates/0c3f4ad9eca128776f47a332077010fba9d1bee63dfcb5fbd7c77ea4a7c76a83)
 - [LinkedIn: C++: Move Semantics](https://www.linkedin.com/learning/c-plus-plus-move-semantics) [(*certificate*)](https://www.linkedin.com/learning/certificates/f30a4837d8d660b2552e6f855d3dd343119317a16f02729659e887e9667f400b)
 - [LinkedIn: C++ Essential Training (2014)](https://www.linkedin.com/learning/c-plus-plus-essential-training-2014) [(*certificate*)](https://www.linkedin.com/learning/certificates/740c38ae6c057b696d1b27e415a19bac4aa1a2430f56c1775d0d2298c1d072a1)
-- [LinkedIn: C++: Smart Pointers](hhttps://www.linkedin.com/learning/c-plus-plus-smart-pointers) [(*certificate*)](https://www.linkedin.com/learning/certificates/7829232e2957142ebebf2d982eefa5c1357357f49ce202cb85426074966251d5)
+- [LinkedIn: C++: Smart Pointers](https://www.linkedin.com/learning/c-plus-plus-smart-pointers) [(*certificate*)](https://www.linkedin.com/learning/certificates/7829232e2957142ebebf2d982eefa5c1357357f49ce202cb85426074966251d5)
 - [LinkedIn: Learning C++ (2014)](https://www.linkedin.com/learning/learning-c-plus-plus-2014) [(*certificate*)](https://www.linkedin.com/learning/certificates/65432529dd902d7cad7a472d58a70bdee876c1c53bfdaed039634144d62b13a6)
 
 ## 2017
@@ -96,7 +96,7 @@ It's created to provide a comprehensive view of my professional development whil
 - [Prometheus: Security basics](https://prometheus.org.ua/prometheus-free/info-security-basics/) [*(certificate)*](https://certs.prometheus.org.ua/downloads/666c791ffc4a4927ac3e5527f104d53a/Certificate.pdf)
 - [Codecademy: Learn the Command Line Course](https://www.codecademy.com/learn/learn-the-command-line) [*(certificate)*](https://www.codecademy.com/profiles/alexandear/certificates/c87ba0541f8be78bc2f4ba1128233f6f)
 - [Udacity: How to Use Git and GitHub](https://www.udacity.com/course/how-to-use-git-and-github--ud775)
-- Saylor: CS107: C++ Programing [*(certificate)*](./../../doc/certificates/saylor.org/Course_Completion_Certificate_CS107_C_Programming.pdf)
+- Saylor: CS107: C++ Programming [*(certificate)*](./../../doc/certificates/saylor.org/Course_Completion_Certificate_CS107_C_Programming.pdf)
 - Stepik: Programming in C++
 - [Alison: Diploma in C Programming](https://alison.com/course/diploma-in-c-programming-old)
 - [Alison: C Programming - Using Pointers, Constants and Strings](https://alison.com/course/c-programming-using-pointers-constants-and-strings-old)
