@@ -9,7 +9,7 @@ It's created to provide a comprehensive view of my professional development whil
 ## 2025
 
 - [KodeKloud: Lab- Linux Tutorial](https://learn.kodekloud.com/courses/lab-linux-tutorial) [*(certificate)*](https://learn.kodekloud.com/certificate/c2a85b0f-e1c3-4d5a-a172-8385b14f9c72)
-- [Sololearn: Python Intermediate](https://www.sololearn.com/en/learn/courses/python-intermediate)  [*(certificate)*](./../../doc/certificates/sololearn/Python_Intermediate_fc95abf4-90b4-4367-838f-ee0714c8acf4.pdf)
+- [Sololearn: Python Intermediate](https://www.sololearn.com/en/learn/courses/python-intermediate) [*(certificate)*](./../../doc/certificates/sololearn/Python_Intermediate_fc95abf4-90b4-4367-838f-ee0714c8acf4.pdf)
 - [Sololearn: SQL Intermediate](https://www.sololearn.com/en/learn/courses/sql-intermediate) [*(certificate)*](./../../doc/certificates/sololearn/SQL_Intermediate_8aeb549a-6137-418e-9506-7d681b98d3ff.pdf)
 - [Sololearn: Introduction to SQL](https://www.sololearn.com/en/learn/courses/sql-introduction) [*(certificate)*](./../../doc/certificates/sololearn/Introduction_to_SQL_9f78e421-1c25-4037-a125-4c91210cb5a5.pdf)
 - [Sololearn: Generative AI in Practice](https://www.sololearn.com/en/learn/courses/genai-in-practice) [*(certificate)*](./../../doc/certificates/sololearn/Generative_AI_in_Practice_b742153f-9158-400b-8108-4d08bbbefae8.pdf)
@@ -23,11 +23,13 @@ It's created to provide a comprehensive view of my professional development whil
 - [LinkedIn: Docker Essential Training](https://www.linkedin.com/learning/docker-essential-training) [*(certificate)*](https://www.linkedin.com/learning/certificates/e6c2db71aa16a26b0f5af95af276622e06fd731f45c1d54d671e9e86c43f49bd)
 - [LinkedIn: Level Up: Go](https://www.linkedin.com/learning/level-up-go) [*(certificate)*](https://www.linkedin.com/learning/certificates/c321b4737def67414b835c220515fd13cb1b1b496276278a23f6881c8fc9d943)
 - EPAM: Project Interviews in English
-- EPAM: GitHub Codespaces and GitHub Copilot: Tools of a developer
 
 ## 2023
 
 - EPAM: Prompt Engineering Foundations
+- EPAM: GitHub Codespaces and GitHub Copilot: Tools of a developer
+- EPAM: Introduction to Microsoft Azure AI stack
+- EPAM: Intro to Open Source
 - [Cognite: CDF Data Engineer Basics](https://learn.cognite.com/data-engineer-basics-integrations-assessment) [*(certificate)*](https://verify.skilljar.com/c/dkn826uf5fdq)
 - [Cognite: Cognite Data Fusion Fundamentals](https://learn.cognite.com/cdf-fundamentals-assessment) [*(certificate)*](https://verify.skilljar.com/c/ejt6ys6qpcs2)
 - [LinkedIn: Introduction to InfluxDB](https://www.linkedin.com/learning/influxdb-for-time-series-data-ingest-analyze-and-visualize-data-19238566) [*(certificate)*](https://www.linkedin.com/learning/certificates/e70a4caa2f930239e9b0d10c6d229821ab7e36ec94db0e8e9cd0adb65963adbd)
@@ -60,8 +62,10 @@ It's created to provide a comprehensive view of my professional development whil
 - [LinkedIn: Programming Foundations: Databases](https://www.linkedin.com/learning/programming-foundations-databases-2) [*(certificate)*](https://www.linkedin.com/learning/certificates/9e25ea8055923676f479ca3337e73e5acaa5a0a12904496cb3c8459168660283)
 - [Codecademy: Learn Go Course](https://www.codecademy.com/learn/learn-go) [*(certificate)*](https://www.codecademy.com/profiles/alexandear/certificates/60773d2e920679c8e46ff634b9ed2e6e)
 - [Codecademy: Learn SQL Course](https://www.codecademy.com/learn/learn-sql) [*(certificate)*](https://www.codecademy.com/profiles/alexandear/certificates/042a4e5884e3eb6ea1f2a12be6abb851)
+- [Codecademy: How to Transform Tables with SQL](https://www.codecademy.com/enrolled/courses/sql-table-transformation) [*(certificate)*](https://www.codecademy.com/profiles/alexandear/certificates/e5a7d252b2274abca4ea306d5fa4b4b6)
 - [Pluralsight: Continuous Integration with psake and TeamCity: Getting Started](https://www.pluralsight.com/library/courses/continuous-integration-psake-teamcity-getting-started)
 - [Pluralsight: Using GitFlow](https://www.pluralsight.com/library/courses/using-gitflow)
+- [LinkedIn: Improving Your Listening Skills (2018)](https://www.linkedin.com/learning/improving-your-listening-skills-2018) [*(certificate)*](https://www.linkedin.com/learning/certificates/6c7c51f5d2557bd9b11468bcc02d855e4040a3df7e7c757962ff524eaddbd230)
 
 ## 2018
 
@@ -90,7 +94,13 @@ It's created to provide a comprehensive view of my professional development whil
 - [edX: LFS101x.2: Introduction to Linux](https://www.edx.org/learn/linux/the-linux-foundation-introduction-to-linux) [*(certificate)*](https://verify.edx.org/cert/26be48d79e194fdf9d74bb4346cde471)
 - [Prometheus: Programming basics (Python)](https://prometheus.org.ua/prometheus-free/programming-basics/) [*(certificate)*](https://certs.prometheus.org.ua/downloads/980b47871d0949bdb42a180656780831/Certificate.pdf)
 - [Prometheus: Security basics](https://prometheus.org.ua/prometheus-free/info-security-basics/) [*(certificate)*](https://certs.prometheus.org.ua/downloads/666c791ffc4a4927ac3e5527f104d53a/Certificate.pdf)
+- [Codecademy: Learn the Command Line Course](https://www.codecademy.com/learn/learn-the-command-line) [*(certificate)*](https://www.codecademy.com/profiles/alexandear/certificates/c87ba0541f8be78bc2f4ba1128233f6f)
+- [Udacity: How to Use Git and GitHub](https://www.udacity.com/course/how-to-use-git-and-github--ud775)
+- Saylor: CS107: C++ Programing [*(certificate)*](./../../doc/certificates/saylor.org/Course_Completion_Certificate_CS107_C_Programming.pdf)
 - Stepik: Programming in C++
+- [Alison: Diploma in C Programming](https://alison.com/course/diploma-in-c-programming-old)
+- [Alison: C Programming - Using Pointers, Constants and Strings](https://alison.com/course/c-programming-using-pointers-constants-and-strings-old)
+- [Alison: BC Online English Suite - Pre-Intermediate 1 (UNIT 1)](https://alison.com/course/bc-pre-intermediate-1-unit-1-old)
 
 ## 2014
 
