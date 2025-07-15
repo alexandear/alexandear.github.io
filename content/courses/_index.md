@@ -13,6 +13,7 @@ It's created to provide a comprehensive view of my professional development whil
 - [Sololearn: SQL Intermediate](https://www.sololearn.com/en/learn/courses/sql-intermediate) [*(certificate)*](./../../doc/certificates/sololearn/SQL_Intermediate_8aeb549a-6137-418e-9506-7d681b98d3ff.pdf)
 - [Sololearn: Introduction to SQL](https://www.sololearn.com/en/learn/courses/sql-introduction) [*(certificate)*](./../../doc/certificates/sololearn/Introduction_to_SQL_9f78e421-1c25-4037-a125-4c91210cb5a5.pdf)
 - [Sololearn: Generative AI in Practice](https://www.sololearn.com/en/learn/courses/genai-in-practice) [*(certificate)*](./../../doc/certificates/sololearn/Generative_AI_in_Practice_b742153f-9158-400b-8108-4d08bbbefae8.pdf)
+- [Linux Journey](https://linuxjourney.com/)
 
 ## 2024
 
