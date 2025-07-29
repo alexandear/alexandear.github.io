@@ -63,30 +63,32 @@ Saves one line of code.
 #### Before
 
 ```go
-	for _, tt := range tests {
-		tt := tt
-		t.Run(tt.description, func(t *testing.T) {
-			t.Parallel()
-			// ...
+	values := []string{"a", "b", "c"}
+	for _, v := range values {
+		v := v
+		go func() {
+			fmt.Println(v)
+			done <- true
+		}()
+	}
 ```
 
 #### After
 
 ```go
-	for _, tt := range tests {
-		t.Run(tt.description, func(t *testing.T) {
-			t.Parallel()
-			// ...
+	values := []string{"a", "b", "c"}
+	for _, v := range values {
+		go func() {
+			fmt.Println(v)
+			done <- true
+		}()
+	}
 ```
 
 #### Can be fixed with tools
 
-```
-go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category forvar
-```
-
-```
-golangci-lint run --no-config --fix --enable-only copyloopvar ./...
+```sh
+go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category forvar --fix forloop_before.go
 ```
 
 #### Examples

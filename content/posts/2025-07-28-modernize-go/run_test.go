@@ -13,6 +13,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
+//go:generate go test -v ./...
+
 func TestRun(t *testing.T) {
 	for _, ver := range []string{
 		"1.22",
@@ -26,17 +28,17 @@ func TestRun(t *testing.T) {
 
 			for _, script := range scripts {
 				t.Run(script, func(t *testing.T) {
-					filename := strings.TrimSuffix(script, ".sh")
-					goFilename := filename + ".go"
-					goldenFilename := filename + "_golden.go"
+					filename := strings.TrimSuffix(script, "_command.sh")
+					beforeFilename := filename + "_before.go"
+					afterFilename := filename + "_after.go"
 
 					tmp := t.TempDir()
-					for _, src := range []string{script, goFilename, goldenFilename} {
+					for _, src := range []string{script, beforeFilename, afterFilename} {
 						dst := filepath.Join(tmp, src)
 						copyFile(t, src, dst)
 					}
 
-					t.Logf("Executing the script: %q", script)
+					t.Logf("Executing the script %q in %q", script, tmp)
 
 					ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
 					t.Cleanup(func() { cancel() })
@@ -44,20 +46,20 @@ func TestRun(t *testing.T) {
 					t.Chdir(tmp)
 					cmd := exec.CommandContext(ctx, "sh", script)
 					if err := cmd.Run(); err != nil {
-						t.Fatalf("Failed to run command %q in file %q: %v", cmd, script, err)
+						t.Fatalf("Failed to run command %q: %v", cmd, err)
 					}
 
-					contents, err := os.ReadFile(filename + ".go")
+					beforeContents, err := os.ReadFile(filepath.Join(tmp, beforeFilename))
 					if err != nil {
 						t.Fatal(err)
 					}
-					contentsGolden, err := os.ReadFile(filename + "_golden.go")
+					afterContents, err := os.ReadFile(filepath.Join(tmp, afterFilename))
 					if err != nil {
 						t.Fatal(err)
 					}
 
-					if diff := cmp.Diff(contents, contentsGolden); diff != "" {
-						t.Errorf("Diff between file %q and golden: %v", filename, diff)
+					if diff := cmp.Diff(beforeContents, afterContents); diff != "" {
+						t.Errorf("Diff between before and after for file %q: %v", filename, diff)
 					}
 				})
 			}
@@ -88,6 +90,7 @@ func copyFile(t *testing.T, src, dst string) {
 		}
 	})
 
+	t.Logf("Copying %q to %q", src, dst)
 	_, err = io.Copy(destFile, sourceFile)
 	if err != nil {
 		t.Fatal(err)
