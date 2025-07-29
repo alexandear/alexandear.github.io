@@ -105,6 +105,41 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 - [99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files#diff-fa4826c514673a47321901386ae757f00b2faa73d1433d8dacfc836f4928829aL44)
 - [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)
 
+### Simplify `for` range loops
+
+&#34;For&#34; loops may now range over integers.
+See [For-range over integers in Go 1.22](https://go.dev/ref/spec#For_range) for details.
+
+#### Benefit
+
+Improves readability and less symbols to type.
+
+#### Before
+
+```go
+	for i := 0; i < 3; i++ {
+		fmt.Println(i)
+	}
+```
+
+#### After
+
+```go
+	for i := range 3 {
+		fmt.Println(i)
+	}
+```
+
+#### Can be fixed with tools
+
+```sh
+go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category rangeint --fix ./...
+```
+
+#### Examples
+
+
+
 ## Go 1.20
 
 ## Go 1.19

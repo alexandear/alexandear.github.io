@@ -58,6 +58,12 @@ func main() {
 - [99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files#diff-fa4826c514673a47321901386ae757f00b2faa73d1433d8dacfc836f4928829aL44)
 - [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)`,
 				},
+				{
+					Name:    "forrange",
+					Header:  "Simplify `for` range loops",
+					Body:    "\"For\" loops may now range over integers.\nSee [For-range over integers in Go 1.22](https://go.dev/ref/spec#For_range) for details.",
+					Benefit: "Improves readability and less symbols to type.",
+				},
 			},
 		},
 	}
@@ -89,7 +95,7 @@ func main() {
 	}
 
 	var buf bytes.Buffer
-	err = tmpl.Execute(&buf, gos[0].Sections)
+	err = tmpl.Execute(&buf, gos[0])
 	if err != nil {
 		log.Panic(err)
 	}
