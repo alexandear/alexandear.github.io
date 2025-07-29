@@ -13,9 +13,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-//go:generate go test -v ./...
-
-func TestRun(t *testing.T) {
+// TestFix checks that the fix commands work correctly by running them and comparing before/after files.
+func TestFix(t *testing.T) {
 	for _, ver := range []string{
 		"1.22",
 	} {
