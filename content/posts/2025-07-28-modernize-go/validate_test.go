@@ -1,6 +1,7 @@
-package main_test
+package main
 
 import (
+	"bytes"
 	"context"
 	"io"
 	"os"
@@ -28,11 +29,14 @@ func TestFix(t *testing.T) {
 			for _, script := range scripts {
 				t.Run(script, func(t *testing.T) {
 					filename := strings.TrimSuffix(script, "_command.sh")
-					beforeFilename := filename + "_before.go"
-					afterFilename := filename + "_after.go"
+					beforeFilename := beforeFilename(filename)
+					afterContents, err := os.ReadFile(afterFilename(filename))
+					if err != nil {
+						t.Fatal(err)
+					}
 
 					tmp := t.TempDir()
-					for _, src := range []string{script, beforeFilename, afterFilename} {
+					for _, src := range []string{script, beforeFilename, "go.mod"} {
 						dst := filepath.Join(tmp, src)
 						copyFile(t, src, dst)
 					}
@@ -43,16 +47,15 @@ func TestFix(t *testing.T) {
 					t.Cleanup(func() { cancel() })
 
 					t.Chdir(tmp)
+					var stdout, stderr bytes.Buffer
 					cmd := exec.CommandContext(ctx, "sh", script)
+					cmd.Stdout = &stdout
+					cmd.Stderr = &stderr
 					if err := cmd.Run(); err != nil {
-						t.Fatalf("Failed to run command %q: %v", cmd, err)
+						t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdout.String(), stderr.String())
 					}
 
 					beforeContents, err := os.ReadFile(filepath.Join(tmp, beforeFilename))
-					if err != nil {
-						t.Fatal(err)
-					}
-					afterContents, err := os.ReadFile(filepath.Join(tmp, afterFilename))
 					if err != nil {
 						t.Fatal(err)
 					}

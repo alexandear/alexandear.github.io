@@ -65,21 +65,21 @@ func main() {
 	for _, goElem := range gos {
 		for i := range goElem.Sections {
 			section := goElem.Sections[i]
-			commandFilename := filepath.Join(goElem.Version, section.Name+"_command.sh")
+			commandFilename := filepath.Join(goElem.Version, commandFilename(section.Name))
 			command, err := extractCommandContent(commandFilename)
 			if err != nil {
 				log.Panic(err)
 			}
 			goElem.Sections[i].Command = command
 
-			beforeFilename := filepath.Join(goElem.Version, section.Name+"_before.go")
+			beforeFilename := filepath.Join(goElem.Version, beforeFilename(section.Name))
 			before, err := extractGoContent(beforeFilename)
 			if err != nil {
 				log.Panic(err)
 			}
 			goElem.Sections[i].Before = before
 
-			afterFilename := filepath.Join(goElem.Version, section.Name+"_after.go")
+			afterFilename := filepath.Join(goElem.Version, afterFilename(section.Name))
 			after, err := extractGoContent(afterFilename)
 			if err != nil {
 				log.Panic(err)
@@ -101,6 +101,18 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
+}
+
+func commandFilename(name string) string {
+	return name + "_command.sh"
+}
+
+func beforeFilename(name string) string {
+	return name + "_before.go"
+}
+
+func afterFilename(name string) string {
+	return name + "_after.go"
 }
 
 func extractCommandContent(filename string) (template.HTML, error) {
