@@ -64,7 +64,7 @@ See [Fixing For Loops in Go 1.22](https://go.dev/blog/loopvar-preview) for detai
 
 #### Benefit
 
-Saves one line of code.
+Saves one line of code. Avoid weird for Go newbies constructions like `v := v`.
 
 #### Before
 
@@ -110,7 +110,7 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 ### Simplify `for` range loops
 
 "For" loops may now range over integers.
-See [For-range over integers in Go 1.22](https://go.dev/ref/spec#For_range) for details.
+See [For statements with range clause](https://go.dev/ref/spec#For_range) for details.
 
 #### Benefit
 
@@ -140,7 +140,9 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 
 #### Examples
 
-
+- [kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/5914/files#diff-539f3fc7450aa4c1e6682c00a20c862a4d603225852fdd26bce2fbe6d60ed044R148)
+- [lima-vm/lima](https://github.com/lima-vm/lima/pull/3399/files#diff-4fe57274e3aa074c4ccca2967546e5ad77ec58165d477f30560bef494c637e4dR180)
+- [mgechev/revive](https://github.com/mgechev/revive/pull/1282/files#diff-75fa8cea7543dbb0e07700624e2760869a23cc2004dcb834e3e5a84739d25519L157)
 
 
 ## Go 1.21
