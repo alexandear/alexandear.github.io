@@ -6,6 +6,7 @@ package main
 import (
 	"bytes"
 	"errors"
+	"flag"
 	"fmt"
 	"html/template"
 	"log"
@@ -34,14 +35,24 @@ type Section struct {
 }
 
 func main() {
+	var debug bool
+	flag.BoolVar(&debug, "debug", false, "If print debug statements")
+	flag.Parse()
+
 	const articleFilename = "2025-07-28-modernize-go"
 	tmplFilename := articleFilename + ".tmpl"
 	tmpl, err := template.New(tmplFilename).ParseFiles(tmplFilename)
 	if err != nil {
-		log.Panic(err)
+		log.Fatal(err)
 	}
 
 	gos := []Go{
+		{
+			Version: "1.24",
+		},
+		{
+			Version: "1.23",
+		},
 		{
 			Version: "1.22",
 			Sections: []Section{
@@ -66,6 +77,69 @@ func main() {
 				},
 			},
 		},
+		{
+			Version: "1.21",
+		},
+		{
+			Version: "1.20",
+		},
+		{
+			Version: "1.19",
+		},
+		{
+			Version: "1.18",
+		},
+		{
+			Version: "1.17",
+		},
+		{
+			Version: "1.16",
+		},
+		{
+			Version: "1.15",
+		},
+		{
+			Version: "1.14",
+		},
+		{
+			Version: "1.13",
+		},
+		{
+			Version: "1.12",
+		},
+		{
+			Version: "1.11",
+		},
+		{
+			Version: "1.10",
+		},
+		{
+			Version: "1.9",
+		},
+		{
+			Version: "1.8",
+		},
+		{
+			Version: "1.7",
+		},
+		{
+			Version: "1.6",
+		},
+		{
+			Version: "1.5",
+		},
+		{
+			Version: "1.4",
+		},
+		{
+			Version: "1.3",
+		},
+		{
+			Version: "1.2",
+		},
+		{
+			Version: "1.1",
+		},
 	}
 
 	for _, goElem := range gos {
@@ -74,30 +148,34 @@ func main() {
 			commandFilename := filepath.Join(goElem.Version, commandFilename(section.Name))
 			command, err := extractCommandContent(commandFilename)
 			if err != nil {
-				log.Panic(err)
+				log.Fatal(err)
 			}
 			goElem.Sections[i].Command = command
 
 			beforeFilename := filepath.Join(goElem.Version, beforeFilename(section.Name))
 			before, err := extractGoContent(beforeFilename)
 			if err != nil {
-				log.Panic(err)
+				log.Fatal(err)
 			}
 			goElem.Sections[i].Before = before
 
 			afterFilename := filepath.Join(goElem.Version, afterFilename(section.Name))
 			after, err := extractGoContent(afterFilename)
 			if err != nil {
-				log.Panic(err)
+				log.Fatal(err)
 			}
 			goElem.Sections[i].After = template.HTML(after)
 		}
 	}
 
 	var buf bytes.Buffer
-	err = tmpl.Execute(&buf, gos[0])
+	err = tmpl.Execute(&buf, gos)
 	if err != nil {
-		log.Panic(err)
+		log.Fatal(err)
+	}
+
+	if debug {
+		fmt.Println(buf.String())
 	}
 
 	// workaround
@@ -105,7 +183,7 @@ func main() {
 
 	err = os.WriteFile(filepath.Join("..", articleFilename+".md"), b, os.ModePerm)
 	if err != nil {
-		log.Panic(err)
+		log.Fatal(err)
 	}
 }
 

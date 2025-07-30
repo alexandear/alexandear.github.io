@@ -51,7 +51,9 @@ TODO: explain
 
 ## Go 1.24
 
+
 ## Go 1.23
+
 
 ## Go 1.22
 
@@ -140,42 +142,67 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 
 
 
+
+## Go 1.21
+
+
 ## Go 1.20
+
 
 ## Go 1.19
 
+
 ## Go 1.18
+
 
 ## Go 1.17
 
+
 ## Go 1.16
+
 
 ## Go 1.15
 
+
 ## Go 1.14
+
 
 ## Go 1.13
 
+
 ## Go 1.12
+
 
 ## Go 1.11
 
+
 ## Go 1.10
+
 
 ## Go 1.9
 
+
 ## Go 1.8
+
 
 ## Go 1.7
 
+
 ## Go 1.6
+
 
 ## Go 1.5
 
+
 ## Go 1.4
+
 
 ## Go 1.3
 
+
 ## Go 1.2
 
+
 ## Go 1.1
+
+
