@@ -109,7 +109,7 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 
 ### Simplify `for` range loops
 
-&#34;For&#34; loops may now range over integers.
+"For" loops may now range over integers.
 See [For-range over integers in Go 1.22](https://go.dev/ref/spec#For_range) for details.
 
 #### Benefit

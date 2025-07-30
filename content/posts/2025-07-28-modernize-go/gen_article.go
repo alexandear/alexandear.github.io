@@ -23,15 +23,15 @@ type Go struct {
 }
 
 type Section struct {
-	Name string
+	name string
 
-	Header   string
-	Body     string
-	Benefit  string
+	Header   template.HTML
+	Body     template.HTML
+	Benefit  template.HTML
 	Command  template.HTML
 	Before   template.HTML
 	After    template.HTML
-	Examples string
+	Examples template.HTML
 }
 
 func main() {
@@ -57,7 +57,7 @@ func main() {
 			Version: "1.22",
 			Sections: []Section{
 				{
-					Name:    "forloop",
+					name:    "forloop",
 					Header:  "Remove redundant loop variables",
 					Body:    "A construct like `tc := tc` in `for` loops is not needed anymore and we can remove it.\nSee [Fixing For Loops in Go 1.22](https://go.dev/blog/loopvar-preview) for details.",
 					Benefit: "Saves one line of code.",
@@ -70,7 +70,7 @@ func main() {
 - [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)`,
 				},
 				{
-					Name:    "forrange",
+					name:    "forrange",
 					Header:  "Simplify `for` range loops",
 					Body:    "\"For\" loops may now range over integers.\nSee [For-range over integers in Go 1.22](https://go.dev/ref/spec#For_range) for details.",
 					Benefit: "Improves readability and less symbols to type.",
@@ -145,21 +145,21 @@ func main() {
 	for _, goElem := range gos {
 		for i := range goElem.Sections {
 			section := goElem.Sections[i]
-			commandFilename := filepath.Join(goElem.Version, commandFilename(section.Name))
+			commandFilename := filepath.Join(goElem.Version, commandFilename(section.name))
 			command, err := extractCommandContent(commandFilename)
 			if err != nil {
 				log.Fatal(err)
 			}
 			goElem.Sections[i].Command = command
 
-			beforeFilename := filepath.Join(goElem.Version, beforeFilename(section.Name))
+			beforeFilename := filepath.Join(goElem.Version, beforeFilename(section.name))
 			before, err := extractGoContent(beforeFilename)
 			if err != nil {
 				log.Fatal(err)
 			}
 			goElem.Sections[i].Before = before
 
-			afterFilename := filepath.Join(goElem.Version, afterFilename(section.Name))
+			afterFilename := filepath.Join(goElem.Version, afterFilename(section.name))
 			after, err := extractGoContent(afterFilename)
 			if err != nil {
 				log.Fatal(err)
