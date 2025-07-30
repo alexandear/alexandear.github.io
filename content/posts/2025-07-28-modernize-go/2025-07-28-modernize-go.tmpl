@@ -73,9 +73,11 @@ TODO: explain
 
 #### Can be fixed with tools
 
+{{ range .FixCommands }}
 ```sh
-{{ .Command }}
+{{ . }}
 ```
+{{ end }}
 
 #### Examples
 

@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	done := make(chan bool)
 
-	// << begin >>
+	// << snippet begin >>
 	values := []string{"a", "b", "c"}
 	for _, v := range values {
 		go func() {
@@ -13,9 +13,9 @@ func main() {
 			done <- true
 		}()
 	}
-	// << end >>
+	// << snippet end >>
 
-	for _ = range values {
+	for range values {
 		<-done
 	}
 }

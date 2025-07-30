@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	// << begin >>
+	// << snippet begin >>
 	for i := range 3 {
 		fmt.Println(i)
 	}
-	// << end >>
+	// << snippet end >>
 }

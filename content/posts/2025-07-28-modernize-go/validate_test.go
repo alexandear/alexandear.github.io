@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -14,8 +15,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-// TestFix checks that the fix commands work correctly by running them and comparing before/after files.
-func TestFix(t *testing.T) {
+// Checks that the fix commands work correctly by running them and comparing before/after files.
+func TestValidateFixCommands(t *testing.T) {
 	for _, ver := range []string{
 		"1.22",
 	} {
@@ -25,45 +26,62 @@ func TestFix(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-
+			caseNames := map[string]struct{}{}
 			for _, script := range scripts {
-				t.Run(script, func(t *testing.T) {
-					filename := strings.TrimSuffix(script, "_command.sh")
-					beforeFilename := beforeFilename(filename)
-					afterContents, err := os.ReadFile(afterFilename(filename))
-					if err != nil {
-						t.Fatal(err)
-					}
+				name, _, ok := strings.Cut(script, "_")
+				if !ok {
+					t.Fatalf("Script name %q should contain at least one _", script)
+				}
+				caseNames[name] = struct{}{}
+				t.Logf("Found case: %q", name)
+			}
 
-					tmp := t.TempDir()
-					for _, src := range []string{script, beforeFilename, "go.mod"} {
-						dst := filepath.Join(tmp, src)
-						copyFile(t, src, dst)
-					}
+			for caseName := range caseNames {
+				caseScripts, err := filepath.Glob(caseName + "*.sh")
+				if err != nil {
+					t.Fatal(err)
+				}
+				t.Logf("Found case scripts: %v", caseScripts)
 
-					t.Logf("Executing the script %q in %q", script, tmp)
+				for _, script := range caseScripts {
+					t.Run(script, func(t *testing.T) {
+						beforeFilename := beforeFilename(caseName)
+						afterContents, err := os.ReadFile(afterFilename(caseName))
+						if err != nil {
+							t.Fatal(err)
+						}
 
-					ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
-					t.Cleanup(func() { cancel() })
+						tmp := t.TempDir()
+						for _, src := range slices.Concat([]string{beforeFilename, "go.mod"}, caseScripts) {
+							dst := filepath.Join(tmp, src)
+							copyFile(t, src, dst)
+						}
 
-					t.Chdir(tmp)
-					var stdout, stderr bytes.Buffer
-					cmd := exec.CommandContext(ctx, "sh", script)
-					cmd.Stdout = &stdout
-					cmd.Stderr = &stderr
-					if err := cmd.Run(); err != nil {
-						t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdout.String(), stderr.String())
-					}
+						t.Logf("Executing the script %q in %q", script, tmp)
 
-					beforeContents, err := os.ReadFile(filepath.Join(tmp, beforeFilename))
-					if err != nil {
-						t.Fatal(err)
-					}
+						ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+						t.Cleanup(func() { cancel() })
 
-					if diff := cmp.Diff(beforeContents, afterContents); diff != "" {
-						t.Errorf("Diff between before and after for file %q: %v", filename, diff)
-					}
-				})
+						t.Chdir(tmp)
+						var stdout, stderr bytes.Buffer
+						cmd := exec.CommandContext(ctx, "sh", script)
+						cmd.Stdout = &stdout
+						cmd.Stderr = &stderr
+						if err := cmd.Run(); err != nil {
+							t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdout.String(), stderr.String())
+						}
+
+						beforeContents, err := os.ReadFile(filepath.Join(tmp, beforeFilename))
+						if err != nil {
+							t.Fatal(err)
+						}
+
+						if diff := cmp.Diff(beforeContents, afterContents); diff != "" {
+							t.Errorf("Diff between before and after for case %q: %v", caseName, diff)
+							t.Logf("Contents of %v:\n%s", beforeFilename, beforeContents)
+						}
+					})
+				}
 			}
 		})
 	}

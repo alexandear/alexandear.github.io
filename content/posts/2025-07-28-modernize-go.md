@@ -93,9 +93,15 @@ Saves one line of code. Avoid weird for Go newbies constructions like `v := v`.
 
 #### Can be fixed with tools
 
+
+```sh
+golangci-lint run --no-config --enable-only copyloopvar --fix ./...
+```
+
 ```sh
 go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category forvar --fix ./...
 ```
+
 
 #### Examples
 
@@ -134,9 +140,15 @@ Improves readability and less symbols to type.
 
 #### Can be fixed with tools
 
+
+```sh
+golangci-lint run --no-config --enable-only intrange --fix ./...
+```
+
 ```sh
 go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category rangeint --fix ./...
 ```
+
 
 #### Examples
 

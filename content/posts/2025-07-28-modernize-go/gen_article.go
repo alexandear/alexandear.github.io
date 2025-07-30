@@ -5,7 +5,6 @@ package main
 
 import (
 	"bytes"
-	"errors"
 	"flag"
 	"fmt"
 	"html/template"
@@ -25,13 +24,13 @@ type Go struct {
 type Section struct {
 	name string
 
-	Header   template.HTML
-	Body     template.HTML
-	Benefit  template.HTML
-	Command  template.HTML
-	Before   template.HTML
-	After    template.HTML
-	Examples template.HTML
+	Header      template.HTML
+	Body        template.HTML
+	Benefit     template.HTML
+	FixCommands []template.HTML
+	Before      template.HTML
+	After       template.HTML
+	Examples    template.HTML
 }
 
 func main() {
@@ -148,12 +147,23 @@ func main() {
 	for _, goElem := range gos {
 		for i := range goElem.Sections {
 			section := goElem.Sections[i]
-			commandFilename := filepath.Join(goElem.Version, commandFilename(section.name))
-			command, err := extractCommandContent(commandFilename)
+
+			scripts, err := filepath.Glob(filepath.Join(goElem.Version, section.name+"*.sh"))
 			if err != nil {
 				log.Fatal(err)
 			}
-			goElem.Sections[i].Command = command
+
+			if len(scripts) == 0 {
+				log.Fatalf("Missed scripts for section %q in version %q", section.name, goElem.Version)
+			}
+
+			for _, script := range scripts {
+				command, err := extractShContent(script)
+				if err != nil {
+					log.Fatal(err)
+				}
+				goElem.Sections[i].FixCommands = append(goElem.Sections[i].FixCommands, command)
+			}
 
 			beforeFilename := filepath.Join(goElem.Version, beforeFilename(section.name))
 			before, err := extractGoContent(beforeFilename)
@@ -190,10 +200,6 @@ func main() {
 	}
 }
 
-func commandFilename(name string) string {
-	return name + "_command.sh"
-}
-
 func beforeFilename(name string) string {
 	return name + "_before.go"
 }
@@ -202,17 +208,27 @@ func afterFilename(name string) string {
 	return name + "_after.go"
 }
 
-func extractCommandContent(filename string) (template.HTML, error) {
+const (
+	snippetBegin = "<< snippet begin >>"
+	snippetEnd   = "<< snippet end >>"
+)
+
+func extractShContent(filename string) (template.HTML, error) {
 	contents, err := os.ReadFile(filename)
 	if err != nil {
 		return "", err
 	}
-	command, ok := strings.CutPrefix(string(contents), "#! /bin/sh")
+	begin := "# " + snippetBegin + "\n"
+	_, after, ok := strings.Cut(string(contents), begin)
 	if !ok {
-		return "", errors.New("missed sheband")
+		return "", fmt.Errorf("missed %q in file %q", begin, filename)
 	}
-	command = strings.TrimSpace(command)
-	return template.HTML(command), nil
+	end := "# " + snippetEnd
+	before, _, ok := strings.Cut(after, end)
+	if !ok {
+		return "", fmt.Errorf("missed %q in file %q", end, filename)
+	}
+	return template.HTML(strings.TrimSpace(before)), nil
 }
 
 func extractGoContent(filename string) (template.HTML, error) {
@@ -220,12 +236,12 @@ func extractGoContent(filename string) (template.HTML, error) {
 	if err != nil {
 		return "", err
 	}
-	const begin = "// << begin >>\n"
+	begin := "// " + snippetBegin + "\n"
 	_, after, ok := strings.Cut(string(contents), begin)
 	if !ok {
 		return "", fmt.Errorf("missed %q in file %q", begin, filename)
 	}
-	const end = "\n\t// << end >>"
+	end := "\n\t// " + snippetEnd
 	before, _, ok := strings.Cut(after, end)
 	if !ok {
 		return "", fmt.Errorf("missed %q in file %q", end, filename)
