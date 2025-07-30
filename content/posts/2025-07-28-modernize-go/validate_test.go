@@ -22,21 +22,8 @@ func TestValidateFixCommands(t *testing.T) {
 	} {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)
-			scripts, err := filepath.Glob("*.sh")
-			if err != nil {
-				t.Fatal(err)
-			}
-			caseNames := map[string]struct{}{}
-			for _, script := range scripts {
-				name, _, ok := strings.Cut(script, "_")
-				if !ok {
-					t.Fatalf("Script name %q should contain at least one _", script)
-				}
-				caseNames[name] = struct{}{}
-				t.Logf("Found case: %q", name)
-			}
 
-			for caseName := range caseNames {
+			for caseName := range findCaseNames(t) {
 				caseScripts, err := filepath.Glob(caseName + "*.sh")
 				if err != nil {
 					t.Fatal(err)
@@ -57,19 +44,7 @@ func TestValidateFixCommands(t *testing.T) {
 							copyFile(t, src, dst)
 						}
 
-						t.Logf("Executing the script %q in %q", script, tmp)
-
-						ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
-						t.Cleanup(func() { cancel() })
-
-						t.Chdir(tmp)
-						var stdout, stderr bytes.Buffer
-						cmd := exec.CommandContext(ctx, "sh", script)
-						cmd.Stdout = &stdout
-						cmd.Stderr = &stderr
-						if err := cmd.Run(); err != nil {
-							t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdout.String(), stderr.String())
-						}
+						executeScript(t, script, tmp)
 
 						beforeContents, err := os.ReadFile(filepath.Join(tmp, beforeFilename))
 						if err != nil {
@@ -85,6 +60,60 @@ func TestValidateFixCommands(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestValidateCompilation(t *testing.T) {
+	for _, ver := range []string{
+		"1.22",
+	} {
+		t.Run(ver, func(t *testing.T) {
+			t.Chdir(ver)
+
+			const script = "compile.sh"
+
+			for caseName := range findCaseNames(t) {
+				t.Run("before", func(t *testing.T) {
+					beforeFilename := beforeFilename(caseName)
+					tmpBefore := t.TempDir()
+					for _, src := range []string{beforeFilename, "go.mod", script} {
+						dst := filepath.Join(tmpBefore, src)
+						copyFile(t, src, dst)
+					}
+					executeScript(t, script, tmpBefore)
+				})
+
+				t.Run("after", func(t *testing.T) {
+					afterFilename := afterFilename(caseName)
+					tmpAfter := t.TempDir()
+					for _, src := range []string{afterFilename, "go.mod", script} {
+						dst := filepath.Join(tmpAfter, src)
+						copyFile(t, src, dst)
+					}
+					executeScript(t, script, tmpAfter)
+				})
+			}
+		})
+	}
+}
+
+func findCaseNames(t *testing.T) map[string]struct{} {
+	scripts, err := filepath.Glob("*.sh")
+	if err != nil {
+		t.Fatal(err)
+	}
+	caseNames := map[string]struct{}{}
+	for _, script := range scripts {
+		if script == "compile.sh" {
+			continue
+		}
+		name, _, ok := strings.Cut(script, "_")
+		if !ok {
+			t.Fatalf("Script name %q should contain at least one _", script)
+		}
+		caseNames[name] = struct{}{}
+		t.Logf("Found case: %q", name)
+	}
+	return caseNames
 }
 
 func copyFile(t *testing.T, src, dst string) {
@@ -114,5 +143,21 @@ func copyFile(t *testing.T, src, dst string) {
 	_, err = io.Copy(destFile, sourceFile)
 	if err != nil {
 		t.Fatal(err)
+	}
+}
+
+func executeScript(t *testing.T, script, workDir string) {
+	t.Logf("Executing the script %q in %q", script, workDir)
+
+	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+	t.Cleanup(func() { cancel() })
+
+	t.Chdir(workDir)
+	var stdout, stderr bytes.Buffer
+	cmd := exec.CommandContext(ctx, "sh", script)
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	if err := cmd.Run(); err != nil {
+		t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdout.String(), stderr.String())
 	}
 }

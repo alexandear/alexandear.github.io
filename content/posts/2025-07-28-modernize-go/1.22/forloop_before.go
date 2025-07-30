@@ -16,7 +16,7 @@ func main() {
 	}
 	// << snippet end >>
 
-	for _ = range values {
+	for range values {
 		<-done
 	}
 }
