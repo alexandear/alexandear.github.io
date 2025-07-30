@@ -77,6 +77,7 @@ Saves one line of code. Avoid weird for Go newbies constructions like `v := v`.
 			done <- true
 		}()
 	}
+	
 ```
 
 #### After
@@ -89,10 +90,10 @@ Saves one line of code. Avoid weird for Go newbies constructions like `v := v`.
 			done <- true
 		}()
 	}
+	
 ```
 
-#### Can be fixed with tools
-
+#### Can be fixed or detected with tools
 
 ```sh
 golangci-lint run --no-config --enable-only copyloopvar --fix ./...
@@ -101,7 +102,6 @@ golangci-lint run --no-config --enable-only copyloopvar --fix ./...
 ```sh
 go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category forvar --fix ./...
 ```
-
 
 #### Examples
 
@@ -112,6 +112,7 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 - [go-critic/go-critic](https://github.com/go-critic/go-critic/pull/1459/files#diff-c2dfb8c940e1232344ce37c2a5942712765d9acf23d43c89345feb81fdbeeb13L43)
 - [99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files#diff-fa4826c514673a47321901386ae757f00b2faa73d1433d8dacfc836f4928829aL44)
 - [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)
+- [nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L86)
 
 ### Simplify `for` range loops
 
@@ -128,6 +129,7 @@ Improves readability and less symbols to type.
 	for i := 0; i < 3; i++ {
 		fmt.Println(i)
 	}
+	
 ```
 
 #### After
@@ -136,10 +138,10 @@ Improves readability and less symbols to type.
 	for i := range 3 {
 		fmt.Println(i)
 	}
+	
 ```
 
-#### Can be fixed with tools
-
+#### Can be fixed or detected with tools
 
 ```sh
 golangci-lint run --no-config --enable-only intrange --fix ./...
@@ -149,7 +151,6 @@ golangci-lint run --no-config --enable-only intrange --fix ./...
 go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category rangeint --fix ./...
 ```
 
-
 #### Examples
 
 - [kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/5914/files#diff-539f3fc7450aa4c1e6682c00a20c862a4d603225852fdd26bce2fbe6d60ed044R148)
@@ -158,6 +159,81 @@ go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest
 
 
 ## Go 1.21
+
+### Replace handwritten `min, max` or `math.Min`, `math.Max` functions with builtin `min`, `max`
+
+TODO
+
+#### Benefit
+
+Simplifies code.
+
+#### Before
+
+```go
+func main() {
+	a, b := 4, -1
+
+	h := min(a, b)
+	m := int(math.Min(float64(a), float64(b)))
+
+	fmt.Println(h, m)
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+
+```
+
+#### After
+
+```go
+func main() {
+	a, b := 4, -1
+
+	h := min(a, b)
+	m := min(a, b)
+
+	fmt.Println(h, m)
+}
+
+
+```
+
+#### Can be fixed or detected with tools
+
+```sh
+cat > .golangci.yml << 'EOF'
+version: "2"
+linters:
+  settings:
+    revive:
+      enable-all-rules: false
+      rules:
+        - name: redefines-builtin-id
+run:
+  issues-exit-code: 0
+EOF
+
+# No auto fix: redefines-builtin-id: redefinition of the built-in function min
+golangci-lint run --config .golangci.yml --enable-only revive ./...
+```
+
+```sh
+# No auto fix: replace math.Min/math.Max with min/max
+grep -r 'math.M\(in\|ax\)' . | sed 's/$/ # replace math\.Min\/math\.Max with min\/max/'
+```
+
+#### Examples
+
+- [kubernetes-sigs/scheduler-plugins](https://github.com/kubernetes-sigs/scheduler-plugins/pull/835/files#diff-a9d2a24a7e8778c1edaecdbfef1d7873cd2c9df69c24a1bc00d4e504de2fb4b8R227)
+- [getkin/kin-openapi](https://github.com/getkin/kin-openapi/pull/1032/files#diff-6b3cce991b5d47ed27df8dafc6ece7b16dc90449f6a14cd1d5cb7229a9c5920cR176)
+- [nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L113-L119)
 
 
 ## Go 1.20

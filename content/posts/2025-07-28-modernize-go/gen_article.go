@@ -66,7 +66,8 @@ func main() {
 - [google/go-github](https://github.com/google/go-github/pull/3537/files#diff-0f446fb8e4e16b655368f9f1c774d667d5528c9b3103f35481f704e2e33a925fL292)
 - [go-critic/go-critic](https://github.com/go-critic/go-critic/pull/1459/files#diff-c2dfb8c940e1232344ce37c2a5942712765d9acf23d43c89345feb81fdbeeb13L43)
 - [99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files#diff-fa4826c514673a47321901386ae757f00b2faa73d1433d8dacfc836f4928829aL44)
-- [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)`,
+- [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)
+- [nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L86)`,
 				},
 				{
 					name:    "forrange",
@@ -81,6 +82,17 @@ func main() {
 		},
 		{
 			Version: "1.21",
+			Sections: []Section{
+				{
+					name:    "minmax",
+					Header:  "Replace handwritten `min, max` or `math.Min`, `math.Max` functions with builtin `min`, `max`",
+					Body:    "TODO",
+					Benefit: "Simplifies code.",
+					Examples: `- [kubernetes-sigs/scheduler-plugins](https://github.com/kubernetes-sigs/scheduler-plugins/pull/835/files#diff-a9d2a24a7e8778c1edaecdbfef1d7873cd2c9df69c24a1bc00d4e504de2fb4b8R227)
+- [getkin/kin-openapi](https://github.com/getkin/kin-openapi/pull/1032/files#diff-6b3cce991b5d47ed27df8dafc6ece7b16dc90449f6a14cd1d5cb7229a9c5920cR176)
+- [nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L113-L119)`,
+				},
+			},
 		},
 		{
 			Version: "1.20",
@@ -241,7 +253,7 @@ func extractGoContent(filename string) (template.HTML, error) {
 	if !ok {
 		return "", fmt.Errorf("missed %q in file %q", begin, filename)
 	}
-	end := "\n\t// " + snippetEnd
+	end := "// " + snippetEnd
 	before, _, ok := strings.Cut(after, end)
 	if !ok {
 		return "", fmt.Errorf("missed %q in file %q", end, filename)

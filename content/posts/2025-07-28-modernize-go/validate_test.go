@@ -15,10 +15,13 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
+const noFix = "# No auto fix: "
+
 // Checks that the fix commands work correctly by running them and comparing before/after files.
 func TestValidateFixCommands(t *testing.T) {
 	for _, ver := range []string{
 		"1.22",
+		"1.21",
 	} {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)
@@ -44,7 +47,22 @@ func TestValidateFixCommands(t *testing.T) {
 							copyFile(t, src, dst)
 						}
 
-						executeScript(t, script, tmp)
+						scriptContents, err := os.ReadFile(script)
+						if err != nil {
+							t.Fatal(err)
+						}
+
+						stdout := executeScript(t, script, tmp)
+
+						if _, after, ok := strings.Cut(string(scriptContents), noFix); ok {
+							after = strings.Split(after, "\n")[0]
+							t.Logf("Script %q is marked as not fixing, checking output: %q", script, after)
+
+							if !strings.Contains(stdout, after) {
+								t.Errorf("Missed expected output in script %q", script)
+							}
+							return
+						}
 
 						beforeContents, err := os.ReadFile(filepath.Join(tmp, beforeFilename))
 						if err != nil {
@@ -65,13 +83,13 @@ func TestValidateFixCommands(t *testing.T) {
 func TestValidateCompilation(t *testing.T) {
 	for _, ver := range []string{
 		"1.22",
+		"1.21",
 	} {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)
-
-			const script = "compile.sh"
-
 			for caseName := range findCaseNames(t) {
+				const script = "compile.sh"
+
 				t.Run("before", func(t *testing.T) {
 					beforeFilename := beforeFilename(caseName)
 					tmpBefore := t.TempDir()
@@ -146,18 +164,19 @@ func copyFile(t *testing.T, src, dst string) {
 	}
 }
 
-func executeScript(t *testing.T, script, workDir string) {
+func executeScript(t *testing.T, script, workDir string) (stdout string) {
 	t.Logf("Executing the script %q in %q", script, workDir)
 
 	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
 	t.Cleanup(func() { cancel() })
 
 	t.Chdir(workDir)
-	var stdout, stderr bytes.Buffer
+	var stdoutBuf, stderrBuf bytes.Buffer
 	cmd := exec.CommandContext(ctx, "sh", script)
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
+	cmd.Stdout = &stdoutBuf
+	cmd.Stderr = &stderrBuf
 	if err := cmd.Run(); err != nil {
-		t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdout.String(), stderr.String())
+		t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdoutBuf.String(), stderrBuf.String())
 	}
+	return stdoutBuf.String()
 }
