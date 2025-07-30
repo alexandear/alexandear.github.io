@@ -30,7 +30,7 @@ type Section struct {
 	FixCommands []template.HTML
 	Before      template.HTML
 	After       template.HTML
-	Examples    template.HTML
+	Examples    []template.HTML
 }
 
 func main() {
@@ -60,23 +60,27 @@ func main() {
 					Header:  "Remove redundant loop variables",
 					Body:    "A construct like `tc := tc` in `for` loops is not needed anymore and we can remove it.\nSee [Fixing For Loops in Go 1.22](https://go.dev/blog/loopvar-preview) for details.",
 					Benefit: "Saves one line of code. Avoid weird for Go newbies constructions like `v := v`.",
-					Examples: `- [goreleaser/goreleaser](https://github.com/goreleaser/goreleaser/pull/4856/files#diff-3756619488c8c0f0c0300fc0cdcfecbb39c2a7bcb4fe4b3ac5305c6057512986L486)
-- [kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/1946/files#diff-22ad2263a86a607fd28df7741c704614d0f34e208b5270153aa39427e4325fb3L203)
-- [IBM/sarama](https://github.com/IBM/sarama/pull/3214/files#diff-cb488ad8239edeaaf8b0c1f469cc15c03fde53cbf22ee996e2f3922b3cc6a0c9L426)
-- [google/go-github](https://github.com/google/go-github/pull/3537/files#diff-0f446fb8e4e16b655368f9f1c774d667d5528c9b3103f35481f704e2e33a925fL292)
-- [go-critic/go-critic](https://github.com/go-critic/go-critic/pull/1459/files#diff-c2dfb8c940e1232344ce37c2a5942712765d9acf23d43c89345feb81fdbeeb13L43)
-- [99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files#diff-fa4826c514673a47321901386ae757f00b2faa73d1433d8dacfc836f4928829aL44)
-- [air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)
-- [nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L86)`,
+					Examples: []template.HTML{
+						"[goreleaser/goreleaser](https://github.com/goreleaser/goreleaser/pull/4856/files#diff-3756619488c8c0f0c0300fc0cdcfecbb39c2a7bcb4fe4b3ac5305c6057512986L486)",
+						"[kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/1946/files#diff-22ad2263a86a607fd28df7741c704614d0f34e208b5270153aa39427e4325fb3L203)",
+						"[IBM/sarama](https://github.com/IBM/sarama/pull/3214/files#diff-cb488ad8239edeaaf8b0c1f469cc15c03fde53cbf22ee996e2f3922b3cc6a0c9L426)",
+						"[google/go-github](https://github.com/google/go-github/pull/3537/files#diff-0f446fb8e4e16b655368f9f1c774d667d5528c9b3103f35481f704e2e33a925fL292)",
+						"[go-critic/go-critic](https://github.com/go-critic/go-critic/pull/1459/files#diff-c2dfb8c940e1232344ce37c2a5942712765d9acf23d43c89345feb81fdbeeb13L43)",
+						"[99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files#diff-fa4826c514673a47321901386ae757f00b2faa73d1433d8dacfc836f4928829aL44)",
+						"[air-verse/air](https://github.com/air-verse/air/pull/682/files#diff-0c22297be1ae696feec687c4dc3d1f425a6ff6c7dfd47d1d2a2275c32d3da14aL96)",
+						"[nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L86)",
+					},
 				},
 				{
 					name:    "forrange",
 					Header:  "Simplify `for` range loops",
 					Body:    "\"For\" loops may now range over integers.\nSee [For statements with range clause](https://go.dev/ref/spec#For_range) for details.",
 					Benefit: "Improves readability and less symbols to type.",
-					Examples: `- [kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/5914/files#diff-539f3fc7450aa4c1e6682c00a20c862a4d603225852fdd26bce2fbe6d60ed044R148)
-- [lima-vm/lima](https://github.com/lima-vm/lima/pull/3399/files#diff-4fe57274e3aa074c4ccca2967546e5ad77ec58165d477f30560bef494c637e4dR180)
-- [mgechev/revive](https://github.com/mgechev/revive/pull/1282/files#diff-75fa8cea7543dbb0e07700624e2760869a23cc2004dcb834e3e5a84739d25519L157)`,
+					Examples: []template.HTML{
+						"[kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/5914/files#diff-539f3fc7450aa4c1e6682c00a20c862a4d603225852fdd26bce2fbe6d60ed044R148)",
+						"[lima-vm/lima](https://github.com/lima-vm/lima/pull/3399/files#diff-4fe57274e3aa074c4ccca2967546e5ad77ec58165d477f30560bef494c637e4dR180)",
+						"[mgechev/revive](https://github.com/mgechev/revive/pull/1282/files#diff-75fa8cea7543dbb0e07700624e2760869a23cc2004dcb834e3e5a84739d25519L157)",
+					},
 				},
 			},
 		},
@@ -88,9 +92,11 @@ func main() {
 					Header:  "Replace handwritten `min, max` or `math.Min`, `math.Max` functions with builtin `min`, `max`",
 					Body:    "TODO",
 					Benefit: "Simplifies code.",
-					Examples: `- [kubernetes-sigs/scheduler-plugins](https://github.com/kubernetes-sigs/scheduler-plugins/pull/835/files#diff-a9d2a24a7e8778c1edaecdbfef1d7873cd2c9df69c24a1bc00d4e504de2fb4b8R227)
-- [getkin/kin-openapi](https://github.com/getkin/kin-openapi/pull/1032/files#diff-6b3cce991b5d47ed27df8dafc6ece7b16dc90449f6a14cd1d5cb7229a9c5920cR176)
-- [nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L113-L119)`,
+					Examples: []template.HTML{
+						"[kubernetes-sigs/scheduler-plugins](https://github.com/kubernetes-sigs/scheduler-plugins/pull/835/files#diff-a9d2a24a7e8778c1edaecdbfef1d7873cd2c9df69c24a1bc00d4e504de2fb4b8R227)",
+						"[getkin/kin-openapi](https://github.com/getkin/kin-openapi/pull/1032/files#diff-6b3cce991b5d47ed27df8dafc6ece7b16dc90449f6a14cd1d5cb7229a9c5920cR176)",
+						"[nametake/golangci-lint-langserver](https://github.com/nametake/golangci-lint-langserver/pull/62/files#diff-0eb779b9e49d8e44b0f36923fdb8d87d5ee024f886eefc45deec4ec88380a087L113-L119)",
+					},
 				},
 			},
 		},

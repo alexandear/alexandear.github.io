@@ -103,7 +103,7 @@ golangci-lint run --no-config --enable-only copyloopvar --fix ./...
 go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category forvar --fix ./...
 ```
 
-#### Examples
+#### Examples from Open Source
 
 - [goreleaser/goreleaser](https://github.com/goreleaser/goreleaser/pull/4856/files#diff-3756619488c8c0f0c0300fc0cdcfecbb39c2a7bcb4fe4b3ac5305c6057512986L486)
 - [kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/1946/files#diff-22ad2263a86a607fd28df7741c704614d0f34e208b5270153aa39427e4325fb3L203)
@@ -151,7 +151,7 @@ golangci-lint run --no-config --enable-only intrange --fix ./...
 go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -category rangeint --fix ./...
 ```
 
-#### Examples
+#### Examples from Open Source
 
 - [kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue/pull/5914/files#diff-539f3fc7450aa4c1e6682c00a20c862a4d603225852fdd26bce2fbe6d60ed044R148)
 - [lima-vm/lima](https://github.com/lima-vm/lima/pull/3399/files#diff-4fe57274e3aa074c4ccca2967546e5ad77ec58165d477f30560bef494c637e4dR180)
@@ -229,7 +229,7 @@ golangci-lint run --config .golangci.yml --enable-only revive ./...
 grep -r 'math.M\(in\|ax\)' . | sed 's/$/ # replace math\.Min\/math\.Max with min\/max/'
 ```
 
-#### Examples
+#### Examples from Open Source
 
 - [kubernetes-sigs/scheduler-plugins](https://github.com/kubernetes-sigs/scheduler-plugins/pull/835/files#diff-a9d2a24a7e8778c1edaecdbfef1d7873cd2c9df69c24a1bc00d4e504de2fb4b8R227)
 - [getkin/kin-openapi](https://github.com/getkin/kin-openapi/pull/1032/files#diff-6b3cce991b5d47ed27df8dafc6ece7b16dc90449f6a14cd1d5cb7229a9c5920cR176)
