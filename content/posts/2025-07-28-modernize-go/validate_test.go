@@ -22,6 +22,7 @@ func TestValidateFixCommands(t *testing.T) {
 	for _, ver := range []string{
 		"1.22",
 		"1.21",
+		"1.20",
 	} {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)

@@ -238,6 +238,48 @@ grep -r 'math.M\(in\|ax\)' . | sed 's/$/ # replace math\.Min\/math\.Max with min
 
 ## Go 1.20
 
+### Simplify slice to array conversions
+
+Can be implemented in the future via https://github.com/golang/go/issues/69820.
+Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a332322f438cda98530c3a/net/connstats/stats_test.go#L28
+
+#### Benefit
+
+Simplifies code and improves readability.
+
+#### Before
+
+```go
+	slice := []byte{192, 168, 0, 1}
+	addr := *(*[4]byte)(slice)
+
+	fmt.Println(netip.AddrFrom4(addr))
+	
+```
+
+#### After
+
+```go
+	ip := []byte{192, 168, 0, 1}
+	addr := [4]byte(ip)
+
+	fmt.Println(netip.AddrFrom4(addr))
+	
+```
+
+#### Can be fixed or detected with tools
+
+```sh
+# No auto fix: replace *(*[N]T)(slice) with [N]T(slice)
+grep -rn '\*(\*\[[0-9]\+\][^)]*)(.*)' | sed 's/$/ # replace \*\(\*\[N\]T\)\(slice\) with \[N\]\T\(slice\)/'
+```
+
+#### Examples from Open Source
+
+- [SagerNet/sing-box](https://github.com/SagerNet/sing-box/pull/3234/files#diff-0889dc2e2f6c8f4da1975681a711a6f5f8a4c31e91f41cdf63f9a42f79d233ccR99)
+- [photoprism/photoprism](https://github.com/photoprism/photoprism/pull/5150/files#diff-182915d5d1268b03e71189f1c14b45481d6becf38d98a7c5e664caf8b1f60472R85)
+- [tailscale/tailscale](https://github.com/tailscale/tailscale/pull/16778/files#diff-828b3be3fe317798f01a8c2d7ee04fcbcd96273ed464682051305357d8198c9eL302)
+
 
 ## Go 1.19
 
