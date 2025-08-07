@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"cmp"
 	"context"
 	"io"
 	"os"
@@ -12,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/google/go-cmp/cmp"
+	gocmp "github.com/google/go-cmp/cmp"
 )
 
 const noFix = "# No auto fix: "
@@ -66,7 +67,7 @@ func TestValidateFixCommands(t *testing.T) {
 							t.Fatal(err)
 						}
 
-						stdout := executeScript(t, script, tmp)
+						stdout := executeScript(t, script, 0, tmp)
 
 						if _, after, ok := strings.Cut(string(scriptContents), noFix); ok {
 							after = strings.Split(after, "\n")[0]
@@ -83,7 +84,7 @@ func TestValidateFixCommands(t *testing.T) {
 							t.Fatal(err)
 						}
 
-						if diff := cmp.Diff(beforeContents, afterContents); diff != "" {
+						if diff := gocmp.Diff(beforeContents, afterContents); diff != "" {
 							t.Errorf("Diff between before and after for case %q: %v", caseName, diff)
 							t.Logf("Contents of %v:\n%s", beforeFilename, beforeContents)
 						}
@@ -95,6 +96,8 @@ func TestValidateFixCommands(t *testing.T) {
 }
 
 func TestValidateCompilation(t *testing.T) {
+	const downloadGoTimeout = 20 * time.Second
+
 	for _, ver := range goVersions {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)
@@ -106,12 +109,12 @@ func TestValidateCompilation(t *testing.T) {
 					if err != nil {
 						t.Fatal(err)
 					}
-					tmpBefore := t.TempDir()
+					beforeDir := t.TempDir()
 					for _, src := range []string{beforeFilename, "go.mod", script} {
-						dst := filepath.Join(tmpBefore, src)
+						dst := filepath.Join(beforeDir, src)
 						copyFile(t, src, dst)
 					}
-					executeScript(t, script, tmpBefore)
+					executeScript(t, script, downloadGoTimeout, beforeDir)
 				})
 
 				t.Run("after", func(t *testing.T) {
@@ -119,12 +122,12 @@ func TestValidateCompilation(t *testing.T) {
 					if err != nil {
 						t.Fatal(err)
 					}
-					tmpAfter := t.TempDir()
+					afterDir := t.TempDir()
 					for _, src := range []string{afterFilename, "go.mod", script} {
-						dst := filepath.Join(tmpAfter, src)
+						dst := filepath.Join(afterDir, src)
 						copyFile(t, src, dst)
 					}
-					executeScript(t, script, tmpAfter)
+					executeScript(t, script, downloadGoTimeout, afterDir)
 				})
 			}
 		})
@@ -186,13 +189,12 @@ func copyFile(t *testing.T, src, dst string) {
 	}
 }
 
-// Downloading of go1.15 may be slow.
-const executeScriptTimeout = 10 * time.Second
+func executeScript(t *testing.T, script string, timeout time.Duration, workDir string) (stdout string) {
+	timeout = cmp.Or(timeout, 5*time.Second)
 
-func executeScript(t *testing.T, script, workDir string) (stdout string) {
-	t.Logf("Executing the script %q in %q", script, workDir)
+	t.Logf("Executing the script %q in %q with timeout %v", script, workDir, timeout)
 
-	ctx, cancel := context.WithTimeout(t.Context(), executeScriptTimeout)
+	ctx, cancel := context.WithTimeout(t.Context(), timeout)
 	t.Cleanup(func() { cancel() })
 
 	t.Chdir(workDir)

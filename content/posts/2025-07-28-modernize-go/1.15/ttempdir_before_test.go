@@ -12,12 +12,12 @@ func TestSomeFunc(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer func() {
+	t.Cleanup(func() {
 		err := os.RemoveAll(tmp)
 		if err != nil {
 			t.Error(err)
 		}
-	}()
+	})
 
 	t.Log("Test logic for SomeFunc that uses temporary directory:", tmp)
 }

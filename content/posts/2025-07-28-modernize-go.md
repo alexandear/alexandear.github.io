@@ -347,6 +347,62 @@ grep -rn '\*(\*\[[0-9]\+\][^)]*)(.*)' | sed 's/$/ # replace \*\(\*\[N\]T\)\(slic
 
 ## Go 1.17
 
+### Simplify setting of environment variables in tests with t.Setenv
+
+Applies also to benchmarks and fuzzy tests.
+
+#### Benefit
+
+Simplifies testing code.
+
+#### Before
+
+```go
+func TestSomeFunc(t *testing.T) {
+	orig := os.Getenv("SOME_ENV")
+	if err := os.Setenv("SOME_ENV", "new_value"); err != nil {
+		t.Fatal(err)
+	}
+
+	t.Log("Test logic for SomeFunc depends on the env variable SOME_ENV")
+
+	t.Cleanup(func() {
+		// set to original value after the test
+		if err := os.Setenv("SOME_ENV", orig); err != nil {
+			t.Error(err)
+		}
+	})
+}
+
+
+```
+
+#### After
+
+```go
+func TestSomeFunc(t *testing.T) {
+	t.Setenv("SOME_ENV", "new_value")
+
+	t.Log("Test logic for SomeFunc depends on the env variable SOME_ENV")
+}
+
+
+```
+
+#### Can be fixed or detected with tools
+
+```sh
+# No auto fix: os.Setenv() could be replaced by t.Setenv() in TestSomeFunc
+golangci-lint run --no-config --enable-only usetesting --issues-exit-code 0 ./...
+```
+
+#### Examples from Open Source
+
+- [go-delve/delve](https://github.com/go-delve/delve/pull/3503/files#diff-012a9c9759129e99b4bef0bc00f8b572d4df044215b32d2a8b25acfc0c012bffR4482)
+- [rqlite/rqlite](https://github.com/rqlite/rqlite/pull/2037/files#diff-2129ccb7b21d5d1b042238fb694c52997805126fae4d7effaea833de4b9950ebR48)
+- [jackc/pgx](https://github.com/jackc/pgx/pull/2014/files#diff-05829baf37fc98f2ff986da920439177057a3b11e89b066d98ac6e7f655af093R1012)
+- [go-swagger/go-swagger](https://github.com/go-swagger/go-swagger/pull/2914/files#diff-ed129a1818e6ed02001cb40223cf4fe0492abc18ab859d464f007c7c33360a28R130)
+
 
 ## Go 1.16
 
@@ -369,12 +425,12 @@ func TestSomeFunc(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer func() {
+	t.Cleanup(func() {
 		err := os.RemoveAll(tmp)
 		if err != nil {
 			t.Error(err)
 		}
-	}()
+	})
 
 	t.Log("Test logic for SomeFunc that uses temporary directory:", tmp)
 }

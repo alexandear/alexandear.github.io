@@ -127,6 +127,20 @@ Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a33232
 	},
 	{
 		Version: "1.17",
+		Sections: []Section{
+			{
+				name:    "tsetenv",
+				Header:  "Simplify setting of environment variables in tests with t.Setenv",
+				Body:    "Applies also to benchmarks and fuzzy tests.",
+				Benefit: "Simplifies testing code.",
+				Examples: []string{
+					"https://github.com/go-delve/delve/pull/3503/files#diff-012a9c9759129e99b4bef0bc00f8b572d4df044215b32d2a8b25acfc0c012bffR4482",
+					"https://github.com/rqlite/rqlite/pull/2037/files#diff-2129ccb7b21d5d1b042238fb694c52997805126fae4d7effaea833de4b9950ebR48",
+					"https://github.com/jackc/pgx/pull/2014/files#diff-05829baf37fc98f2ff986da920439177057a3b11e89b066d98ac6e7f655af093R1012",
+					"https://github.com/go-swagger/go-swagger/pull/2914/files#diff-ed129a1818e6ed02001cb40223cf4fe0492abc18ab859d464f007c7c33360a28R130",
+				},
+			},
+		},
 	},
 	{
 		Version: "1.16",
