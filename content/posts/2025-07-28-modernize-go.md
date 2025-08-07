@@ -72,7 +72,7 @@ func TestSomeFunc(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Test logic for SomeFunc here
+	t.Log("Test logic for SomeFunc")
 
 	t.Cleanup(func() {
 		if err := os.Chdir(cwd); err != nil {
@@ -90,7 +90,7 @@ func TestSomeFunc(t *testing.T) {
 func TestSomeFunc(t *testing.T) {
 	t.Chdir("testdata")
 
-	// Test logic for SomeFunc here
+	t.Log("Test logic for SomeFunc")
 }
 
 
@@ -352,6 +352,62 @@ grep -rn '\*(\*\[[0-9]\+\][^)]*)(.*)' | sed 's/$/ # replace \*\(\*\[N\]T\)\(slic
 
 
 ## Go 1.15
+
+### Simplify temporary file handling in tests with t.TempDir
+
+TODO
+
+#### Benefit
+
+Simplifies testing code.
+
+#### Before
+
+```go
+func TestSomeFunc(t *testing.T) {
+	tmp, err := ioutil.TempDir("", "pattern")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() {
+		err := os.RemoveAll(tmp)
+		if err != nil {
+			t.Error(err)
+		}
+	}()
+
+	t.Log("Test logic for SomeFunc that uses temporary directory:", tmp)
+}
+
+
+```
+
+#### After
+
+```go
+func TestSomeFunc(t *testing.T) {
+	tmp := t.TempDir()
+
+	t.Log("Test logic for SomeFunc that uses temporary directory:", tmp)
+}
+
+
+```
+
+#### Can be fixed or detected with tools
+
+```sh
+# No auto fix: os.MkdirTemp() could be replaced by t.TempDir() in TestSomeFunc
+golangci-lint run --no-config --enable-only usetesting --issues-exit-code 0 ./...
+```
+
+#### Examples from Open Source
+
+- [rqlite/rqlite](https://github.com/rqlite/rqlite/pull/2022/files#diff-ac1924166edf5c219c1ce8562a0b345c7358d96fc9a28a9cbcf23b084e6a5705R18)
+- [spf13/viper](https://github.com/spf13/viper/pull/1631/files#diff-cbedff684a75d0a2cfdc7d4234fb3573dd7af147878776e039d69e1694a18b34R249)
+- [gohugoio/hugo](https://github.com/gohugoio/hugo/pull/10944/files#diff-570e9a48e4df86fdea8e1465b52882220ab7e6ee01f85ef7a0352e04315caf73R263)
+- [gitlab-org/api](https://gitlab.com/gitlab-org/api/client-go/-/merge_requests/2355/diffs#b65b37f51cbf5979f82400da21dd968d0ac02885_57_55)
+- [securego/gosec](https://github.com/securego/gosec/pull/1265/files#diff-67271f60deaa2e51dcee16995bc6eb5e599dc120dd47dddc41137dca5a1a6509R47)
 
 
 ## Go 1.14

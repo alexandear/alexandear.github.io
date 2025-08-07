@@ -133,6 +133,21 @@ Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a33232
 	},
 	{
 		Version: "1.15",
+		Sections: []Section{
+			{
+				name:    "ttempdir",
+				Header:  "Simplify temporary file handling in tests with t.TempDir",
+				Body:    "TODO",
+				Benefit: "Simplifies testing code.",
+				Examples: []string{
+					"https://github.com/rqlite/rqlite/pull/2022/files#diff-ac1924166edf5c219c1ce8562a0b345c7358d96fc9a28a9cbcf23b084e6a5705R18",
+					"https://github.com/spf13/viper/pull/1631/files#diff-cbedff684a75d0a2cfdc7d4234fb3573dd7af147878776e039d69e1694a18b34R249",
+					"https://github.com/gohugoio/hugo/pull/10944/files#diff-570e9a48e4df86fdea8e1465b52882220ab7e6ee01f85ef7a0352e04315caf73R263",
+					"https://gitlab.com/gitlab-org/api/client-go/-/merge_requests/2355/diffs#b65b37f51cbf5979f82400da21dd968d0ac02885_57_55",
+					"https://github.com/securego/gosec/pull/1265/files#diff-67271f60deaa2e51dcee16995bc6eb5e599dc120dd47dddc41137dca5a1a6509R47",
+				},
+			},
+		},
 	},
 	{
 		Version: "1.14",

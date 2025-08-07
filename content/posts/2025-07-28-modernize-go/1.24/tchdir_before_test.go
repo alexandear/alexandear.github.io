@@ -16,7 +16,7 @@ func TestSomeFunc(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Test logic for SomeFunc here
+	t.Log("Test logic for SomeFunc")
 
 	t.Cleanup(func() {
 		if err := os.Chdir(cwd); err != nil {

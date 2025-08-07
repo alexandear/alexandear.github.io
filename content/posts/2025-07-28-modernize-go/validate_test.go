@@ -70,10 +70,10 @@ func TestValidateFixCommands(t *testing.T) {
 
 						if _, after, ok := strings.Cut(string(scriptContents), noFix); ok {
 							after = strings.Split(after, "\n")[0]
-							t.Logf("Script %q is marked as not fixing, checking output: %q", script, after)
+							t.Logf("Script %q is marked as not fixing, checking for output: %q", script, after)
 
 							if !strings.Contains(stdout, after) {
-								t.Errorf("Missed expected output in script %q", script)
+								t.Errorf("Missed expected output in %q in script %q", stdout, script)
 							}
 							return
 						}
@@ -132,6 +132,8 @@ func TestValidateCompilation(t *testing.T) {
 }
 
 func findCaseNames(t *testing.T) map[string]struct{} {
+	t.Helper()
+
 	scripts, err := filepath.Glob("*.sh")
 	if err != nil {
 		t.Fatal(err)
@@ -147,6 +149,9 @@ func findCaseNames(t *testing.T) map[string]struct{} {
 		}
 		caseNames[name] = struct{}{}
 		t.Logf("Found case: %q", name)
+	}
+	if len(caseNames) == 0 {
+		t.Fatal("Missing cases")
 	}
 	return caseNames
 }
@@ -181,10 +186,13 @@ func copyFile(t *testing.T, src, dst string) {
 	}
 }
 
+// Downloading of go1.15 may be slow.
+const executeScriptTimeout = 10 * time.Second
+
 func executeScript(t *testing.T, script, workDir string) (stdout string) {
 	t.Logf("Executing the script %q in %q", script, workDir)
 
-	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(t.Context(), executeScriptTimeout)
 	t.Cleanup(func() { cancel() })
 
 	t.Chdir(workDir)

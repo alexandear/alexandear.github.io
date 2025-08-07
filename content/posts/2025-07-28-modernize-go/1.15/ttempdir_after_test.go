@@ -6,9 +6,9 @@ import (
 
 // << snippet begin >>
 func TestSomeFunc(t *testing.T) {
-	t.Chdir("testdata")
+	tmp := t.TempDir()
 
-	t.Log("Test logic for SomeFunc")
+	t.Log("Test logic for SomeFunc that uses temporary directory:", tmp)
 }
 
 // << snippet end >>
