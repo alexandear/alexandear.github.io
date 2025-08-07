@@ -17,13 +17,19 @@ import (
 
 const noFix = "# No auto fix: "
 
+var goVersions = func() []string {
+	var res []string
+	for _, g := range gos {
+		if len(g.Sections) > 0 {
+			res = append(res, g.Version)
+		}
+	}
+	return res
+}()
+
 // Checks that the fix commands work correctly by running them and comparing before/after files.
 func TestValidateFixCommands(t *testing.T) {
-	for _, ver := range []string{
-		"1.22",
-		"1.21",
-		"1.20",
-	} {
+	for _, ver := range goVersions {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)
 
@@ -82,10 +88,7 @@ func TestValidateFixCommands(t *testing.T) {
 }
 
 func TestValidateCompilation(t *testing.T) {
-	for _, ver := range []string{
-		"1.22",
-		"1.21",
-	} {
+	for _, ver := range goVersions {
 		t.Run(ver, func(t *testing.T) {
 			t.Chdir(ver)
 			for caseName := range findCaseNames(t) {
