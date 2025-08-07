@@ -121,6 +121,19 @@ Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a33232
 	},
 	{
 		Version: "1.19",
+		Sections: []Section{
+			{
+				name:    "atomictypes",
+				Header:  "Replace atomic operations with atomic types",
+				Body:    "https://cuonglm.xyz/post/go119_atomic_types/, https://go.dev/doc/go1.19#atomic_types",
+				Benefit: "The code becomes much more readable and type safe.",
+				Examples: []string{
+					"https://github.com/lni/dragonboat/pull/397/files#diff-ee90aaffca546905162bc3fbc92559c58172bf8b1002935aa369cd73f9671710R54",
+					"https://github.com/go-pg/pg/pull/2033/files#diff-c558bb9c370938c371ecd8203b543374c6c62ebe8c909a02dd4fb7fb87715e7cR23",
+					"https://github.com/valyala/fasthttp/pull/2048/files#diff-fcd23a51a7b4023a9052d240502be2d458eb35b5d16339ac96a481330d68a7a3R199",
+				},
+			},
+		},
 	},
 	{
 		Version: "1.18",

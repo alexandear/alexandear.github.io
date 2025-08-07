@@ -341,6 +341,77 @@ grep -rn '\*(\*\[[0-9]\+\][^)]*)(.*)' | sed 's/$/ # replace \*\(\*\[N\]T\)\(slic
 
 ## Go 1.19
 
+### Replace atomic operations with atomic types
+
+https://cuonglm.xyz/post/go119_atomic_types/, https://go.dev/doc/go1.19#atomic_types
+
+#### Benefit
+
+The code becomes much more readable and type safe.
+
+#### Before
+
+```go
+type Service struct {
+	running uint32 // 0 = false, 1 = true
+}
+
+func (s *Service) Start() {
+	atomic.StoreUint32(&s.running, 1)
+}
+
+func (s *Service) Stop() error {
+	if !atomic.CompareAndSwapUint32(&s.running, 1, 0) {
+		return errors.New("service was not running")
+	}
+	return nil
+}
+
+func (s *Service) IsRunning() bool {
+	return atomic.LoadUint32(&s.running) == 1
+}
+
+
+```
+
+#### After
+
+```go
+type Service struct {
+	running atomic.Bool
+}
+
+func (s *Service) Start() {
+	s.running.Store(true)
+}
+
+func (s *Service) Stop() error {
+	if !s.running.CompareAndSwap(true, false) {
+		return errors.New("service was not running")
+	}
+	return nil
+}
+
+func (s *Service) IsRunning() bool {
+	return s.running.Load()
+}
+
+
+```
+
+#### Can be fixed or detected with tools
+
+```sh
+# No auto fix: use atomic types instead of atomic operations
+grep -rn 'atomic\.\(Store\|Load\|CompareAndSwap\)[A-Za-z0-9]*' . | sed 's/$/ # use atomic types instead of atomic operations/'
+```
+
+#### Examples from Open Source
+
+- [lni/dragonboat](https://github.com/lni/dragonboat/pull/397/files#diff-ee90aaffca546905162bc3fbc92559c58172bf8b1002935aa369cd73f9671710R54)
+- [go-pg/pg](https://github.com/go-pg/pg/pull/2033/files#diff-c558bb9c370938c371ecd8203b543374c6c62ebe8c909a02dd4fb7fb87715e7cR23)
+- [valyala/fasthttp](https://github.com/valyala/fasthttp/pull/2048/files#diff-fcd23a51a7b4023a9052d240502be2d458eb35b5d16339ac96a481330d68a7a3R199)
+
 
 ## Go 1.18
 
