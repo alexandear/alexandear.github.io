@@ -195,49 +195,62 @@ func main() {
 	}
 
 	for _, goElem := range gos {
-		for i := range goElem.Sections {
-			section := goElem.Sections[i]
-
-			scripts, err := filepath.Glob(filepath.Join(goElem.Version, section.name+"*.sh"))
-			if err != nil {
+		if len(goElem.Sections) == 0 {
+			log.Printf("No sections for Go version %q\n", goElem.Version)
+			continue
+		}
+		func() {
+			if err := os.Chdir(goElem.Version); err != nil {
 				log.Fatal(err)
 			}
+			defer func() {
+				if err := os.Chdir(".."); err != nil {
+					log.Panic(err)
+				}
+			}()
 
-			if len(scripts) == 0 {
-				log.Fatalf("Missed scripts for section %q in version %q", section.name, goElem.Version)
-			}
+			for i := range goElem.Sections {
+				section := goElem.Sections[i]
 
-			for _, script := range scripts {
-				command, err := extractShContent(script)
+				scripts, err := filepath.Glob(section.name + "*.sh")
 				if err != nil {
 					log.Fatal(err)
 				}
-				goElem.Sections[i].FixCommands = append(goElem.Sections[i].FixCommands, command)
-			}
 
-			beforeFile := filepath.Join(goElem.Version, section.name)
-			beforeFilename, err := beforeFilename(beforeFile)
-			if err != nil {
-				log.Fatal(err)
-			}
+				if len(scripts) == 0 {
+					log.Fatalf("Missed scripts for section %q in version %q", section.name, goElem.Version)
+				}
 
-			before, err := extractGoContent(beforeFilename)
-			if err != nil {
-				log.Fatal(err)
-			}
-			goElem.Sections[i].Before = before
+				for _, script := range scripts {
+					command, err := extractShContent(script)
+					if err != nil {
+						log.Fatal(err)
+					}
+					goElem.Sections[i].FixCommands = append(goElem.Sections[i].FixCommands, command)
+				}
 
-			afterFile := filepath.Join(goElem.Version, section.name)
-			afterFilename, err := afterFilename(afterFile)
-			if err != nil {
-				log.Fatal(err)
+				beforeFilename, err := beforeFilename(section.name)
+				if err != nil {
+					log.Fatal(err)
+				}
+
+				before, err := extractGoContent(beforeFilename)
+				if err != nil {
+					log.Fatal(err)
+				}
+				goElem.Sections[i].Before = before
+
+				afterFilename, err := afterFilename(section.name)
+				if err != nil {
+					log.Fatal(err)
+				}
+				after, err := extractGoContent(afterFilename)
+				if err != nil {
+					log.Fatal(err)
+				}
+				goElem.Sections[i].After = template.HTML(after)
 			}
-			after, err := extractGoContent(afterFilename)
-			if err != nil {
-				log.Fatal(err)
-			}
-			goElem.Sections[i].After = template.HTML(after)
-		}
+		}()
 	}
 
 	var buf bytes.Buffer
