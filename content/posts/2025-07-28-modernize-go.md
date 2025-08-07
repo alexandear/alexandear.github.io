@@ -51,6 +51,64 @@ TODO: explain
 
 ## Go 1.24
 
+### Replace os.Chdir with t.Chdir
+
+TODO
+
+#### Benefit
+
+Simplifies testing code.
+
+#### Before
+
+```go
+func TestSomeFunc(t *testing.T) {
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = os.Chdir("testdata")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Test logic for SomeFunc here
+
+	t.Cleanup(func() {
+		if err := os.Chdir(cwd); err != nil {
+			t.Error(err)
+		}
+	})
+}
+
+
+```
+
+#### After
+
+```go
+func TestSomeFunc(t *testing.T) {
+	t.Chdir("testdata")
+
+	// Test logic for SomeFunc here
+}
+
+
+```
+
+#### Can be fixed or detected with tools
+
+```sh
+# No auto fix: os.Chdir() could be replaced by t.Chdir() in TestSomeFunc (usetesting)
+golangci-lint run --no-config --enable-only usetesting --issues-exit-code 0 ./...
+```
+
+#### Examples from Open Source
+
+- [gitlab-org/cli](https://gitlab.com/gitlab-org/cli/-/merge_requests/2278/diffs#3ae6db62934a4153d302b878fd33bbbbeccb2aa9_101_95)
+- [wagoodman/dive](https://github.com/wagoodman/dive/pull/631/files#diff-fa257f4f9311442699f3ac132c9a981e2cbb5bcd435fe0d0228a16bf6753e332R14)
+- [containers/podman](https://github.com/containers/podman/pull/26768/files#diff-355f1954b7cc2d7116308e9ae0c106cdb7e5867b67444f0e21d495229f688968R81)
+
 
 ## Go 1.23
 

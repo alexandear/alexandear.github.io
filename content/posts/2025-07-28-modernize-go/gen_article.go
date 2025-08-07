@@ -37,6 +37,19 @@ type Section struct {
 var gos = []Go{
 	{
 		Version: "1.24",
+		Sections: []Section{
+			{
+				name:    "tchdir",
+				Header:  "Replace os.Chdir with t.Chdir",
+				Body:    "TODO",
+				Benefit: "Simplifies testing code.",
+				Examples: []string{
+					"https://gitlab.com/gitlab-org/cli/-/merge_requests/2278/diffs#3ae6db62934a4153d302b878fd33bbbbeccb2aa9_101_95",
+					"https://github.com/wagoodman/dive/pull/631/files#diff-fa257f4f9311442699f3ac132c9a981e2cbb5bcd435fe0d0228a16bf6753e332R14",
+					"https://github.com/containers/podman/pull/26768/files#diff-355f1954b7cc2d7116308e9ae0c106cdb7e5867b67444f0e21d495229f688968R81",
+				},
+			},
+		},
 	},
 	{
 		Version: "1.23",
@@ -171,7 +184,7 @@ func main() {
 	flag.Parse()
 
 	funcMap := template.FuncMap{
-		"formatGitHubLink": formatGitHubLink,
+		"formatRepoLink": formatRepoLink,
 	}
 
 	const articleFilename = "2025-07-28-modernize-go"
@@ -202,14 +215,23 @@ func main() {
 				goElem.Sections[i].FixCommands = append(goElem.Sections[i].FixCommands, command)
 			}
 
-			beforeFilename := filepath.Join(goElem.Version, beforeFilename(section.name))
+			beforeFile := filepath.Join(goElem.Version, section.name)
+			beforeFilename, err := beforeFilename(beforeFile)
+			if err != nil {
+				log.Fatal(err)
+			}
+
 			before, err := extractGoContent(beforeFilename)
 			if err != nil {
 				log.Fatal(err)
 			}
 			goElem.Sections[i].Before = before
 
-			afterFilename := filepath.Join(goElem.Version, afterFilename(section.name))
+			afterFile := filepath.Join(goElem.Version, section.name)
+			afterFilename, err := afterFilename(afterFile)
+			if err != nil {
+				log.Fatal(err)
+			}
 			after, err := extractGoContent(afterFilename)
 			if err != nil {
 				log.Fatal(err)
@@ -237,12 +259,26 @@ func main() {
 	}
 }
 
-func beforeFilename(name string) string {
-	return name + "_before.go"
+func beforeFilename(name string) (string, error) {
+	files, err := filepath.Glob(name + "_before*.go")
+	if err != nil {
+		return "", err
+	}
+	if n := len(files); n != 1 {
+		return "", fmt.Errorf("should be only one before file, but found %d", n)
+	}
+	return files[0], err
 }
 
-func afterFilename(name string) string {
-	return name + "_after.go"
+func afterFilename(name string) (string, error) {
+	files, err := filepath.Glob(name + "_after*.go")
+	if err != nil {
+		return "", err
+	}
+	if n := len(files); n != 1 {
+		return "", fmt.Errorf("should be only one after file, but found %d", n)
+	}
+	return files[0], err
 }
 
 const (
@@ -286,16 +322,16 @@ func extractGoContent(filename string) (template.HTML, error) {
 	return template.HTML(before), nil
 }
 
-func formatGitHubLink(url string) template.HTML {
-	// Extract repository name from GitHub URL
-	// Pattern: https://github.com/owner/repo/...
-	re := regexp.MustCompile(`https://github\.com/([^/]+/[^/]+)`)
+func formatRepoLink(url string) template.HTML {
+	// Extract repository name from GitHub or GitLab URL
+	// Pattern: https://github.com/owner/repo/... or https://gitlab.com/owner/repo/...
+	re := regexp.MustCompile(`https://(github|gitlab)\.com/([^/]+/[^/]+)`)
 	matches := re.FindStringSubmatch(url)
 
-	if len(matches) < 2 {
+	if len(matches) < 3 {
 		return template.HTML(fmt.Sprintf("[%s](%s)", url, url))
 	}
 
-	repoName := matches[1]
+	repoName := matches[2]
 	return template.HTML(fmt.Sprintf("[%s](%s)", repoName, url))
 }

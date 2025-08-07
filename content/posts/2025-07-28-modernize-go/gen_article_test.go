@@ -182,29 +182,34 @@ var x = 42`,
 	}
 }
 
-func TestFormatGitHubLink(t *testing.T) {
+func TestFormatRepoLink(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    string
 		expected template.HTML
 	}{
 		{
-			name:     "pull request URL",
+			name:     "GitHub pull request URL",
 			input:    "https://github.com/goreleaser/goreleaser/pull/4856/files#diff-3756619488c8c0f0c0300fc0cdcfecbb39c2a7bcb4fe4b3ac5305c6057512986L486",
 			expected: "[goreleaser/goreleaser](https://github.com/goreleaser/goreleaser/pull/4856/files#diff-3756619488c8c0f0c0300fc0cdcfecbb39c2a7bcb4fe4b3ac5305c6057512986L486)",
 		},
 		{
-			name:     "simple repo URL",
+			name:     "GitHub simple repo URL",
 			input:    "https://github.com/kubernetes-sigs/kueue",
 			expected: "[kubernetes-sigs/kueue](https://github.com/kubernetes-sigs/kueue)",
 		},
 		{
-			name:     "issues URL",
+			name:     "GitLab merge request URL",
+			input:    "https://gitlab.com/gitlab-org/cli/-/merge_requests/2278/diffs#3ae6db62934a4153d302b878fd33bbbbeccb2aa9_101_95",
+			expected: "[gitlab-org/cli](https://gitlab.com/gitlab-org/cli/-/merge_requests/2278/diffs#3ae6db62934a4153d302b878fd33bbbbeccb2aa9_101_95)",
+		},
+		{
+			name:     "GitHub issues URL",
 			input:    "https://github.com/golang/go/issues/69820",
 			expected: "[golang/go](https://github.com/golang/go/issues/69820)",
 		},
 		{
-			name:     "blob URL",
+			name:     "GitHub blob URL",
 			input:    "https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a332322f438cda98530c3a/net/connstats/stats_test.go#L28",
 			expected: "[tailscale/tailscale](https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a332322f438cda98530c3a/net/connstats/stats_test.go#L28)",
 		},
@@ -214,7 +219,7 @@ func TestFormatGitHubLink(t *testing.T) {
 			expected: "[99designs/gqlgen](https://github.com/99designs/gqlgen/pull/3387/files)",
 		},
 		{
-			name:     "non-GitHub URL",
+			name:     "non-GitHub/GitLab URL",
 			input:    "https://example.com/some/path",
 			expected: "[https://example.com/some/path](https://example.com/some/path)",
 		},
@@ -237,9 +242,9 @@ func TestFormatGitHubLink(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := formatGitHubLink(tt.input)
+			result := formatRepoLink(tt.input)
 			if result != tt.expected {
-				t.Errorf("formatGitHubLink(%q) = %q, want %q", tt.input, result, tt.expected)
+				t.Errorf("formatRepoLink(%q) = %q, want %q", tt.input, result, tt.expected)
 			}
 		})
 	}

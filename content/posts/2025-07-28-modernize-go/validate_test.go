@@ -42,8 +42,15 @@ func TestValidateFixCommands(t *testing.T) {
 
 				for _, script := range caseScripts {
 					t.Run(script, func(t *testing.T) {
-						beforeFilename := beforeFilename(caseName)
-						afterContents, err := os.ReadFile(afterFilename(caseName))
+						beforeFilename, err := beforeFilename(caseName)
+						if err != nil {
+							t.Fatal(err)
+						}
+						afterFilename, err := afterFilename(caseName)
+						if err != nil {
+							t.Fatal(err)
+						}
+						afterContents, err := os.ReadFile(afterFilename)
 						if err != nil {
 							t.Fatal(err)
 						}
@@ -95,7 +102,10 @@ func TestValidateCompilation(t *testing.T) {
 				const script = "compile.sh"
 
 				t.Run("before", func(t *testing.T) {
-					beforeFilename := beforeFilename(caseName)
+					beforeFilename, err := beforeFilename(caseName)
+					if err != nil {
+						t.Fatal(err)
+					}
 					tmpBefore := t.TempDir()
 					for _, src := range []string{beforeFilename, "go.mod", script} {
 						dst := filepath.Join(tmpBefore, src)
@@ -105,7 +115,10 @@ func TestValidateCompilation(t *testing.T) {
 				})
 
 				t.Run("after", func(t *testing.T) {
-					afterFilename := afterFilename(caseName)
+					afterFilename, err := afterFilename(caseName)
+					if err != nil {
+						t.Fatal(err)
+					}
 					tmpAfter := t.TempDir()
 					for _, src := range []string{afterFilename, "go.mod", script} {
 						dst := filepath.Join(tmpAfter, src)
