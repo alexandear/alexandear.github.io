@@ -1,8 +1,5 @@
 #! /bin/sh
 
-go install golang.org/dl/go1.24.5@latest
-go1.24.5 download
-
 # Capture build output and handle "no packages to build" case
 build_output=$(go1.24.5 build ./... 2>&1)
 build_exit_code=$?

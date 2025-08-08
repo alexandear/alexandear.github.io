@@ -1,8 +1,5 @@
 #! /bin/sh
 
-go install golang.org/dl/go1.17.13@latest
-go1.17.13 download
-
 # Capture build output and handle "no packages to build" case
 build_output=$(go1.17.13 build ./... 2>&1)
 build_exit_code=$?

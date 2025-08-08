@@ -1,10 +1,5 @@
 #! /bin/sh
 
-# https://alexandear.github.io/posts/2024-07-12-old-go-darwin-arm64/
-export GOARCH=amd64
-go run golang.org/dl/go1.15.15@latest download
-go install golang.org/dl/go1.15.15@latest
-
 # Capture build output and handle "no packages to build" case
 build_output=$(go1.15.15 build ./... 2>&1)
 build_exit_code=$?

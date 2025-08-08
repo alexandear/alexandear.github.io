@@ -18,8 +18,9 @@ import (
 //go:generate go run $GOFILE
 
 type Go struct {
-	Version  string
-	Sections []Section
+	Version         string
+	Sections        []Section
+	compilerVersion string
 }
 
 type Section struct {
@@ -36,7 +37,8 @@ type Section struct {
 
 var gos = []Go{
 	{
-		Version: "1.24",
+		Version:         "1.24",
+		compilerVersion: "1.24.5",
 		Sections: []Section{
 			{
 				name:    "tchdir",
@@ -55,7 +57,8 @@ var gos = []Go{
 		Version: "1.23",
 	},
 	{
-		Version: "1.22",
+		Version:         "1.22",
+		compilerVersion: "1.22.12",
 		Sections: []Section{
 			{
 				name:    "forloop",
@@ -87,7 +90,8 @@ var gos = []Go{
 		},
 	},
 	{
-		Version: "1.21",
+		Version:         "1.21",
+		compilerVersion: "1.21.13",
 		Sections: []Section{
 			{
 				name:    "minmax",
@@ -103,7 +107,8 @@ var gos = []Go{
 		},
 	},
 	{
-		Version: "1.20",
+		Version:         "1.20",
+		compilerVersion: "1.20.14",
 		Sections: []Section{
 			{
 				name:   "slicearrconv",
@@ -120,7 +125,8 @@ Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a33232
 		},
 	},
 	{
-		Version: "1.19",
+		Version:         "1.19",
+		compilerVersion: "1.19.13",
 		Sections: []Section{
 			{
 				name:    "atomictypes",
@@ -139,7 +145,8 @@ Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a33232
 		Version: "1.18",
 	},
 	{
-		Version: "1.17",
+		Version:         "1.17",
+		compilerVersion: "1.17.13",
 		Sections: []Section{
 			{
 				name:    "tsetenv",
@@ -159,7 +166,8 @@ Exceptions: https://github.com/tailscale/tailscale/blob/5bb42e3018a0543467a33232
 		Version: "1.16",
 	},
 	{
-		Version: "1.15",
+		Version:         "1.15",
+		compilerVersion: "1.15.15",
 		Sections: []Section{
 			{
 				name:    "ttempdir",

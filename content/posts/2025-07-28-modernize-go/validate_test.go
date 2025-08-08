@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"cmp"
 	"context"
+	"go/version"
 	"io"
 	"os"
 	"os/exec"
@@ -18,21 +19,15 @@ import (
 
 const noFix = "# No auto fix: "
 
-var goVersions = func() []string {
-	var res []string
-	for _, g := range gos {
-		if len(g.Sections) > 0 {
-			res = append(res, g.Version)
-		}
-	}
-	return res
-}()
-
 // Checks that the fix commands work correctly by running them and comparing before/after files.
 func TestValidateFixCommands(t *testing.T) {
-	for _, ver := range goVersions {
-		t.Run(ver, func(t *testing.T) {
-			t.Chdir(ver)
+	for _, item := range gos {
+		if len(item.Sections) == 0 {
+			continue
+		}
+
+		t.Run(item.Version, func(t *testing.T) {
+			t.Chdir(item.Version)
 
 			for caseName := range findCaseNames(t) {
 				caseScripts, err := filepath.Glob(caseName + "*.sh")
@@ -96,11 +91,16 @@ func TestValidateFixCommands(t *testing.T) {
 }
 
 func TestValidateCompilation(t *testing.T) {
-	const downloadGoTimeout = 20 * time.Second
+	const compileTimeout = 10 * time.Second
 
-	for _, ver := range goVersions {
-		t.Run(ver, func(t *testing.T) {
-			t.Chdir(ver)
+	for _, item := range gos {
+		if len(item.Sections) == 0 {
+			continue
+		}
+
+		t.Run(item.Version, func(t *testing.T) {
+			t.Chdir(item.Version)
+			installCompiler(t, item.compilerVersion)
 			for caseName := range findCaseNames(t) {
 				const script = "compile.sh"
 
@@ -114,7 +114,7 @@ func TestValidateCompilation(t *testing.T) {
 						dst := filepath.Join(beforeDir, src)
 						copyFile(t, src, dst)
 					}
-					executeScript(t, script, downloadGoTimeout, beforeDir)
+					executeScript(t, script, compileTimeout, beforeDir)
 				})
 
 				t.Run("after", func(t *testing.T) {
@@ -127,11 +127,73 @@ func TestValidateCompilation(t *testing.T) {
 						dst := filepath.Join(afterDir, src)
 						copyFile(t, src, dst)
 					}
-					executeScript(t, script, downloadGoTimeout, afterDir)
+					executeScript(t, script, compileTimeout, afterDir)
 				})
 			}
 		})
 	}
+}
+
+func installCompiler(t *testing.T, compilerVersion string) {
+	langVersion := version.Lang("go" + compilerVersion)
+	installCompilerFn := installCompiler116
+	if version.Compare("go1.15", "go"+langVersion) <= 0 {
+		installCompilerFn = installCompiler115
+	}
+	installCompilerFn(t, compilerVersion)
+}
+
+// installCompiler116 installs go1.16 or above by running the following commands:
+//
+//	go install golang.org/dl/go1.16@latest
+//	go1.16 download
+func installCompiler116(t *testing.T, compilerVersion string) {
+	t.Helper()
+	if compilerVersion == "" {
+		t.Fatal("empty compilerVersion")
+	}
+
+	_, err := exec.LookPath("go" + compilerVersion)
+	if err != nil {
+		execCommand(t, 20*time.Second, nil, "go", "install", "golang.org/dl/go"+compilerVersion+"@latest")
+	}
+
+	execCommand(t, time.Minute, nil, "go"+compilerVersion, "download")
+}
+
+// installCompiler115 installs go1.15 or below by running the following commands:
+//
+//	export GOARCH=amd64
+//	go run golang.org/dl/go1.15.15@latest download
+//	go install golang.org/dl/go1.15.15@latest
+//
+// See # https://alexandear.github.io/posts/2024-07-12-old-go-darwin-arm64/
+func installCompiler115(t *testing.T, compilerVersion string) {
+	t.Helper()
+
+	if compilerVersion == "" {
+		t.Fatal("empty compilerVersion")
+	}
+
+	env := []string{"GOARCH=amd64"}
+	execCommand(t, time.Minute, env, "go", "run", "golang.org/dl/go"+compilerVersion+"@latest", "download")
+	execCommand(t, time.Minute, env, "go", "install", "golang.org/dl/go"+compilerVersion+"@latest")
+}
+
+func execCommand(t *testing.T, timeout time.Duration, env []string, cmd string, args ...string) (stdout string) {
+	ctx, cancel := context.WithTimeout(t.Context(), timeout)
+	defer cancel()
+
+	var stdoutBuf, stderrBuf bytes.Buffer
+	command := exec.CommandContext(ctx, cmd, args...)
+	t.Log("Running", command, "with timeout", timeout)
+	command.Stdout = &stdoutBuf
+	command.Env = slices.Concat(command.Env, os.Environ(), env)
+	command.Stderr = &stderrBuf
+	if err := command.Run(); err != nil {
+		t.Fatalf("Failed to download go via cmd %q: %v\nStdout: %s\nStderr: %s", command, err, stdoutBuf.String(), stderrBuf.String())
+	}
+	return stdoutBuf.String()
 }
 
 func findCaseNames(t *testing.T) map[string]struct{} {
@@ -194,16 +256,6 @@ func executeScript(t *testing.T, script string, timeout time.Duration, workDir s
 
 	t.Logf("Executing the script %q in %q with timeout %v", script, workDir, timeout)
 
-	ctx, cancel := context.WithTimeout(t.Context(), timeout)
-	t.Cleanup(func() { cancel() })
-
 	t.Chdir(workDir)
-	var stdoutBuf, stderrBuf bytes.Buffer
-	cmd := exec.CommandContext(ctx, "sh", script)
-	cmd.Stdout = &stdoutBuf
-	cmd.Stderr = &stderrBuf
-	if err := cmd.Run(); err != nil {
-		t.Fatalf("Failed to run command %q: %v\nStdout: %s\nStderr: %s", cmd, err, stdoutBuf.String(), stderrBuf.String())
-	}
-	return stdoutBuf.String()
+	return execCommand(t, timeout, nil, "sh", script)
 }
