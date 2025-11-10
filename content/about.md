@@ -9,7 +9,8 @@ I'm a backend software engineer with more than 10 years of commercial experience
 
 I focus on improving processes and workflows around CI/CD, code analysis, and linting.
 
-I have worked with both microservices and monolithic architectures deployed in the cloud and on-premises. I'm passionate about [Open Source](https://github.com/alexandear/alexandear/blob/main/CONTRIBUTIONS.md) contributions. See my [GitHub profile](https://github.com/alexandear).
+I have worked with both microservices and monolithic architectures deployed in the cloud and on-premises. I'm passionate about [Open Source](https://github.com/alexandear/alexandear/blob/main/CONTRIBUTIONS.md) contributions.
+See my [GitHub](https://github.com/alexandear) and [GitLab](https://gitlab.com/alexandear) profiles.
 
 ## Contact
 
