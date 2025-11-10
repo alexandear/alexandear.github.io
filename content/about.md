@@ -12,6 +12,8 @@ I focus on improving processes and workflows around CI/CD, code analysis, and li
 I have worked with both microservices and monolithic architectures deployed in the cloud and on-premises. I'm passionate about [Open Source](https://github.com/alexandear/alexandear/blob/main/CONTRIBUTIONS.md) contributions.
 See my [GitHub](https://github.com/alexandear) and [GitLab](https://gitlab.com/alexandear) profiles.
 
+[![An image of @alexandear's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/alexandear)](https://holopin.io/@alexandear)
+
 ## Contact
 
 You can [email me](mailto:oleksandr.red+website@gmail.com?subject=Hello%20from%20alexandear.github.io) or find me on [LinkedIn](https://www.linkedin.com/in/alexandear) if you want to get in touch.
