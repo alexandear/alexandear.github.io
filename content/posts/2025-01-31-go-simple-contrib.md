@@ -8,6 +8,8 @@ In this post, I show that contributing to Go repositories is as simple as contri
 This is a step-by-step guide to contributing to Go repositories.
 As an example, I use the main Go repository [go.googlesource.com/go](https://go.googlesource.com/go).
 
+{{< figure src="/img/2025-01-31-go-simple-contrib/merged-change.png" width="80%" alt="Merged change" >}}
+
 <!--more-->
 
 ## What we will contribute

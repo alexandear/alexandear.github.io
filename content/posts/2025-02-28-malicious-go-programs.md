@@ -10,6 +10,8 @@ the official MailerSend Go SDK [mailersend/mailersend-go](https://github.com/mai
 These programs are not very popular but are still used by some developers.
 By the time I wrote this article, I had reported the malicious repositories to GitHub support, and most of them have been deleted.
 
+{{< figure src="/img/2025-02-28-malicious-go-programs/trojan-virustotal.png" width="80%" alt="VirusTotal scan results for the trojan `f0eee999`" >}}
+
 <!--more-->
 
 ## Discovering the malicious repo `ultimatepate/usetesting`

@@ -5,16 +5,20 @@ tags: ["gitlab", "github", "git", "go", "opensource"]
 bigimg: [{src: "/img/2023-03-08-import-gitlab-commits/contribs-after-run.png", desc: "GitHub Contribution Graph"}]
 ---
 
-In interviews, people judge developers by their GitHub. Recently, I saw a tweet with a picture showing GitHub contributions
+In this blog post, I will answer the question of how to enrich GitHub statistics to improve your job prospects by enriching your GitHub contribution graph.
+
+{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-after-run.png" width="100%" alt="GitHub After import-gitlab-commits" >}}
+
+<!--more-->
+
+## Problem
+
+In interviews, people judge developers by their GitHub.Recently, I saw a tweet with a picture showing GitHub contributions
 with one commit of activity and the caption:
 
 > "Please don't apply for a Senior dev position if your GitHub looks like this..."
 
-{{< figure src="/img/2023-03-08-import-gitlab-commits/twitter-senior-github.jpg" width="50%" alt="Tweet Senior GitHub" >}}
-
-In this blog post, I will answer the question of how to enrich GitHub statistics to improve your job prospects.
-
-<!--more-->
+{{< figure src="/img/2023-03-08-import-gitlab-commits/twitter-senior-github.jpg" width="50%" caption="Manuel Frigerio tweet about senior's GitHub" >}}
 
 There are many tools to fake GitHub history: [1](https://github.com/Shpota/github-activity-generator),
 [2](https://github.com/aljazst/github-contributions-generator), [3](https://github.com/artiebits/fake-git-history).
