@@ -1,80 +1,80 @@
 ---
-title: How to contribute to Go language
+title: How to contribute to the Go language
 date: 2025-01-31
 tags: ["go", "opensource", "git"]
 ---
 
-In this blog post, I will show that contributing to Go language repositories is as simple as contributing to any other open-source repo.
-This will be a step-by-step guide on how to contribute to Go language repositories.
-For the example, I will use the main Go repo [go.googlesource.com/go](https://go.googlesource.com/go).
+In this post, I show that contributing to Go repositories is as simple as contributing to any other open-source repo.
+This is a step-by-step guide to contributing to Go repositories.
+As an example, I use the main Go repository [go.googlesource.com/go](https://go.googlesource.com/go).
 
 <!--more-->
 
 ## What we will contribute
 
-I subscribed to [Boldly Go: Daily](https://boldlygo.tech/) for a year and recently got the [following email](https://boldlygo.tech/archive/2025-01-08-determining-the-size-of-a-variable/):
+I subscribed to [Boldly Go: Daily](https://boldlygo.tech/) for a year and recently received the [following email](https://boldlygo.tech/archive/2025-01-08-determining-the-size-of-a-variable/):
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/boldly-email.png" width="80%" caption="Email from the Boldly Go Subscription" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/boldly-email.png" width="80%" caption="Email from the Boldly Go subscription" >}}
 
-It says that nobody cares about the grammar mistake in the sentence
+It says nobody cares about the grammatical mistake in the sentence
 `The functions Alignof and Sizeof take an expression x of any type and return the alignment or size, respectively, of a hypothetical variable v as if v was declared via var v = x`
 in the [Go language specification](https://tip.golang.org/doc/go1.17_spec#was-declared-via:~:text=variable%20v%20as-,if%20v%20was%20declared,-via%20var%20v).
 
 But I care. Let me fix it.
 
-TL;DR. This [CL](https://go-review.googlesource.com/c/go/+/642037) fixes the grammar nit.
+TL;DR: This [CL](https://go-review.googlesource.com/c/go/+/642037) fixes the grammatical error.
 
-*"was" should be changed to "were" because the sentence is using the [subjunctive mood](https://www.englishoxford.com/2022/04/20/subjunctive-english/), which is used to describe hypothetical or non-real situations. In English, the subjunctive mood often uses "were" instead of "was" for all subjects (I, you, he, she, it, we, they).*
+*"Was" should be changed to "were" because the sentence uses the [subjunctive mood](https://www.englishoxford.com/2022/04/20/subjunctive-english/), which describes hypothetical or non-real situations. In English, the subjunctive mood often uses "were" instead of "was" for all subjects (I, you, he, she, it, we, they).*
 
 ## Contribution steps
 
-There is an official [Contribution Guide](https://go.dev/doc/contribute), but it's too long and boring to read.
+There is an official [Contribution Guide](https://go.dev/doc/contribute), but it is a bit long to read.
 
-*I am assuming you know how to contribute to a project on GitHub.
-If not, read [this manual](https://opensource.guide/how-to-contribute/).
-I will only tell you about the specifics that apply to most Google software projects.*
+*I assume you know how to contribute to a project on GitHub.
+If not, read [this guide](https://opensource.guide/how-to-contribute/).
+I cover only the specifics that apply to most Google software projects.*
 
-### 1. Sign in to Google CLA
+### 1. Sign the Google CLA
 
-First of all, we need to sign the Google Contributor License Agreements with a valid [Google account](https://go.dev/doc/contribute#google_account)
+First, sign the Google Contributor License Agreement with a valid [Google Account](https://go.dev/doc/contribute#google_account)
 at the [Google CLA](https://cla.developers.google.com/clas).
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/google-cla.png" width="80%" caption="Signed in Google CLA" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/google-cla.png" width="80%" caption="Signed in to Google CLA" >}}
 
 ### 2. Configure Git authentication
 
-Second, let's configure authentication so we can push our changes to the Go repo.
-Log in to [go Git repositories](https://go.googlesource.com/) with a signed Google CLA account and click generate password.
+Next, configure authentication so you can push your changes to the Go repo.
+Log in to the [Go Git repositories](https://go.googlesource.com/) with the Google account you used to sign the CLA and click Generate password.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/go-git-repos.png" width="80%" caption="Home for go Git repositories" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/go-git-repos.png" width="80%" caption="Home of Go Git repositories" >}}
 
 Paste the generated script into a `bash` or `zsh` shell.
 
 {{< figure src="/img/2025-01-31-go-simple-contrib/configure-git.png" width="80%" caption="Configure Git script" >}}
 
-Now we are able to push to any of the repositories in [Go Git](https://go.googlesource.com).
+Now you can push to any repository in [Go Git](https://go.googlesource.com).
 
-### 3. Register to Gerrit
+### 3. Register with Gerrit
 
-The communication during a review between people is handled on the [Gerrit](https://www.gerritcodereview.com/) platform,
+Code review is handled on the [Gerrit](https://www.gerritcodereview.com/) platform,
 so [sign in](https://go-review.googlesource.com/login/) with your Google Account.
-Gerrit is a little bit different from GitHub Pull Requests and weird at first look.
-But it's more powerful and you will definitely like it in the future.
+Gerrit differs from GitHub pull requests and can look odd at first,
+but it is powerful—you may come to like it.
 
 {{< figure src="/img/2025-01-31-go-simple-contrib/gerrit-panel.png" width="80%" caption="Typical Gerrit home page" >}}
 
 ### 4. Clone the Go repo
 
-We know that our spec is located in the [go repository](https://go.googlesource.com/go).
+We know the spec is located in the [go repository](https://go.googlesource.com/go).
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/go-repo-spec.png" width="80%" caption="Go specification in the go git repo" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/go-repo-spec.png" width="80%" caption="Go specification in the Go repository" >}}
 
-We should [clone it locally](https://go-review.googlesource.com/admin/repos/go,general) to be able to make changes.
+Clone it locally to make changes.
 
-Gerrit requires git commits to have a special line like `Change-Id: If4d3b3965762c8979d304a82493c9eb1068ee13c` present.
-We must install the `git-codereview` addon to automatically include this string.
+Gerrit requires commits to include a line like `Change-Id: If4d3b3965762c8979d304a82493c9eb1068ee13c`.
+Install the `git-codereview` add-on to insert this line automatically.
 
-On my machine, it takes around two minutes to fully clone the repo and install `git-codereview` with hooks:
+On my machine, it takes around two minutes to clone the repo and install `git-codereview` with hooks:
 
 ```sh
 $ git clone https://go.googlesource.com/go && (cd go && go install golang.org/x/review/git-codereview@latest && git-codereview hooks)
@@ -90,11 +90,11 @@ go: downloading golang.org/x/review v1.13.0
 
 ### 5. Fix a typo
 
-Open `doc/go_spec.html` in your favorite editor and finally fix the typo.
+Open `doc/go_spec.html` in your editor and fix the typo.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/fix-spec-typo.png" width="80%" caption="Go spec in the VS Code" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/fix-spec-typo.png" width="80%" caption="Go spec in VS Code" >}}
 
-Create a commit in the branch `spec-fix-typo` with the following command:
+Create a commit on the branch `spec-fix-typo` with the following command:
 
 ```sh
 $ git add . && git codereview change spec-fix-typo
@@ -102,23 +102,23 @@ git-codereview: created branch spec-fix-typo tracking origin/master.
 git-codereview: change updated.
 ```
 
-Think of the meaningful commit message.
+Write a meaningful commit message.
 
-You must follow git commit message conventions described [here](https://go.dev/doc/contribute#commit_messages).
-In short, the template for a good commit message would be:
+Follow the Git commit message conventions described [here](https://go.dev/doc/contribute#commit_messages).
+In short, a good commit message looks like:
 
 ```txt
 prefix: summary of changes
 
-Optional multiline detailed description. There must be a blank line before.
+Optional multi-line description. Leave a blank line before it.
 Can be empty.
 ```
 
-Where `prefix` is the name of the changed file or directory.
+Here, `prefix` is the name of the changed file or directory.
 
-In our simple case, a good commit message would be a one-liner `spec: fix grammar issue`.
+In our simple case, a good one-liner is `spec: fix grammar issue`.
 
-We can verify the commit with the special line `Change-Id` that gets created:
+Verify that the `Change-Id` line was created:
 
 ```sh
 $ git log -1
@@ -131,10 +131,10 @@ Date:   Fri Jan 10 17:00:24 2025 +0200
     Change-Id: If4d3b3965762c8979d304a82493c9eb1068ee13c
 ```
 
-### 6. Wait for a review
+### 6. Wait for review
 
-Next, we should push our changes to Gerrit, so someone from the Go team can review them.
-Instead of `git push` we use:
+Next, push your changes to Gerrit so someone from the Go team can review them.
+Instead of `git push`, use:
 
 ```sh
 $ git codereview mail
@@ -153,19 +153,19 @@ To https://go.googlesource.com/go
  * [new branch]      HEAD -> refs/for/master
 ```
 
-We can open the link [https://go-review.googlesource.com/c/go/+/642037](https://go-review.googlesource.com/c/go/+/642037) from the output in a browser to see the change.
+Open the link [https://go-review.googlesource.com/c/go/+/642037](https://go-review.googlesource.com/c/go/+/642037) to see the change.
 
-After some time, usually from a couple of hours to a couple of weeks, someone will review our changes and approve them with `+2`.
+After some time—usually from a few hours to a couple of weeks—someone will review your change and approve it with `+2`.
 
 {{< figure src="/img/2025-01-31-go-simple-contrib/change-log.png" width="80%" caption="Change log in Gerrit" >}}
 
-You can read more about [the review process](https://go.dev/doc/contribute#review).
+You can read more about the [review process](https://go.dev/doc/contribute#review).
 
-Hurray! Now the Gopher Robot can merge it into the `master`.
+Hooray! Now the Gopher Robot can merge it into the `master` branch.
 
 {{< figure src="/img/2025-01-31-go-simple-contrib/merged-change.png" width="80%" caption="Merged change" >}}
 
-We can see the fixed typo in the wild on the Go website.
+You can see the fixed typo on the Go website.
 
 [Before](https://tip.golang.org/doc/go1.17_spec#was-declared-via:~:text=variable%20v%20as-,if%20v%20was%20declared,-via%20var%20v):
 
@@ -177,8 +177,8 @@ We can see the fixed typo in the wild on the Go website.
 
 ## Conclusion
 
-Contributing to the Go repository is straightforward but does have some differences compared to contributing on GitHub.
-By following the outlined steps, you can successfully contribute to the Go project.
-While the process may seem a bit complex initially, it ensures that contributions are well-managed and maintain high standards.
-Everyone can contribute to Go, and it's a simple process once you get the hang of it.
+Contributing to the Go repository is straightforward but has some differences compared to contributing on GitHub.
+By following the steps above, you can successfully contribute to the Go project.
+While the process may seem complex at first, it ensures contributions are well managed and maintain high standards.
+Anyone can contribute to Go—it becomes simple once you get the hang of it.
 Happy coding!

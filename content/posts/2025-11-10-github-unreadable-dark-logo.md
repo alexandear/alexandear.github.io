@@ -1,7 +1,7 @@
 ---
 title: How to fix unreadable images in GitHub dark theme
 date: 2025-11-10
-tags: ["github", "markdown"]
+tags: ["github", "markdown", "opensource"]
 ---
 
 I use GitHub's dark theme daily.
