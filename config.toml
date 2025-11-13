@@ -58,6 +58,9 @@ enableGitInfo = false
     goodreads = "alexandear"
     medium = "alexandear"
 
+[markup.goldmark.renderer]
+    unsafe = true
+
 [[menu.main]]
     name = "Blog"
     url = ""
