@@ -1,0 +1,32 @@
+{{/*
+Renders a side-by-side comparison table, ideal for code samples.
+Separates the left and right columns with the literal marker: <!-- SPLIT -->
+
+@param {string} v1title (string, required): Left column title. Supports Markdown or raw HTML (links allowed).
+@param {string} v2title (string, required): Right column title. Supports Markdown or raw HTML (links allowed).
+
+*/}}
+
+{{ $parts := split .Inner "<!-- SPLIT -->" }}
+{{ $left := index $parts 0 }}
+{{ $right := index $parts 1 }}
+
+{{ $v1raw := .Get "v1title" }}
+{{ $v2raw := .Get "v2title" }}
+{{ $v1title := ( $v1raw | markdownify | replaceRE "^<p>" "" | replaceRE "</p>\n?$" "" | safeHTML ) }}
+{{ $v2title := ( $v2raw | markdownify | replaceRE "^<p>" "" | replaceRE "</p>\n?$" "" | safeHTML ) }}
+
+<table class="comparison" style="width:100%; table-layout: fixed;">
+  <thead>
+    <tr>
+      <th style="width:50%; text-align:center">{{ $v1title }}</th>
+      <th style="width:50%; text-align:center">{{ $v2title }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ $left | markdownify }}</td>
+      <td>{{ $right | markdownify }}</td>
+    </tr>
+  </tbody>
+</table>

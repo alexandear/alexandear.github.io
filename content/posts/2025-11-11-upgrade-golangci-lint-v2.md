@@ -76,4 +76,62 @@ The link structure changed, but old links still work.
 
 To help users migrate, Golangci-lint includes the `migration` command and a [migration guide](https://golangci-lint.run/docs/product/migration-guide/) written primarily [by me](https://github.com/golangci/golangci-lint/pull/5439).
 
-Migration is as simple as running `golangci-lint migrate`.
+## Migration caveats
+
+Although the migration is as simple as running `golangci-lint migrate`, it has some pitfalls.
+
+### Comments in the configuration are not migrated
+
+Due to a technical constraint, the Golangci-lint team can’t adapt the migration command to preserve comments from the v1 configuration.
+See this PR for detailed [explanations](https://github.com/golangci/golangci-lint/pull/5506).
+You need to manually migrate all comments from the v1 configuration file to v2.
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://golangci.github.io/legacy-v1-doc/usage/configuration/#config-file)"
+v2title="[v2 .golangci.yml](https://golangci-lint.run/docs/configuration/file/)"
+>}}
+
+```yaml
+linters:
+  # Enable specific linter.
+  enable:
+    - govet
+```
+<!-- SPLIT -->
+```yaml
+version: "2"
+linters:
+  enable:
+    - govet
+```
+
+{{< /comparison >}}
+
+### Deprecated options from v1 or unknown fields are not migrated
+
+Deprecated linters and linter settings are removed in v2.
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://golangci.github.io/legacy-v1-doc/usage/configuration/#config-file)"
+v2title="[v2 .golangci.yml](https://golangci-lint.run/docs/configuration/file/)"
+>}}
+
+```yaml
+run:
+linters:
+  enable:
+    - cyclop
+    - deadcode
+linters-settings:
+  cyclop:
+    skip-tests: true
+```
+<!-- SPLIT -->
+```yaml
+version: "2"
+linters:
+  enable:
+    - cyclop
+```
+
+{{< /comparison >}}
