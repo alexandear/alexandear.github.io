@@ -12,7 +12,7 @@ For example, the [etcd](https://github.com/etcd-io/etcd/tree/19aa0dbe8fd6317a237
 
 In this article, I show how to fix this visibility issue using GitHub's Markdown syntax.
 
-<!-- more -->
+<!--more-->
 
 While the etcd logo is clearly visible on GitHub’s light theme, it’s barely readable on the dark theme.
 

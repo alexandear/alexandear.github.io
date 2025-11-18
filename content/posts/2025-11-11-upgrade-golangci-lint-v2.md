@@ -13,7 +13,7 @@ This article shows how to migrate Golangci-lint from v1 to v2.
 
 {{< figure src="/img/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png" width="100%" alt="Screenshot of Golangci-lint v2 website (dark theme)" >}}
 
-<!-- more -->
+<!--more-->
 
 <br/>
 
