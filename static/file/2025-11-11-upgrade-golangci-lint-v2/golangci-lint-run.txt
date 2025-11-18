@@ -1,0 +1,1737 @@
+cmd/limactl/copy.go:149:24: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	sshCmd := exec.Command(arg0, append(sshArgs, scpArgs...)...)
+	                      ^
+cmd/limactl/hostagent.go:103:22: net.Listen must not be called. use (*net.ListenConfig).Listen (noctx)
+	l, err := net.Listen("unix", socket)
+	                    ^
+cmd/limactl/shell.go:237:24: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	sshCmd := exec.Command(arg0, append(arg0Args, sshArgs...)...)
+	                      ^
+cmd/limactl/tunnel.go:109:24: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	sshCmd := exec.Command(arg0, append(arg0Args, sshArgs...)...)
+	                      ^
+pkg/autostart/autostart.go:100:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command(args[0], args[1:]...)
+	                   ^
+pkg/downloader/downloader_test.go:319:34: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+		assert.NilError(t, exec.Command("gzip", localFile).Run())
+		                               ^
+pkg/downloader/downloader_test.go:337:34: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+		assert.NilError(t, exec.Command("bzip2", localFile).Run())
+		                               ^
+pkg/editutil/editutil.go:77:27: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	editorCmd := exec.Command(editor, tmpYAMLPath)
+	                         ^
+pkg/executil/command.go:41:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+		cmd = exec.Command(args[0], args[1:]...)
+		                  ^
+pkg/guestagent/iptables/iptables.go:131:32: net.DialTimeout must not be called. use (*net.Dialer).DialContext with (*net.Dialer).Timeout (noctx)
+			conn, err := net.DialTimeout("tcp", net.JoinHostPort(pt.IP.String(), strconv.Itoa(pt.Port)), time.Second)
+			                            ^
+pkg/hostagent/dns/dns.go:192:30: net.LookupIP must not be called. use (*net.Resolver).LookupIPAddr with a context (noctx)
+				addrs, err = net.LookupIP(cname)
+				                         ^
+pkg/hostagent/dns/dns.go:223:33: net.LookupCNAME must not be called. use (*net.Resolver).LookupCNAME with a context (noctx)
+				cname, err = net.LookupCNAME(cname)
+				                            ^
+pkg/hostagent/dns/dns.go:239:29: net.LookupTXT must not be called. use (*net.Resolver).LookupTXT with a context (noctx)
+			txt, err := net.LookupTXT(q.Name)
+			                         ^
+pkg/hostagent/dns/dns.go:256:27: net.LookupNS must not be called. use (*net.Resolver).LookupNS with a context (noctx)
+			ns, err := net.LookupNS(q.Name)
+			                       ^
+pkg/hostagent/dns/dns.go:272:27: net.LookupMX must not be called. use (*net.Resolver).LookupMX with a context (noctx)
+			mx, err := net.LookupMX(q.Name)
+			                       ^
+pkg/hostagent/dns/dns.go:289:34: net.LookupSRV must not be called. use (*net.Resolver).LookupSRV with a context (noctx)
+			_, addrs, err := net.LookupSRV("", "", q.Name)
+			                              ^
+pkg/ioutilx/ioutilx.go:53:26: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	out, err := exec.Command("cygpath", filepath.ToSlash(orig)).CombinedOutput()
+	                        ^
+pkg/ioutilx/ioutilx.go:62:26: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	out, err := exec.Command("wsl", "-d", distro, "--exec", "wslpath", filepath.ToSlash(orig)).CombinedOutput()
+	                        ^
+pkg/nativeimgutil/nativeimgutil_test.go:17:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	return exec.Command("qemu-img", "create", name, "-f", format, size).Run()
+	                   ^
+pkg/networks/reconcile/reconcile.go:73:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("sudo", args...)
+	                   ^
+pkg/networks/sudoers.go:61:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("sudo", "-k")
+	                   ^
+pkg/networks/sudoers.go:77:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+		cmd = exec.Command("sudo", "--user", user.User, "--group", user.Group, "--non-interactive", "true")
+		                  ^
+pkg/networks/usernet/gvproxy.go:123:29: net.Listen must not be called. use (*net.ListenConfig).Listen (noctx)
+	listener, err := net.Listen("unix", opts.QemuSocket)
+	                           ^
+pkg/networks/usernet/gvproxy.go:156:29: net.Listen must not be called. use (*net.ListenConfig).Listen (noctx)
+	listener, err := net.Listen("unix", opts.FdSocket)
+	                           ^
+pkg/networks/usernet/recoincile.go:146:22: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+		cmd := exec.Command("/usr/bin/pkill", "-F", pidFile)
+		                   ^
+pkg/osutil/machineid.go:35:44: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+		ioPlatformExpertDeviceCmd := exec.Command("/usr/sbin/ioreg", "-a", "-d2", "-c", "IOPlatformExpertDevice")
+		                                         ^
+pkg/osutil/osutil_unix.go:29:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("sysctl", "-n", name)
+	                   ^
+pkg/osutil/user.go:202:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command(args[0], args[1:]...)
+	                   ^
+pkg/portfwdserver/server.go:33:23: net.Dial must not be called. use (*net.Dialer).DialContext (noctx)
+	conn, err := net.Dial(in.Protocol, in.GuestAddr)
+	                     ^
+pkg/qemu/entitlementutil/entitlementutil.go:22:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("codesign", "--verify", qExe)
+	                   ^
+pkg/qemu/entitlementutil/entitlementutil.go:29:20: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd = exec.Command("codesign", "--display", "--entitlements", "-", "--xml", qExe)
+	                  ^
+pkg/qemu/entitlementutil/entitlementutil.go:61:25: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	signCmd := exec.Command("codesign", "--sign", "-", "--entitlements", entName, "--force", qExe)
+	                       ^
+pkg/qemu/imgutil/imgutil.go:87:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("qemu-img", "convert", "-O", "raw", source, dest)
+	                   ^
+pkg/qemu/imgutil/imgutil.go:107:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("qemu-img", "info", "--output=json", "--force-share", f)
+	                   ^
+pkg/qemu/qemu.go:123:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("qemu-img", args...)
+	                   ^
+pkg/qemu/qemu.go:138:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("qemu-img", args...)
+	                   ^
+pkg/qemu/qemu.go:149:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("qemu-img", args...)
+	                   ^
+pkg/qemu/qemu.go:184:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command("qemu-img", args...)
+	                   ^
+pkg/qemu/qemu.go:327:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command(exe, "-M", "none", "-accel", "help")
+	                   ^
+pkg/qemu/qemu.go:339:20: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd = exec.Command(exe, "-M", "none", "-netdev", "help")
+	                  ^
+pkg/qemu/qemu.go:351:20: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd = exec.Command(exe, "-machine", "help")
+	                  ^
+pkg/qemu/qemu.go:365:20: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd = exec.Command(exe, "-cpu", "help", "-machine", machine)
+	                  ^
+pkg/qemu/qemu.go:1062:23: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+			cmd := exec.Command(vhostCfg.Binary, "--version")
+			                   ^
+pkg/qemu/qemu.go:1161:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command(qemuExe, "--version")
+	                   ^
+pkg/sshutil/sshutil.go:108:29: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+			keygenCmd := exec.Command("ssh-keygen", "-t", "ed25519", "-q", "-N", "",
+			                         ^
+pkg/sshutil/sshutil.go:366:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command(path, "-V")
+	                   ^
+pkg/sysprof/sysprof_darwin.go:36:21: os/exec.Command must not be called. use os/exec.CommandContext (noctx)
+	cmd := exec.Command(exe, dataType, "-json")
+	                   ^
+pkg/vz/network_darwin.go:47:27: net.Dial must not be called. use (*net.Dialer).DialContext (noctx)
+	unixConn, err := net.Dial("unix", unixSock)
+	                         ^
+pkg/vz/vz_driver_darwin.go:194:2: directive `//nolint:revive // error-strings` is unused for linter "revive" (nolintlint)
+	//nolint:revive // error-strings
+	^
+cmd/limactl/editflags/editflags.go:125:6: concat-loop: string concatenation in a loop (perfsprint)
+					expr += fmt.Sprintf("%q", ip)
+					^
+cmd/limactl/editflags/editflags.go:149:6: concat-loop: string concatenation in a loop (perfsprint)
+					expr += fmt.Sprintf(`{"location": %q, "writable": %v}`, loc, writable)
+					^
+cmd/limactl/editflags/editflags.go:183:7: concat-loop: string concatenation in a loop (perfsprint)
+						expr += ","
+						^
+pkg/editutil/editutil.go:29:3: concat-loop: string concatenation in a loop (perfsprint)
+		s += "#"
+		^
+pkg/hostagent/dns/dns.go:77:3: concat-loop: string concatenation in a loop (perfsprint)
+		s += fmt.Sprintf("nameserver %s\n", ip)
+		^
+cmd/limactl/completion.go:4:1: package-comments: should have a package comment (revive)
+package main
+^
+cmd/limactl/editflags/editflags.go:4:1: package-comments: should have a package comment (revive)
+package editflags
+^
+pkg/bicopy/bicopy.go:23:1: package-comments: should have a package comment (revive)
+package bicopy
+^
+pkg/cidata/cidata.go:4:1: package-comments: should have a package comment (revive)
+package cidata
+^
+pkg/cidata/cidata.go:336:1: exported: exported function GenerateCloudConfig should have comment or be unexported (revive)
+func GenerateCloudConfig(instDir, name string, instConfig *limayaml.LimaYAML) error {
+^
+pkg/cidata/cidata.go:359:1: exported: exported function GenerateISO9660 should have comment or be unexported (revive)
+func GenerateISO9660(instDir, name string, instConfig *limayaml.LimaYAML, udpDNSLocalPort, tcpDNSLocalPort int, nerdctlArchive string, vsockPort int, virtioPort string) error {
+^
+pkg/cidata/template.go:25:6: exported: exported type CACerts should have comment or be unexported (revive)
+type CACerts struct {
+     ^
+pkg/cidata/template.go:30:6: exported: exported type Cert should have comment or be unexported (revive)
+type Cert struct {
+     ^
+pkg/cidata/template.go:34:6: exported: exported type Containerd should have comment or be unexported (revive)
+type Containerd struct {
+     ^
+pkg/cidata/template.go:39:6: exported: exported type Network should have comment or be unexported (revive)
+type Network struct {
+     ^
+pkg/cidata/template.go:44:6: exported: exported type Mount should have comment or be unexported (revive)
+type Mount struct {
+     ^
+pkg/cidata/template.go:50:6: exported: exported type BootCmds should have comment or be unexported (revive)
+type BootCmds struct {
+     ^
+pkg/cidata/template.go:54:6: exported: exported type DataFile should have comment or be unexported (revive)
+type DataFile struct {
+     ^
+pkg/cidata/template.go:62:6: exported: exported type Disk should have comment or be unexported (revive)
+type Disk struct {
+     ^
+pkg/cidata/template.go:69:6: exported: exported type TemplateArgs should have comment or be unexported (revive)
+type TemplateArgs struct {
+     ^
+pkg/cidata/template.go:111:1: exported: exported function ValidateTemplateArgs should have comment or be unexported (revive)
+func ValidateTemplateArgs(args *TemplateArgs) error {
+^
+pkg/cidata/template.go:141:1: exported: exported function ExecuteTemplateCloudConfig should have comment or be unexported (revive)
+func ExecuteTemplateCloudConfig(args *TemplateArgs) ([]byte, error) {
+^
+pkg/cidata/template.go:155:1: exported: exported function ExecuteTemplateCIDataISO should have comment or be unexported (revive)
+func ExecuteTemplateCIDataISO(args *TemplateArgs) ([]iso9660util.Entry, error) {
+^
+pkg/debugutil/debugutil.go:4:1: package-comments: should have a package comment (revive)
+package debugutil
+^
+pkg/downloader/downloader.go:4:1: package-comments: should have a package comment (revive)
+package downloader
+^
+pkg/downloader/downloader.go:40:6: exported: exported type Status should have comment or be unexported (revive)
+type Status = string
+     ^
+pkg/downloader/downloader.go:43:2: exported: exported const StatusUnknown should have comment (or a comment on this block) or be unexported (revive)
+	StatusUnknown    Status = ""
+	^
+pkg/downloader/downloader.go:49:6: exported: exported type Result should have comment or be unexported (revive)
+type Result struct {
+     ^
+pkg/downloader/downloader.go:73:6: exported: exported type Opt should have comment or be unexported (revive)
+type Opt func(*options) error
+     ^
+pkg/downloader/downloader.go:427:1: exported: exported function IsLocal should have comment or be unexported (revive)
+func IsLocal(s string) bool {
+^
+pkg/driver/driver.go:4:1: package-comments: should have a package comment (revive)
+package driver
+^
+pkg/driver/driver.go:76:6: exported: exported type BaseDriver should have comment or be unexported (revive)
+type BaseDriver struct {
+     ^
+pkg/driver/driver.go:86:1: exported: exported method BaseDriver.Validate should have comment or be unexported (revive)
+func (d *BaseDriver) Validate() error {
+^
+pkg/driver/driver.go:90:1: exported: exported method BaseDriver.Initialize should have comment or be unexported (revive)
+func (d *BaseDriver) Initialize(_ context.Context) error {
+^
+pkg/driver/driver.go:94:1: exported: exported method BaseDriver.CreateDisk should have comment or be unexported (revive)
+func (d *BaseDriver) CreateDisk(_ context.Context) error {
+^
+pkg/driver/driver.go:98:1: exported: exported method BaseDriver.Start should have comment or be unexported (revive)
+func (d *BaseDriver) Start(_ context.Context) (chan error, error) {
+^
+pkg/driver/driver.go:102:1: exported: exported method BaseDriver.CanRunGUI should have comment or be unexported (revive)
+func (d *BaseDriver) CanRunGUI() bool {
+^
+pkg/driver/driver.go:106:1: exported: exported method BaseDriver.RunGUI should have comment or be unexported (revive)
+func (d *BaseDriver) RunGUI() error {
+^
+pkg/driver/driver.go:110:1: exported: exported method BaseDriver.Stop should have comment or be unexported (revive)
+func (d *BaseDriver) Stop(_ context.Context) error {
+^
+pkg/driver/driver.go:114:1: exported: exported method BaseDriver.Register should have comment or be unexported (revive)
+func (d *BaseDriver) Register(_ context.Context) error {
+^
+pkg/driver/driver.go:118:1: exported: exported method BaseDriver.Unregister should have comment or be unexported (revive)
+func (d *BaseDriver) Unregister(_ context.Context) error {
+^
+pkg/driver/driver.go:122:1: exported: exported method BaseDriver.ChangeDisplayPassword should have comment or be unexported (revive)
+func (d *BaseDriver) ChangeDisplayPassword(_ context.Context, _ string) error {
+^
+pkg/driver/driver.go:126:1: exported: exported method BaseDriver.GetDisplayConnection should have comment or be unexported (revive)
+func (d *BaseDriver) GetDisplayConnection(_ context.Context) (string, error) {
+^
+pkg/driver/driver.go:130:1: exported: exported method BaseDriver.CreateSnapshot should have comment or be unexported (revive)
+func (d *BaseDriver) CreateSnapshot(_ context.Context, _ string) error {
+^
+pkg/driver/driver.go:134:1: exported: exported method BaseDriver.ApplySnapshot should have comment or be unexported (revive)
+func (d *BaseDriver) ApplySnapshot(_ context.Context, _ string) error {
+^
+pkg/driver/driver.go:138:1: exported: exported method BaseDriver.DeleteSnapshot should have comment or be unexported (revive)
+func (d *BaseDriver) DeleteSnapshot(_ context.Context, _ string) error {
+^
+pkg/driver/driver.go:142:1: exported: exported method BaseDriver.ListSnapshots should have comment or be unexported (revive)
+func (d *BaseDriver) ListSnapshots(_ context.Context) (string, error) {
+^
+pkg/driver/driver.go:146:1: exported: exported method BaseDriver.ForwardGuestAgent should have comment or be unexported (revive)
+func (d *BaseDriver) ForwardGuestAgent() bool {
+^
+pkg/driver/driver.go:151:1: exported: exported method BaseDriver.GuestAgentConn should have comment or be unexported (revive)
+func (d *BaseDriver) GuestAgentConn(_ context.Context) (net.Conn, error) {
+^
+pkg/driverutil/driverutil.go:4:1: package-comments: should have a package comment (revive)
+package driverutil
+^
+pkg/driverutil/instance.go:14:1: exported: exported function CreateTargetDriverInstance should have comment or be unexported (revive)
+func CreateTargetDriverInstance(base *driver.BaseDriver) driver.Driver {
+^
+pkg/editutil/editorcmd/editorcmd.go:21:1: package-comments: should have a package comment (revive)
+package editorcmd
+^
+pkg/editutil/editutil.go:4:1: package-comments: should have a package comment (revive)
+package editutil
+^
+pkg/executil/command.go:4:1: package-comments: should have a package comment (revive)
+package executil
+^
+pkg/executil/command.go:19:6: exported: exported type Opt should have comment or be unexported (revive)
+type Opt func(*options) error
+     ^
+pkg/executil/command.go:29:1: exported: exported function RunUTF16leCommand should have comment or be unexported (revive)
+func RunUTF16leCommand(args []string, opts ...Opt) (string, error) {
+^
+pkg/executil/opts_others.go:13:2: exported: exported var ForegroundSysProcAttr should have comment or be unexported (revive)
+	ForegroundSysProcAttr = &syscall.SysProcAttr{}
+	^
+pkg/fileutils/download.go:4:1: package-comments: should have a package comment (revive)
+package fileutils
+^
+pkg/freeport/freeport.go:12:1: exported: exported function TCP should have comment or be unexported (revive)
+func TCP() (int, error) {
+^
+pkg/freeport/freeport.go:34:1: exported: exported function UDP should have comment or be unexported (revive)
+func UDP() (int, error) {
+^
+pkg/freeport/freeport_unix.go:10:1: exported: exported function VSock should have comment or be unexported (revive)
+func VSock() (int, error) {
+^
+pkg/fsutil/fsutil_others.go:6:1: package-comments: should have a package comment (revive)
+package fsutil
+^
+pkg/fsutil/fsutil_others.go:8:1: exported: exported function IsNFS should have comment or be unexported (revive)
+func IsNFS(string) (bool, error) {
+^
+pkg/guestagent/api/client/client.go:4:1: package-comments: should have a package comment (revive)
+package client
+^
+pkg/guestagent/api/client/client.go:17:6: exported: exported type GuestAgentClient should have comment or be unexported (revive)
+type GuestAgentClient struct {
+     ^
+pkg/guestagent/api/client/client.go:21:1: exported: exported function NewGuestAgentClient should have comment or be unexported (revive)
+func NewGuestAgentClient(dialFn func(ctx context.Context) (net.Conn, error)) (*GuestAgentClient, error) {
+^
+pkg/guestagent/api/client/client.go:44:1: exported: exported method GuestAgentClient.Info should have comment or be unexported (revive)
+func (c *GuestAgentClient) Info(ctx context.Context) (*api.Info, error) {
+^
+pkg/guestagent/api/client/client.go:48:1: exported: exported method GuestAgentClient.Events should have comment or be unexported (revive)
+func (c *GuestAgentClient) Events(ctx context.Context, eventCb func(response *api.Event)) error {
+^
+pkg/guestagent/api/client/client.go:63:1: exported: exported method GuestAgentClient.Inotify should have comment or be unexported (revive)
+func (c *GuestAgentClient) Inotify(ctx context.Context) (api.GuestService_PostInotifyClient, error) {
+^
+pkg/guestagent/api/client/client.go:71:1: exported: exported method GuestAgentClient.Tunnel should have comment or be unexported (revive)
+func (c *GuestAgentClient) Tunnel(ctx context.Context) (api.GuestService_TunnelClient, error) {
+^
+pkg/guestagent/api/gen.go:6:1: package-comments: should have a package comment (revive)
+package api
+^
+pkg/guestagent/api/ipport.go:11:1: exported: exported method IPPort.HostString should have comment or be unexported (revive)
+func (x *IPPort) HostString() string {
+^
+pkg/guestagent/api/server/server.go:4:1: package-comments: should have a package comment (revive)
+package server
+^
+pkg/guestagent/api/server/server.go:17:1: exported: exported function StartServer should have comment or be unexported (revive)
+func StartServer(lis net.Listener, guest *GuestServer) error {
+^
+pkg/guestagent/api/server/server.go:23:6: exported: exported type GuestServer should have comment or be unexported (revive)
+type GuestServer struct {
+     ^
+pkg/guestagent/api/server/server.go:29:1: exported: exported method GuestServer.GetInfo should have comment or be unexported (revive)
+func (s *GuestServer) GetInfo(ctx context.Context, _ *emptypb.Empty) (*api.Info, error) {
+^
+pkg/guestagent/api/server/server.go:33:1: exported: exported method GuestServer.GetEvents should have comment or be unexported (revive)
+func (s *GuestServer) GetEvents(_ *emptypb.Empty, stream api.GuestService_GetEventsServer) error {
+^
+pkg/guestagent/api/server/server.go:45:1: exported: exported method GuestServer.PostInotify should have comment or be unexported (revive)
+func (s *GuestServer) PostInotify(server api.GuestService_PostInotifyServer) error {
+^
+pkg/guestagent/api/server/server.go:55:1: exported: exported method GuestServer.Tunnel should have comment or be unexported (revive)
+func (s *GuestServer) Tunnel(stream api.GuestService_TunnelServer) error {
+^
+pkg/guestagent/guestagent.go:4:1: package-comments: should have a package comment (revive)
+package guestagent
+^
+pkg/guestagent/guestagent.go:12:6: exported: exported type Agent should have comment or be unexported (revive)
+type Agent interface {
+     ^
+pkg/guestagent/iptables/iptables.go:4:1: package-comments: should have a package comment (revive)
+package iptables
+^
+pkg/guestagent/iptables/iptables.go:17:6: exported: exported type Entry should have comment or be unexported (revive)
+type Entry struct {
+     ^
+pkg/guestagent/iptables/iptables.go:39:1: exported: exported function GetPorts should have comment or be unexported (revive)
+func GetPorts() ([]Entry, error) {
+^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:4:1: package-comments: should have a package comment (revive)
+package kubernetesservice
+^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:26:6: exported: exported type Protocol should have comment or be unexported (revive)
+type Protocol string
+     ^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:31:2: exported: exported const TCP should have comment (or a comment on this block) or be unexported (revive)
+	TCP Protocol = "tcp"
+	^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:34:6: exported: exported type Entry should have comment or be unexported (revive)
+type Entry struct {
+     ^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:40:6: exported: exported type ServiceWatcher should have comment or be unexported (revive)
+type ServiceWatcher struct {
+     ^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:45:1: exported: exported function NewServiceWatcher should have comment or be unexported (revive)
+func NewServiceWatcher() *ServiceWatcher {
+^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:61:1: exported: exported method ServiceWatcher.Start should have comment or be unexported (revive)
+func (s *ServiceWatcher) Start() {
+^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:122:1: exported: exported method ServiceWatcher.GetPorts should have comment or be unexported (revive)
+func (s *ServiceWatcher) GetPorts() []Entry {
+^
+pkg/guestagent/procnettcp/fuzz_test.go:4:1: package-comments: should have a package comment (revive)
+package procnettcp
+^
+pkg/guestagent/procnettcp/procnettcp.go:19:6: exported: exported type Kind should have comment or be unexported (revive)
+type Kind = string
+     ^
+pkg/guestagent/procnettcp/procnettcp.go:22:2: exported: exported const TCP should have comment (or a comment on this block) or be unexported (revive)
+	TCP  Kind = "tcp"
+	^
+pkg/guestagent/procnettcp/procnettcp.go:29:6: exported: exported type State should have comment or be unexported (revive)
+type State = int
+     ^
+pkg/guestagent/procnettcp/procnettcp.go:32:2: exported: exported const TCPEstablished should have comment (or a comment on this block) or be unexported (revive)
+	TCPEstablished State = 0x1
+	^
+pkg/guestagent/procnettcp/procnettcp.go:37:6: exported: exported type Entry should have comment or be unexported (revive)
+type Entry struct {
+     ^
+pkg/guestagent/procnettcp/procnettcp.go:44:1: exported: exported function Parse should have comment or be unexported (revive)
+func Parse(r io.Reader, kind Kind) ([]Entry, error) {
+^
+pkg/guestagent/procnettcp/procnettcp.go:48:1: exported: exported function ParseWithEndian should have comment or be unexported (revive)
+func ParseWithEndian(r io.Reader, kind Kind, isBE bool) ([]Entry, error) {
+^
+pkg/guestagent/procnettcp/procnettcp.go:125:1: exported: exported function ParseAddressWithEndian should have comment or be unexported (revive)
+func ParseAddressWithEndian(s string, isBE bool) (net.IP, uint16, error) {
+^
+pkg/hostagent/api/api.go:4:1: package-comments: should have a package comment (revive)
+package api
+^
+pkg/hostagent/api/api.go:6:6: exported: exported type Info should have comment or be unexported (revive)
+type Info struct {
+     ^
+pkg/hostagent/api/client/client.go:4:1: package-comments: should have a package comment (revive)
+package client
+^
+pkg/hostagent/api/client/client.go:19:6: exported: exported type HostAgentClient should have comment or be unexported (revive)
+type HostAgentClient interface {
+     ^
+pkg/hostagent/api/client/client.go:34:1: exported: exported function NewHostAgentClientWithHTTPClient should have comment or be unexported (revive)
+func NewHostAgentClientWithHTTPClient(hc *http.Client) HostAgentClient {
+^
+pkg/hostagent/api/server/server.go:4:1: package-comments: should have a package comment (revive)
+package server
+^
+pkg/hostagent/api/server/server.go:15:6: exported: exported type Backend should have comment or be unexported (revive)
+type Backend struct {
+     ^
+pkg/hostagent/api/server/server.go:56:1: exported: exported function AddRoutes should have comment or be unexported (revive)
+func AddRoutes(r *http.ServeMux, b *Backend) {
+^
+pkg/hostagent/dns/dns.go:6:1: package-comments: should have a package comment (revive)
+package dns
+^
+pkg/hostagent/dns/dns.go:29:6: exported: exported type Network should have comment or be unexported (revive)
+type Network string
+     ^
+pkg/hostagent/dns/dns.go:32:2: exported: exported const TCP should have comment (or a comment on this block) or be unexported (revive)
+	TCP Network = "tcp"
+	^
+pkg/hostagent/dns/dns.go:36:6: exported: exported type HandlerOptions should have comment or be unexported (revive)
+type HandlerOptions struct {
+     ^
+pkg/hostagent/dns/dns.go:43:6: exported: exported type ServerOptions should have comment or be unexported (revive)
+type ServerOptions struct {
+     ^
+pkg/hostagent/dns/dns.go:50:6: exported: exported type Handler should have comment or be unexported (revive)
+type Handler struct {
+     ^
+pkg/hostagent/dns/dns.go:59:6: exported: exported type Server should have comment or be unexported (revive)
+type Server struct {
+     ^
+pkg/hostagent/dns/dns.go:64:1: exported: exported method Server.Shutdown should have comment or be unexported (revive)
+func (s *Server) Shutdown() {
+^
+pkg/hostagent/dns/dns.go:100:1: exported: exported function NewHandler should have comment or be unexported (revive)
+func NewHandler(opts HandlerOptions) (dns.Handler, error) {
+^
+pkg/hostagent/dns/dns.go:352:1: exported: exported method Handler.ServeDNS should have comment or be unexported (revive)
+func (h *Handler) ServeDNS(w dns.ResponseWriter, req *dns.Msg) {
+^
+pkg/hostagent/dns/dns.go:361:1: exported: exported function Start should have comment or be unexported (revive)
+func Start(opts ServerOptions) (*Server, error) {
+^
+pkg/hostagent/events/events.go:4:1: package-comments: should have a package comment (revive)
+package events
+^
+pkg/hostagent/events/events.go:10:6: exported: exported type Status should have comment or be unexported (revive)
+type Status struct {
+     ^
+pkg/hostagent/events/events.go:22:6: exported: exported type Event should have comment or be unexported (revive)
+type Event struct {
+     ^
+pkg/hostagent/events/watcher.go:17:1: exported: exported function Watch should have comment or be unexported (revive)
+func Watch(ctx context.Context, haStdoutPath, haStderrPath string, begin time.Time, onEvent func(Event) bool) error {
+^
+pkg/hostagent/hostagent.go:4:1: package-comments: should have a package comment (revive)
+package hostagent
+^
+pkg/hostagent/hostagent.go:47:6: exported: exported type HostAgent should have comment or be unexported (revive)
+type HostAgent struct {
+     ^
+pkg/hostagent/hostagent.go:81:6: exported: exported type Opt should have comment or be unexported (revive)
+type Opt func(*options) error
+     ^
+pkg/hostagent/hostagent.go:83:1: exported: exported function WithNerdctlArchive should have comment or be unexported (revive)
+func WithNerdctlArchive(s string) Opt {
+^
+pkg/hostagent/hostagent.go:283:1: exported: exported method HostAgent.Run should have comment or be unexported (revive)
+func (a *HostAgent) Run(ctx context.Context) error {
+^
+pkg/hostagent/hostagent.go:423:1: exported: exported method HostAgent.Info should have comment or be unexported (revive)
+func (a *HostAgent) Info(_ context.Context) (*hostagentapi.Info, error) {
+^
+pkg/hostagent/inotify.go:19:7: exported: exported const CacheSize should have comment or be unexported (revive)
+const CacheSize = 10000
+      ^
+pkg/hostagent/inotify_darwin.go:8:1: exported: exported function GetNotifyEvent should have comment or be unexported (revive)
+func GetNotifyEvent() notify.Event {
+^
+pkg/hostagent/port.go:26:5: exported: exported var IPv4loopback1 should have comment or be unexported (revive)
+var IPv4loopback1 = limayaml.IPv4loopback1
+    ^
+pkg/httpclientutil/httpclientutil.go:4:1: package-comments: should have a package comment (revive)
+package httpclientutil
+^
+pkg/httpclientutil/httpclientutil.go:38:1: exported: exported function Head should have comment or be unexported (revive)
+func Head(ctx context.Context, c *http.Client, url string) (*http.Response, error) {
+^
+pkg/httpclientutil/httpclientutil.go:54:1: exported: exported function Post should have comment or be unexported (revive)
+func Post(ctx context.Context, c *http.Client, url string, body io.Reader) (*http.Response, error) {
+^
+pkg/httpclientutil/httpclientutil.go:109:1: exported: exported function Successful should have comment or be unexported (revive)
+func Successful(resp *http.Response) error {
+^
+pkg/httputil/httputil.go:4:1: package-comments: should have a package comment (revive)
+package httputil
+^
+pkg/identifierutil/identifierutil.go:4:1: package-comments: should have a package comment (revive)
+package identifierutil
+^
+pkg/identifierutil/identifierutil.go:8:1: exported: exported function HostnameFromInstName should have comment or be unexported (revive)
+func HostnameFromInstName(instName string) string {
+^
+pkg/infoutil/infoutil.go:4:1: package-comments: should have a package comment (revive)
+package infoutil
+^
+pkg/infoutil/infoutil.go:14:6: exported: exported type Info should have comment or be unexported (revive)
+type Info struct {
+     ^
+pkg/infoutil/infoutil.go:22:1: exported: exported function GetInfo should have comment or be unexported (revive)
+func GetInfo() (*Info, error) {
+^
+pkg/instance/ansible.go:4:1: package-comments: should have a package comment (revive)
+package instance
+^
+pkg/instance/create.go:23:1: exported: exported function Create should have comment or be unexported (revive)
+func Create(ctx context.Context, instName string, instConfig []byte, saveBrokenYAML bool) (*store.Instance, error) {
+^
+pkg/instance/delete.go:17:1: exported: exported function Delete should have comment or be unexported (revive)
+func Delete(ctx context.Context, inst *store.Instance, force bool) error {
+^
+pkg/instance/start.go:77:6: exported: exported type Prepared should have comment or be unexported (revive)
+type Prepared struct {
+     ^
+pkg/instance/start.go:357:1: exported: exported function LimactlShellCmd should have comment or be unexported (revive)
+func LimactlShellCmd(instName string) string {
+^
+pkg/instance/start.go:365:1: exported: exported function ShowMessage should have comment or be unexported (revive)
+func ShowMessage(inst *store.Instance) error {
+^
+pkg/instance/stop.go:22:1: exported: exported function StopGracefully should have comment or be unexported (revive)
+func StopGracefully(inst *store.Instance) error {
+^
+pkg/instance/stop.go:67:1: exported: exported function StopForcibly should have comment or be unexported (revive)
+func StopForcibly(inst *store.Instance) {
+^
+pkg/ioutilx/ioutilx.go:4:1: package-comments: should have a package comment (revive)
+package ioutilx
+^
+pkg/ioutilx/ioutilx.go:52:1: exported: exported function WindowsSubsystemPath should have comment or be unexported (revive)
+func WindowsSubsystemPath(orig string) (string, error) {
+^
+pkg/ioutilx/ioutilx.go:61:1: exported: exported function WindowsSubsystemPathForLinux should have comment or be unexported (revive)
+func WindowsSubsystemPathForLinux(orig, distro string) (string, error) {
+^
+pkg/iso9660util/fuzz_test.go:4:1: package-comments: should have a package comment (revive)
+package iso9660util
+^
+pkg/iso9660util/iso9660util.go:17:6: exported: exported type Entry should have comment or be unexported (revive)
+type Entry struct {
+     ^
+pkg/iso9660util/iso9660util.go:22:1: exported: exported function Write should have comment or be unexported (revive)
+func Write(isoPath, label string, layout []Entry) error {
+^
+pkg/iso9660util/iso9660util.go:63:1: exported: exported function WriteFile should have comment or be unexported (revive)
+func WriteFile(fs filesystem.FileSystem, pathStr string, r io.Reader) (int64, error) {
+^
+pkg/iso9660util/iso9660util.go:77:1: exported: exported function IsISO9660 should have comment or be unexported (revive)
+func IsISO9660(imagePath string) (bool, error) {
+^
+pkg/limatmpl/abs.go:4:1: package-comments: should have a package comment (revive)
+package limatmpl
+^
+pkg/limatmpl/locator.go:29:1: exported: exported function Read should have comment or be unexported (revive)
+func Read(ctx context.Context, name, locator string) (*Template, error) {
+^
+pkg/limatmpl/locator.go:199:1: exported: exported function InstNameFromImageURL should have comment or be unexported (revive)
+func InstNameFromImageURL(locator, imageArch string) string {
+^
+pkg/limatmpl/locator.go:223:1: exported: exported function SeemsTemplateURL should have comment or be unexported (revive)
+func SeemsTemplateURL(arg string) (bool, *url.URL) {
+^
+pkg/limatmpl/locator.go:231:1: exported: exported function SeemsHTTPURL should have comment or be unexported (revive)
+func SeemsHTTPURL(arg string) bool {
+^
+pkg/limatmpl/locator.go:242:1: exported: exported function SeemsFileURL should have comment or be unexported (revive)
+func SeemsFileURL(arg string) bool {
+^
+pkg/limatmpl/locator.go:250:1: exported: exported function SeemsYAMLPath should have comment or be unexported (revive)
+func SeemsYAMLPath(arg string) bool {
+^
+pkg/limatmpl/locator.go:272:1: exported: exported function InstNameFromURL should have comment or be unexported (revive)
+func InstNameFromURL(urlStr string) (string, error) {
+^
+pkg/limatmpl/locator.go:280:1: exported: exported function InstNameFromYAMLPath should have comment or be unexported (revive)
+func InstNameFromYAMLPath(yamlPath string) (string, error) {
+^
+pkg/limatmpl/template.go:12:6: exported: exported type Template should have comment or be unexported (revive)
+type Template struct {
+     ^
+pkg/limatmpl/template.go:23:1: exported: exported method Template.ClearOnError should have comment or be unexported (revive)
+func (tmpl *Template) ClearOnError(err error) error {
+^
+pkg/limayaml/defaults.go:4:1: package-comments: should have a package comment (revive)
+package limayaml
+^
+pkg/limayaml/defaults.go:47:2: exported: exported const Default9pProtocolVersion should have comment (or a comment on this block) or be unexported (revive)
+	Default9pProtocolVersion string = "9p2000.L"
+	^
+pkg/limayaml/defaults.go:56:2: exported: exported var IPv4loopback1 should have comment or be unexported (revive)
+	IPv4loopback1 = net.IPv4(127, 0, 0, 1)
+	^
+pkg/limayaml/defaults.go:99:6: exported: exported type ContainerdYAML should have comment or be unexported (revive)
+type ContainerdYAML struct {
+     ^
+pkg/limayaml/defaults.go:117:1: exported: exported function MACAddress should have comment or be unexported (revive)
+func MACAddress(uniqueID string) string {
+^
+pkg/limayaml/defaults.go:995:1: exported: exported function FillPortForwardDefaults should have comment or be unexported (revive)
+func FillPortForwardDefaults(rule *PortForward, instDir string, user User, param map[string]string) {
+^
+pkg/limayaml/defaults.go:1045:1: exported: exported function FillCopyToHostDefaults should have comment or be unexported (revive)
+func FillCopyToHostDefaults(rule *CopyToHost, instDir string, user User, param map[string]string) {
+^
+pkg/limayaml/defaults.go:1062:1: exported: exported function NewOS should have comment or be unexported (revive)
+func NewOS(osname string) OS {
+^
+pkg/limayaml/defaults.go:1088:1: exported: exported function NewArch should have comment or be unexported (revive)
+func NewArch(arch string) Arch {
+^
+pkg/limayaml/defaults.go:1111:1: exported: exported function NewVMType should have comment or be unexported (revive)
+func NewVMType(driver string) VMType {
+^
+pkg/limayaml/defaults.go:1140:1: exported: exported function ResolveVMType should have comment or be unexported (revive)
+func ResolveVMType(y, d, o *LimaYAML, filePath string) VMType {
+^
+pkg/limayaml/defaults.go:1221:1: exported: exported function ResolveOS should have comment or be unexported (revive)
+func ResolveOS(s *string) OS {
+^
+pkg/limayaml/defaults.go:1228:1: exported: exported function ResolveArch should have comment or be unexported (revive)
+func ResolveArch(s *string) Arch {
+^
+pkg/limayaml/defaults.go:1235:1: exported: exported function IsAccelOS should have comment or be unexported (revive)
+func IsAccelOS() bool {
+^
+pkg/limayaml/defaults.go:1257:1: exported: exported function HasHostCPU should have comment or be unexported (revive)
+func HasHostCPU() bool {
+^
+pkg/limayaml/defaults.go:1285:1: exported: exported function HasMaxCPU should have comment or be unexported (revive)
+func HasMaxCPU() bool {
+^
+pkg/limayaml/defaults.go:1290:1: exported: exported function IsNativeArch should have comment or be unexported (revive)
+func IsNativeArch(arch Arch) bool {
+^
+pkg/limayaml/limayaml.go:12:6: exported: exported type LimaYAML should have comment or be unexported (revive)
+type LimaYAML struct {
+     ^
+pkg/limayaml/limayaml.go:57:6: exported: exported type BaseTemplates should have comment or be unexported (revive)
+type BaseTemplates []LocatorWithDigest
+     ^
+pkg/limayaml/limayaml.go:59:6: exported: exported type LocatorWithDigest should have comment or be unexported (revive)
+type LocatorWithDigest struct {
+     ^
+pkg/limayaml/limayaml.go:65:2: exported: exported type OS should have comment or be unexported (revive)
+	OS        = string
+	^
+pkg/limayaml/limayaml.go:66:2: exported: exported type Arch should have comment or be unexported (revive)
+	Arch      = string
+	^
+pkg/limayaml/limayaml.go:67:2: exported: exported type MountType should have comment or be unexported (revive)
+	MountType = string
+	^
+pkg/limayaml/limayaml.go:68:2: exported: exported type VMType should have comment or be unexported (revive)
+	VMType    = string
+	^
+pkg/limayaml/limayaml.go:71:6: exported: exported type CPUType should have comment or be unexported (revive)
+type CPUType = map[Arch]string
+     ^
+pkg/limayaml/limayaml.go:74:2: exported: exported const LINUX should have comment (or a comment on this block) or be unexported (revive)
+	LINUX OS = "Linux"
+	^
+pkg/limayaml/limayaml.go:93:2: exported: exported var OSTypes should have comment or be unexported (revive)
+	OSTypes    = []OS{LINUX}
+	^
+pkg/limayaml/limayaml.go:99:6: exported: exported type User should have comment or be unexported (revive)
+type User struct {
+     ^
+pkg/limayaml/limayaml.go:107:6: exported: exported type VMOpts should have comment or be unexported (revive)
+type VMOpts struct {
+     ^
+pkg/limayaml/limayaml.go:111:6: exported: exported type QEMUOpts should have comment or be unexported (revive)
+type QEMUOpts struct {
+     ^
+pkg/limayaml/limayaml.go:115:6: exported: exported type Rosetta should have comment or be unexported (revive)
+type Rosetta struct {
+     ^
+pkg/limayaml/limayaml.go:120:6: exported: exported type File should have comment or be unexported (revive)
+type File struct {
+     ^
+pkg/limayaml/limayaml.go:126:6: exported: exported type FileWithVMType should have comment or be unexported (revive)
+type FileWithVMType struct {
+     ^
+pkg/limayaml/limayaml.go:131:6: exported: exported type Kernel should have comment or be unexported (revive)
+type Kernel struct {
+     ^
+pkg/limayaml/limayaml.go:136:6: exported: exported type Image should have comment or be unexported (revive)
+type Image struct {
+     ^
+pkg/limayaml/limayaml.go:142:6: exported: exported type Disk should have comment or be unexported (revive)
+type Disk struct {
+     ^
+pkg/limayaml/limayaml.go:149:6: exported: exported type Mount should have comment or be unexported (revive)
+type Mount struct {
+     ^
+pkg/limayaml/limayaml.go:158:6: exported: exported type SFTPDriver should have comment or be unexported (revive)
+type SFTPDriver = string
+     ^
+pkg/limayaml/limayaml.go:161:2: exported: exported const SFTPDriverBuiltin should have comment (or a comment on this block) or be unexported (revive)
+	SFTPDriverBuiltin           = "builtin"
+	^
+pkg/limayaml/limayaml.go:165:6: exported: exported type SSHFS should have comment or be unexported (revive)
+type SSHFS struct {
+     ^
+pkg/limayaml/limayaml.go:171:6: exported: exported type NineP should have comment or be unexported (revive)
+type NineP struct {
+     ^
+pkg/limayaml/limayaml.go:178:6: exported: exported type Virtiofs should have comment or be unexported (revive)
+type Virtiofs struct {
+     ^
+pkg/limayaml/limayaml.go:182:6: exported: exported type SSH should have comment or be unexported (revive)
+type SSH struct {
+     ^
+pkg/limayaml/limayaml.go:192:6: exported: exported type Firmware should have comment or be unexported (revive)
+type Firmware struct {
+     ^
+pkg/limayaml/limayaml.go:202:6: exported: exported type Audio should have comment or be unexported (revive)
+type Audio struct {
+     ^
+pkg/limayaml/limayaml.go:207:6: exported: exported type VNCOptions should have comment or be unexported (revive)
+type VNCOptions struct {
+     ^
+pkg/limayaml/limayaml.go:211:6: exported: exported type Video should have comment or be unexported (revive)
+type Video struct {
+     ^
+pkg/limayaml/limayaml.go:217:6: exported: exported type ProvisionMode should have comment or be unexported (revive)
+type ProvisionMode = string
+     ^
+pkg/limayaml/limayaml.go:220:2: exported: exported const ProvisionModeSystem should have comment (or a comment on this block) or be unexported (revive)
+	ProvisionModeSystem     ProvisionMode = "system"
+	^
+pkg/limayaml/limayaml.go:228:6: exported: exported type Provision should have comment or be unexported (revive)
+type Provision struct {
+     ^
+pkg/limayaml/limayaml.go:238:6: exported: exported type ProvisionData should have comment or be unexported (revive)
+type ProvisionData struct {
+     ^
+pkg/limayaml/limayaml.go:246:6: exported: exported type Containerd should have comment or be unexported (revive)
+type Containerd struct {
+     ^
+pkg/limayaml/limayaml.go:252:6: exported: exported type ProbeMode should have comment or be unexported (revive)
+type ProbeMode = string
+     ^
+pkg/limayaml/limayaml.go:255:2: exported: exported const ProbeModeReadiness should have comment (or a comment on this block) or be unexported (revive)
+	ProbeModeReadiness ProbeMode = "readiness"
+	^
+pkg/limayaml/limayaml.go:258:6: exported: exported type Probe should have comment or be unexported (revive)
+type Probe struct {
+     ^
+pkg/limayaml/limayaml.go:266:6: exported: exported type Proto should have comment or be unexported (revive)
+type Proto = string
+     ^
+pkg/limayaml/limayaml.go:269:2: exported: exported const ProtoTCP should have comment (or a comment on this block) or be unexported (revive)
+	ProtoTCP Proto = "tcp"
+	^
+pkg/limayaml/limayaml.go:274:6: exported: exported type PortForward should have comment or be unexported (revive)
+type PortForward struct {
+     ^
+pkg/limayaml/limayaml.go:289:6: exported: exported type CopyToHost should have comment or be unexported (revive)
+type CopyToHost struct {
+     ^
+pkg/limayaml/limayaml.go:295:6: exported: exported type Network should have comment or be unexported (revive)
+type Network struct {
+     ^
+pkg/limayaml/limayaml.go:308:6: exported: exported type HostResolver should have comment or be unexported (revive)
+type HostResolver struct {
+     ^
+pkg/limayaml/limayaml.go:314:6: exported: exported type CACertificates should have comment or be unexported (revive)
+type CACertificates struct {
+     ^
+pkg/limayaml/marshal.go:66:1: exported: exported function Unmarshal should have comment or be unexported (revive)
+func Unmarshal(data []byte, y *LimaYAML, comment string) error {
+^
+pkg/limayaml/validate.go:53:1: exported: exported function Validate should have comment or be unexported (revive)
+func Validate(y *LimaYAML, warn bool) error {
+^
+pkg/localpathutil/localpathutil.go:4:1: package-comments: should have a package comment (revive)
+package localpathutil
+^
+pkg/lockutil/lockutil_test.go:4:1: package-comments: should have a package comment (revive)
+package lockutil
+^
+pkg/lockutil/lockutil_unix.go:33:1: exported: exported function WithDirLock should have comment or be unexported (revive)
+func WithDirLock(dir string, fn func() error) error {
+^
+pkg/lockutil/lockutil_unix.go:50:1: exported: exported function Flock should have comment or be unexported (revive)
+func Flock(f *os.File, flags int) error {
+^
+pkg/logrusutil/logrusutil.go:4:1: package-comments: should have a package comment (revive)
+package logrusutil
+^
+pkg/must/must.go:4:1: package-comments: should have a package comment (revive)
+package must
+^
+pkg/must/must.go:6:1: exported: exported function Must should have comment or be unexported (revive)
+func Must[T any](obj T, err error) T {
+^
+pkg/nativeimgutil/nativeimgutil.go:154:1: exported: exported function MakeSparse should have comment or be unexported (revive)
+func MakeSparse(f *os.File, n int64) error {
+^
+pkg/networks/commands.go:4:1: package-comments: should have a package comment (revive)
+package networks
+^
+pkg/networks/commands.go:18:2: exported: exported const SocketVMNet should have comment (or a comment on this block) or be unexported (revive)
+	SocketVMNet = "socket_vmnet"
+	^
+pkg/networks/commands.go:24:1: exported: exported method Config.Check should have comment or be unexported (revive)
+func (c *Config) Check(name string) error {
+^
+pkg/networks/commands.go:72:1: exported: exported method Config.PIDFile should have comment or be unexported (revive)
+func (c *Config) PIDFile(name, daemon string) string {
+^
+pkg/networks/commands.go:76:1: exported: exported method Config.LogFile should have comment or be unexported (revive)
+func (c *Config) LogFile(name, daemon, stream string) string {
+^
+pkg/networks/commands.go:81:1: exported: exported method Config.User should have comment or be unexported (revive)
+func (c *Config) User(daemon string) (osutil.User, error) {
+^
+pkg/networks/commands.go:94:1: exported: exported method Config.MkdirCmd should have comment or be unexported (revive)
+func (c *Config) MkdirCmd() string {
+^
+pkg/networks/commands.go:98:1: exported: exported method Config.StartCmd should have comment or be unexported (revive)
+func (c *Config) StartCmd(name, daemon string) string {
+^
+pkg/networks/commands.go:125:1: exported: exported method Config.StopCmd should have comment or be unexported (revive)
+func (c *Config) StopCmd(name, daemon string) string {
+^
+pkg/networks/config.go:77:1: exported: exported function DefaultConfig should have comment or be unexported (revive)
+func DefaultConfig() (Config, error) {
+^
+pkg/networks/config.go:96:1: exported: exported function ConfigFile should have comment or be unexported (revive)
+func ConfigFile() (string, error) {
+^
+pkg/networks/const.go:7:2: exported: exported const SlirpNICName should have comment (or a comment on this block) or be unexported (revive)
+	SlirpNICName = "eth0"
+	^
+pkg/networks/networks.go:8:6: exported: exported type Config should have comment or be unexported (revive)
+type Config struct {
+     ^
+pkg/networks/networks.go:14:6: exported: exported type Paths should have comment or be unexported (revive)
+type Paths struct {
+     ^
+pkg/networks/networks.go:21:2: exported: exported const ModeUserV2 should have comment (or a comment on this block) or be unexported (revive)
+	ModeUserV2  = "user-v2"
+	^
+pkg/networks/networks.go:27:6: exported: exported type Network should have comment or be unexported (revive)
+type Network struct {
+     ^
+pkg/networks/reconcile/reconcile.go:4:1: package-comments: should have a package comment (revive)
+package networks
+^
+pkg/networks/reconcile/reconcile.go:25:1: exported: exported function Reconcile should have comment or be unexported (revive)
+func Reconcile(ctx context.Context, newInst string) error {
+^
+pkg/networks/sudoers.go:17:1: exported: exported function Sudoers should have comment or be unexported (revive)
+func Sudoers() (string, error) {
+^
+pkg/networks/sudoers.go:85:1: exported: exported method Config.VerifySudoAccess should have comment or be unexported (revive)
+func (c *Config) VerifySudoAccess(sudoersFile string) error {
+^
+pkg/networks/usernet/client.go:4:1: package-comments: should have a package comment (revive)
+package usernet
+^
+pkg/networks/usernet/client.go:25:6: exported: exported type Client should have comment or be unexported (revive)
+type Client struct {
+     ^
+pkg/networks/usernet/client.go:34:1: exported: exported method Client.ConfigureDriver should have comment or be unexported (revive)
+func (c *Client) ConfigureDriver(ctx context.Context, driver *driver.BaseDriver) error {
+^
+pkg/networks/usernet/client.go:50:1: exported: exported method Client.UnExposeSSH should have comment or be unexported (revive)
+func (c *Client) UnExposeSSH(sshPort int) error {
+^
+pkg/networks/usernet/client.go:57:1: exported: exported method Client.AddDNSHosts should have comment or be unexported (revive)
+func (c *Client) AddDNSHosts(hosts map[string]string) error {
+^
+pkg/networks/usernet/client.go:69:1: exported: exported method Client.ResolveAndForwardSSH should have comment or be unexported (revive)
+func (c *Client) ResolveAndForwardSSH(ipAddr string, sshPort int) error {
+^
+pkg/networks/usernet/client.go:81:1: exported: exported method Client.ResolveIPAddress should have comment or be unexported (revive)
+func (c *Client) ResolveIPAddress(ctx context.Context, vmMacAddr string) (string, error) {
+^
+pkg/networks/usernet/client.go:111:1: exported: exported method Client.Leases should have comment or be unexported (revive)
+func (c *Client) Leases(ctx context.Context) (map[string]string, error) {
+^
+pkg/networks/usernet/client.go:126:1: exported: exported function NewClientByName should have comment or be unexported (revive)
+func NewClientByName(nwName string) *Client {
+^
+pkg/networks/usernet/client.go:138:1: exported: exported function NewClient should have comment or be unexported (revive)
+func NewClient(endpointSock string, subnet net.IP) *Client {
+^
+pkg/networks/usernet/config.go:17:6: exported: exported type SockType should have comment or be unexported (revive)
+type SockType = string
+     ^
+pkg/networks/usernet/config.go:20:2: exported: exported const FDSock should have comment (or a comment on this block) or be unexported (revive)
+	FDSock       = "fd"
+	^
+pkg/networks/usernet/dnshosts/dnshosts.go:29:1: package-comments: should have a package comment (revive)
+package dnshosts
+^
+pkg/networks/usernet/dnshosts/dnshosts.go:38:1: exported: exported function ExtractZones should have comment or be unexported (revive)
+func ExtractZones(hosts hostMap) []types.Zone {
+^
+pkg/networks/usernet/gvproxy.go:25:6: exported: exported type GVisorNetstackOpts should have comment or be unexported (revive)
+type GVisorNetstackOpts struct {
+     ^
+pkg/networks/usernet/gvproxy.go:43:1: exported: exported function StartGVisorNetstack should have comment or be unexported (revive)
+func StartGVisorNetstack(ctx context.Context, gVisorOpts *GVisorNetstackOpts) error {
+^
+pkg/networks/usernet/udpfileconn.go:12:6: exported: exported type UDPFileConn should have comment or be unexported (revive)
+type UDPFileConn struct {
+     ^
+pkg/networks/validate.go:19:1: exported: exported method Config.Validate should have comment or be unexported (revive)
+func (c *Config) Validate() error {
+^
+pkg/osutil/dns_darwin.go:4:1: package-comments: should have a package comment (revive)
+package osutil
+^
+pkg/osutil/dns_darwin.go:14:1: exported: exported function DNSAddresses should have comment or be unexported (revive)
+func DNSAddresses() ([]string, error) {
+^
+pkg/osutil/dns_darwin.go:49:1: exported: exported function ProxySettings should have comment or be unexported (revive)
+func ProxySettings() (map[string]string, error) {
+^
+pkg/osutil/machineid.go:20:5: exported: exported var MachineID should have comment or be unexported (revive)
+var MachineID = sync.OnceValue(func() string {
+    ^
+pkg/osutil/osutil_others.go:18:2: var-naming: struct field Uid should be UID (revive)
+	Uid uint32
+	^
+pkg/osutil/osutil_others.go:22:1: exported: exported function SysStat should have comment or be unexported (revive)
+func SysStat(fi fs.FileInfo) (Stat, bool) {
+^
+pkg/osutil/osutil_others.go:33:6: exported: exported type Signal should have comment or be unexported (revive)
+type Signal syscall.Signal
+     ^
+pkg/osutil/osutil_others.go:35:1: exported: exported function SysKill should have comment or be unexported (revive)
+func SysKill(pid int, sig Signal) error {
+^
+pkg/osutil/osutil_unix.go:19:1: exported: exported function Dup2 should have comment or be unexported (revive)
+func Dup2(oldfd, newfd int) (err error) {
+^
+pkg/osutil/osutil_unix.go:23:1: exported: exported function SignalName should have comment or be unexported (revive)
+func SignalName(sig os.Signal) string {
+^
+pkg/osutil/osutil_unix.go:27:1: exported: exported function Sysctl should have comment or be unexported (revive)
+func Sysctl(name string) (string, error) {
+^
+pkg/osutil/rosetta_darwin.go:14:1: exported: exported function IsBeingRosettaTranslated should have comment or be unexported (revive)
+func IsBeingRosettaTranslated() bool {
+^
+pkg/osutil/user.go:24:6: exported: exported type User should have comment or be unexported (revive)
+type User struct {
+     ^
+pkg/osutil/user.go:26:2: var-naming: struct field Uid should be UID (revive)
+	Uid   uint32
+	^
+pkg/osutil/user.go:33:6: exported: exported type Group should have comment or be unexported (revive)
+type Group struct {
+     ^
+pkg/osutil/user.go:51:1: exported: exported function LookupUser should have comment or be unexported (revive)
+func LookupUser(name string) (User, error) {
+^
+pkg/osutil/user.go:77:1: exported: exported function LookupGroup should have comment or be unexported (revive)
+func LookupGroup(name string) (Group, error) {
+^
+pkg/osutil/user.go:97:2: var-naming: const fallbackUid should be fallbackUID (revive)
+	fallbackUid  = 1000
+	^
+pkg/osutil/user.go:109:1: exported: exported function LimaUser should have comment or be unexported (revive)
+func LimaUser(limaVersion string, warn bool) *user.User {
+^
+pkg/osutil/user.go:211:6: var-naming: func parseUidGid should be parseUIDGid (revive)
+func parseUidGid(uidOrGid string) (uint32, error) {
+     ^
+pkg/osutil/user.go:220:6: var-naming: func formatUidGid should be formatUIDGid (revive)
+func formatUidGid(uidOrGid uint32) string {
+     ^
+pkg/portfwd/client.go:4:1: package-comments: should have a package comment (revive)
+package portfwd
+^
+pkg/portfwd/client.go:19:1: exported: exported function HandleTCPConnection should have comment or be unexported (revive)
+func HandleTCPConnection(ctx context.Context, client *guestagentclient.GuestAgentClient, conn net.Conn, guestAddr string) {
+^
+pkg/portfwd/client.go:38:1: exported: exported function HandleUDPConnection should have comment or be unexported (revive)
+func HandleUDPConnection(ctx context.Context, client *guestagentclient.GuestAgentClient, conn net.PacketConn, guestAddr string) {
+^
+pkg/portfwd/client.go:71:6: exported: exported type GrpcClientRW should have comment or be unexported (revive)
+type GrpcClientRW struct {
+     ^
+pkg/portfwd/client.go:103:1: exported: exported method GrpcClientRW.Close should have comment or be unexported (revive)
+func (g *GrpcClientRW) Close() error {
+^
+pkg/portfwd/client.go:107:1: exported: exported method GrpcClientRW.LocalAddr should have comment or be unexported (revive)
+func (g *GrpcClientRW) LocalAddr() net.Addr {
+^
+pkg/portfwd/client.go:111:1: exported: exported method GrpcClientRW.RemoteAddr should have comment or be unexported (revive)
+func (g *GrpcClientRW) RemoteAddr() net.Addr {
+^
+pkg/portfwd/client.go:115:1: exported: exported method GrpcClientRW.SetDeadline should have comment or be unexported (revive)
+func (g *GrpcClientRW) SetDeadline(_ time.Time) error {
+^
+pkg/portfwd/client.go:119:1: exported: exported method GrpcClientRW.SetReadDeadline should have comment or be unexported (revive)
+func (g *GrpcClientRW) SetReadDeadline(_ time.Time) error {
+^
+pkg/portfwd/client.go:123:1: exported: exported method GrpcClientRW.SetWriteDeadline should have comment or be unexported (revive)
+func (g *GrpcClientRW) SetWriteDeadline(_ time.Time) error {
+^
+pkg/portfwd/control_others.go:14:1: exported: exported function Control should have comment or be unexported (revive)
+func Control(_, _ string, c syscall.RawConn) (err error) {
+^
+pkg/portfwd/forward.go:17:5: exported: exported var IPv4loopback1 should have comment or be unexported (revive)
+var IPv4loopback1 = limayaml.IPv4loopback1
+    ^
+pkg/portfwd/forward.go:19:6: exported: exported type Forwarder should have comment or be unexported (revive)
+type Forwarder struct {
+     ^
+pkg/portfwd/forward.go:26:1: exported: exported function NewPortForwarder should have comment or be unexported (revive)
+func NewPortForwarder(rules []limayaml.PortForward, ignoreTCP, ignoreUDP bool) *Forwarder {
+^
+pkg/portfwd/forward.go:35:1: exported: exported method Forwarder.OnEvent should have comment or be unexported (revive)
+func (fw *Forwarder) OnEvent(ctx context.Context, client *guestagentclient.GuestAgentClient, ev *api.Event) {
+^
+pkg/portfwd/listener.go:17:6: exported: exported type ClosableListeners should have comment or be unexported (revive)
+type ClosableListeners struct {
+     ^
+pkg/portfwd/listener.go:25:1: exported: exported function NewClosableListener should have comment or be unexported (revive)
+func NewClosableListener() *ClosableListeners {
+^
+pkg/portfwd/listener.go:37:1: exported: exported method ClosableListeners.Forward should have comment or be unexported (revive)
+func (p *ClosableListeners) Forward(ctx context.Context, client *guestagentclient.GuestAgentClient,
+^
+pkg/portfwd/listener.go:48:1: exported: exported method ClosableListeners.Remove should have comment or be unexported (revive)
+func (p *ClosableListeners) Remove(_ context.Context, protocol, hostAddress, guestAddress string) {
+^
+pkg/portfwd/listener_darwin.go:15:1: exported: exported function Listen should have comment or be unexported (revive)
+func Listen(ctx context.Context, listenConfig net.ListenConfig, hostAddress string) (net.Listener, error) {
+^
+pkg/portfwd/listener_darwin.go:36:1: exported: exported function ListenPacket should have comment or be unexported (revive)
+func ListenPacket(ctx context.Context, listenConfig net.ListenConfig, hostAddress string) (net.PacketConn, error) {
+^
+pkg/portfwd/listener_darwin.go:115:1: exported: exported function IsLoopback should have comment or be unexported (revive)
+func IsLoopback(addr string) bool {
+^
+pkg/portfwdserver/server.go:4:1: package-comments: should have a package comment (revive)
+package portfwdserver
+^
+pkg/portfwdserver/server.go:16:6: exported: exported type TunnelServer should have comment or be unexported (revive)
+type TunnelServer struct{}
+     ^
+pkg/portfwdserver/server.go:18:1: exported: exported function NewTunnelServer should have comment or be unexported (revive)
+func NewTunnelServer() *TunnelServer {
+^
+pkg/portfwdserver/server.go:22:1: exported: exported method TunnelServer.Start should have comment or be unexported (revive)
+func (s *TunnelServer) Start(stream api.GuestService_TunnelServer) error {
+^
+pkg/portfwdserver/server.go:42:6: exported: exported type GRPCServerRW should have comment or be unexported (revive)
+type GRPCServerRW struct {
+     ^
+pkg/portfwdserver/server.go:63:1: exported: exported method GRPCServerRW.Close should have comment or be unexported (revive)
+func (g *GRPCServerRW) Close() error {
+^
+pkg/portfwdserver/server.go:67:1: exported: exported method GRPCServerRW.LocalAddr should have comment or be unexported (revive)
+func (g *GRPCServerRW) LocalAddr() net.Addr {
+^
+pkg/portfwdserver/server.go:71:1: exported: exported method GRPCServerRW.RemoteAddr should have comment or be unexported (revive)
+func (g *GRPCServerRW) RemoteAddr() net.Addr {
+^
+pkg/portfwdserver/server.go:75:1: exported: exported method GRPCServerRW.SetDeadline should have comment or be unexported (revive)
+func (g *GRPCServerRW) SetDeadline(_ time.Time) error {
+^
+pkg/portfwdserver/server.go:79:1: exported: exported method GRPCServerRW.SetReadDeadline should have comment or be unexported (revive)
+func (g *GRPCServerRW) SetReadDeadline(_ time.Time) error {
+^
+pkg/portfwdserver/server.go:83:1: exported: exported method GRPCServerRW.SetWriteDeadline should have comment or be unexported (revive)
+func (g *GRPCServerRW) SetWriteDeadline(_ time.Time) error {
+^
+pkg/progressbar/progressbar.go:4:1: package-comments: should have a package comment (revive)
+package progressbar
+^
+pkg/progressbar/progressbar.go:20:1: exported: exported method ProgressBar.Update should have comment or be unexported (revive)
+func (b *ProgressBar) Update(n int64) {
+^
+pkg/progressbar/progressbar.go:24:1: exported: exported function New should have comment or be unexported (revive)
+func New(size int64) (*ProgressBar, error) {
+^
+pkg/qemu/entitlementutil/entitlementutil.go:41:1: exported: exported function Sign should have comment or be unexported (revive)
+func Sign(qExe string) error {
+^
+pkg/qemu/imgutil/imgutil.go:4:1: package-comments: should have a package comment (revive)
+package imgutil
+^
+pkg/qemu/imgutil/imgutil.go:15:6: exported: exported type InfoChild should have comment or be unexported (revive)
+type InfoChild struct {
+     ^
+pkg/qemu/imgutil/imgutil.go:20:6: exported: exported type InfoFormatSpecific should have comment or be unexported (revive)
+type InfoFormatSpecific struct {
+     ^
+pkg/qemu/imgutil/imgutil.go:25:1: exported: exported method InfoFormatSpecific.Qcow2 should have comment or be unexported (revive)
+func (sp *InfoFormatSpecific) Qcow2() *InfoFormatSpecificDataQcow2 {
+^
+pkg/qemu/imgutil/imgutil.go:36:1: exported: exported method InfoFormatSpecific.Vmdk should have comment or be unexported (revive)
+func (sp *InfoFormatSpecific) Vmdk() *InfoFormatSpecificDataVmdk {
+^
+pkg/qemu/imgutil/imgutil.go:47:6: exported: exported type InfoFormatSpecificDataQcow2 should have comment or be unexported (revive)
+type InfoFormatSpecificDataQcow2 struct {
+     ^
+pkg/qemu/imgutil/imgutil.go:56:6: exported: exported type InfoFormatSpecificDataVmdk should have comment or be unexported (revive)
+type InfoFormatSpecificDataVmdk struct {
+     ^
+pkg/qemu/imgutil/imgutil.go:63:6: exported: exported type InfoFormatSpecificDataVmdkExtent should have comment or be unexported (revive)
+type InfoFormatSpecificDataVmdkExtent struct {
+     ^
+pkg/qemu/imgutil/imgutil.go:85:1: exported: exported function ConvertToRaw should have comment or be unexported (revive)
+func ConvertToRaw(source, dest string) error {
+^
+pkg/qemu/imgutil/imgutil.go:97:1: exported: exported function ParseInfo should have comment or be unexported (revive)
+func ParseInfo(b []byte) (*Info, error) {
+^
+pkg/qemu/imgutil/imgutil.go:105:1: exported: exported function GetInfo should have comment or be unexported (revive)
+func GetInfo(f string) (*Info, error) {
+^
+pkg/qemu/imgutil/imgutil.go:117:1: exported: exported function AcceptableAsBasedisk should have comment or be unexported (revive)
+func AcceptableAsBasedisk(info *Info) error {
+^
+pkg/qemu/qemu.go:4:1: package-comments: should have a package comment (revive)
+package qemu
+^
+pkg/qemu/qemu.go:42:6: exported: exported type Config should have comment or be unexported (revive)
+type Config struct {
+     ^
+pkg/qemu/qemu.go:130:1: exported: exported function CreateDataDisk should have comment or be unexported (revive)
+func CreateDataDisk(dir, format string, size int) error {
+^
+pkg/qemu/qemu.go:145:1: exported: exported function ResizeDataDisk should have comment or be unexported (revive)
+func ResizeDataDisk(dir, format string, size int) error {
+^
+pkg/qemu/qemu.go:192:1: exported: exported function Del should have comment or be unexported (revive)
+func Del(cfg Config, run bool, tag string) error {
+^
+pkg/qemu/qemu.go:206:1: exported: exported function Save should have comment or be unexported (revive)
+func Save(cfg Config, run bool, tag string) error {
+^
+pkg/qemu/qemu.go:220:1: exported: exported function Load should have comment or be unexported (revive)
+func Load(cfg Config, run bool, tag string) error {
+^
+pkg/qemu/qemu.go:483:1: exported: exported function Cmdline should have comment or be unexported (revive)
+func Cmdline(ctx context.Context, cfg Config) (exe string, args []string, err error) {
+^
+pkg/qemu/qemu.go:1003:1: exported: exported function FindVirtiofsd should have comment or be unexported (revive)
+func FindVirtiofsd(qemuExe string) (string, error) {
+^
+pkg/qemu/qemu.go:1077:1: exported: exported function VirtiofsdCmdline should have comment or be unexported (revive)
+func VirtiofsdCmdline(cfg Config, mountIndex int) ([]string, error) {
+^
+pkg/qemu/qemu.go:1108:1: exported: exported function Exe should have comment or be unexported (revive)
+func Exe(arch limayaml.Arch) (exe string, args []string, err error) {
+^
+pkg/qemu/qemu.go:1128:1: exported: exported function Accel should have comment or be unexported (revive)
+func Accel(arch limayaml.Arch) string {
+^
+pkg/qemu/qemu_driver.go:35:6: exported: exported type LimaQemuDriver should have comment or be unexported (revive)
+type LimaQemuDriver struct {
+     ^
+pkg/qemu/qemu_driver.go:43:1: exported: exported function New should have comment or be unexported (revive)
+func New(driver *driver.BaseDriver) *LimaQemuDriver {
+^
+pkg/qemu/qemu_driver.go:49:1: exported: exported method LimaQemuDriver.Validate should have comment or be unexported (revive)
+func (l *LimaQemuDriver) Validate() error {
+^
+pkg/qemu/qemu_driver.go:57:1: exported: exported method LimaQemuDriver.CreateDisk should have comment or be unexported (revive)
+func (l *LimaQemuDriver) CreateDisk(ctx context.Context) error {
+^
+pkg/qemu/qemu_driver.go:66:1: exported: exported method LimaQemuDriver.Start should have comment or be unexported (revive)
+func (l *LimaQemuDriver) Start(ctx context.Context) (chan error, error) {
+^
+pkg/qemu/qemu_driver.go:206:1: exported: exported method LimaQemuDriver.Stop should have comment or be unexported (revive)
+func (l *LimaQemuDriver) Stop(ctx context.Context) error {
+^
+pkg/qemu/qemu_driver.go:210:1: exported: exported method LimaQemuDriver.ChangeDisplayPassword should have comment or be unexported (revive)
+func (l *LimaQemuDriver) ChangeDisplayPassword(_ context.Context, password string) error {
+^
+pkg/qemu/qemu_driver.go:214:1: exported: exported method LimaQemuDriver.GetDisplayConnection should have comment or be unexported (revive)
+func (l *LimaQemuDriver) GetDisplayConnection(_ context.Context) (string, error) {
+^
+pkg/qemu/qemu_driver.go:369:1: exported: exported method LimaQemuDriver.DeleteSnapshot should have comment or be unexported (revive)
+func (l *LimaQemuDriver) DeleteSnapshot(_ context.Context, tag string) error {
+^
+pkg/qemu/qemu_driver.go:378:1: exported: exported method LimaQemuDriver.CreateSnapshot should have comment or be unexported (revive)
+func (l *LimaQemuDriver) CreateSnapshot(_ context.Context, tag string) error {
+^
+pkg/qemu/qemu_driver.go:387:1: exported: exported method LimaQemuDriver.ApplySnapshot should have comment or be unexported (revive)
+func (l *LimaQemuDriver) ApplySnapshot(_ context.Context, tag string) error {
+^
+pkg/qemu/qemu_driver.go:396:1: exported: exported method LimaQemuDriver.ListSnapshots should have comment or be unexported (revive)
+func (l *LimaQemuDriver) ListSnapshots(_ context.Context) (string, error) {
+^
+pkg/qemu/qemu_driver.go:405:1: exported: exported method LimaQemuDriver.GuestAgentConn should have comment or be unexported (revive)
+func (l *LimaQemuDriver) GuestAgentConn(ctx context.Context) (net.Conn, error) {
+^
+pkg/reflectutil/reflectutil.go:18:1: package-comments: should have a package comment (revive)
+package reflectutil
+^
+pkg/reflectutil/reflectutil.go:25:1: exported: exported function UnknownNonEmptyFields should have comment or be unexported (revive)
+func UnknownNonEmptyFields(structOrStructPtr any, knownNames ...string) []string {
+^
+pkg/snapshot/snapshot.go:4:1: package-comments: should have a package comment (revive)
+package snapshot
+^
+pkg/snapshot/snapshot.go:14:1: exported: exported function Del should have comment or be unexported (revive)
+func Del(ctx context.Context, inst *store.Instance, tag string) error {
+^
+pkg/snapshot/snapshot.go:21:1: exported: exported function Save should have comment or be unexported (revive)
+func Save(ctx context.Context, inst *store.Instance, tag string) error {
+^
+pkg/snapshot/snapshot.go:28:1: exported: exported function Load should have comment or be unexported (revive)
+func Load(ctx context.Context, inst *store.Instance, tag string) error {
+^
+pkg/snapshot/snapshot.go:35:1: exported: exported function List should have comment or be unexported (revive)
+func List(ctx context.Context, inst *store.Instance) (string, error) {
+^
+pkg/sshutil/format.go:4:1: package-comments: should have a package comment (revive)
+package sshutil
+^
+pkg/sshutil/sshutil.go:37:1: exported: exported function SSHArguments should have comment or be unexported (revive)
+func SSHArguments() (arg0 string, arg0Args []string, err error) {
+^
+pkg/sshutil/sshutil.go:62:6: exported: exported type PubKey should have comment or be unexported (revive)
+type PubKey struct {
+     ^
+pkg/sshutil/sshutil.go:322:1: exported: exported function ParseOpenSSHVersion should have comment or be unexported (revive)
+func ParseOpenSSHVersion(version []byte) *semver.Version {
+^
+pkg/sshutil/sshutil.go:347:1: exported: exported function DetectOpenSSHVersion should have comment or be unexported (revive)
+func DetectOpenSSHVersion(ssh string) semver.Version {
+^
+pkg/store/dirnames/dirnames.go:4:1: package-comments: should have a package comment (revive)
+package dirnames
+^
+pkg/store/disk.go:4:1: package-comments: should have a package comment (revive)
+package store
+^
+pkg/store/disk.go:18:6: exported: exported type Disk should have comment or be unexported (revive)
+type Disk struct {
+     ^
+pkg/store/disk.go:28:1: exported: exported function InspectDisk should have comment or be unexported (revive)
+func InspectDisk(diskName string) (*Disk, error) {
+^
+pkg/store/disk.go:93:1: exported: exported method Disk.Lock should have comment or be unexported (revive)
+func (d *Disk) Lock(instanceDir string) error {
+^
+pkg/store/disk.go:98:1: exported: exported method Disk.Unlock should have comment or be unexported (revive)
+func (d *Disk) Unlock() error {
+^
+pkg/store/filenames/filenames.go:13:2: exported: exported const ConfigDir should have comment (or a comment on this block) or be unexported (revive)
+	ConfigDir   = "_config"
+	^
+pkg/store/filenames/filenames.go:22:2: exported: exported const UserPrivateKey should have comment (or a comment on this block) or be unexported (revive)
+	UserPrivateKey = "user"
+	^
+pkg/store/filenames/filenames.go:33:2: exported: exported const LimaYAML should have comment (or a comment on this block) or be unexported (revive)
+	LimaYAML             = "lima.yaml"
+	^
+pkg/store/filenames/filenames.go:76:2: exported: exported const DataDisk should have comment (or a comment on this block) or be unexported (revive)
+	DataDisk = "datadisk"
+	^
+pkg/store/filenames/filenames.go:90:1: exported: exported function PIDFile should have comment or be unexported (revive)
+func PIDFile(name string) string {
+^
+pkg/store/instance.go:33:6: exported: exported type Status should have comment or be unexported (revive)
+type Status = string
+     ^
+pkg/store/instance.go:36:2: exported: exported const StatusUnknown should have comment (or a comment on this block) or be unexported (revive)
+	StatusUnknown       Status = ""
+	^
+pkg/store/instance.go:44:6: exported: exported type Instance should have comment or be unexported (revive)
+type Instance struct {
+     ^
+pkg/store/instance.go:249:6: exported: exported type FormatData should have comment or be unexported (revive)
+type FormatData struct {
+     ^
+pkg/store/instance.go:257:5: exported: exported var FormatHelp should have comment or be unexported (revive)
+var FormatHelp = "\n" +
+    ^
+pkg/store/instance.go:262:1: exported: exported function AddGlobalFields should have comment or be unexported (revive)
+func AddGlobalFields(inst *Instance) (FormatData, error) {
+^
+pkg/store/instance.go:283:6: exported: exported type PrintOptions should have comment or be unexported (revive)
+type PrintOptions struct {
+     ^
+pkg/store/instance_unix.go:14:1: exported: exported function GetSSHAddress should have comment or be unexported (revive)
+func GetSSHAddress(_ string) (string, error) {
+^
+pkg/store/store.go:74:1: exported: exported function Disks should have comment or be unexported (revive)
+func Disks() ([]string, error) {
+^
+pkg/store/store.go:107:1: exported: exported function DiskDir should have comment or be unexported (revive)
+func DiskDir(name string) (string, error) {
+^
+pkg/sysprof/network_darwin.go:4:1: package-comments: should have a package comment (revive)
+package sysprof
+^
+pkg/sysprof/network_darwin.go:6:6: exported: exported type SPNetworkDataType should have comment or be unexported (revive)
+type SPNetworkDataType struct {
+     ^
+pkg/sysprof/network_darwin.go:10:6: exported: exported type NetworkDataType should have comment or be unexported (revive)
+type NetworkDataType struct {
+     ^
+pkg/sysprof/network_darwin.go:17:6: exported: exported type DNS should have comment or be unexported (revive)
+type DNS struct {
+     ^
+pkg/sysprof/network_darwin.go:21:6: exported: exported type IPv4 should have comment or be unexported (revive)
+type IPv4 struct {
+     ^
+pkg/sysprof/network_darwin.go:25:6: exported: exported type Proxies should have comment or be unexported (revive)
+type Proxies struct {
+     ^
+pkg/sysprof/sysprof_darwin.go:17:5: exported: exported var NetworkData should have comment or be unexported (revive)
+var NetworkData = sync.OnceValues(func() ([]NetworkDataType, error) {
+    ^
+pkg/sysprof/sysprof_darwin.go:29:1: exported: exported function SystemProfiler should have comment or be unexported (revive)
+func SystemProfiler(dataType string) ([]byte, error) {
+^
+pkg/templatestore/templatestore.go:4:1: package-comments: should have a package comment (revive)
+package templatestore
+^
+pkg/templatestore/templatestore.go:17:6: exported: exported type Template should have comment or be unexported (revive)
+type Template struct {
+     ^
+pkg/templatestore/templatestore.go:22:1: exported: exported function Read should have comment or be unexported (revive)
+func Read(name string) ([]byte, error) {
+^
+pkg/templatestore/templatestore.go:40:7: exported: exported const Default should have comment or be unexported (revive)
+const Default = "default"
+      ^
+pkg/templatestore/templatestore.go:42:1: exported: exported function Templates should have comment or be unexported (revive)
+func Templates() ([]Template, error) {
+^
+pkg/textutil/textutil.go:4:1: package-comments: should have a package comment (revive)
+package textutil
+^
+pkg/uiutil/uiutil.go:4:1: package-comments: should have a package comment (revive)
+package uiutil
+^
+pkg/uiutil/uiutil.go:11:5: exported: exported var InterruptErr should have comment or be unexported (revive)
+var InterruptErr = terminal.InterruptErr
+    ^
+pkg/usrlocalsharelima/usrlocalsharelima.go:4:1: package-comments: should have a package comment (revive)
+package usrlocalsharelima
+^
+pkg/usrlocalsharelima/usrlocalsharelima.go:19:1: exported: exported function Dir should have comment or be unexported (revive)
+func Dir() (string, error) {
+^
+pkg/usrlocalsharelima/usrlocalsharelima.go:83:1: exported: exported function GuestAgentBinary should have comment or be unexported (revive)
+func GuestAgentBinary(ostype limayaml.OS, arch limayaml.Arch) (string, error) {
+^
+pkg/version/version.go:4:1: package-comments: should have a package comment (revive)
+package version
+^
+pkg/version/versionutil/versionutil.go:4:1: package-comments: should have a package comment (revive)
+package versionutil
+^
+pkg/vz/disk.go:4:1: package-comments: should have a package comment (revive)
+package vz
+^
+pkg/vz/disk.go:21:1: exported: exported function EnsureDisk should have comment or be unexported (revive)
+func EnsureDisk(ctx context.Context, driver *driver.BaseDriver) error {
+^
+pkg/vz/network_darwin.go:23:1: exported: exported function PassFDToUnix should have comment or be unexported (revive)
+func PassFDToUnix(unixSock string) (*os.File, error) {
+^
+pkg/vz/vz_driver_darwin.go:66:7: exported: exported const Enabled should have comment or be unexported (revive)
+const Enabled = true
+      ^
+pkg/vz/vz_driver_darwin.go:68:6: exported: exported type LimaVzDriver should have comment or be unexported (revive)
+type LimaVzDriver struct {
+     ^
+pkg/vz/vz_driver_darwin.go:74:1: exported: exported function New should have comment or be unexported (revive)
+func New(driver *driver.BaseDriver) *LimaVzDriver {
+^
+pkg/vz/vz_driver_darwin.go:80:1: exported: exported method LimaVzDriver.Validate should have comment or be unexported (revive)
+func (l *LimaVzDriver) Validate() error {
+^
+pkg/vz/vz_driver_darwin.go:158:1: exported: exported method LimaVzDriver.Initialize should have comment or be unexported (revive)
+func (l *LimaVzDriver) Initialize(_ context.Context) error {
+^
+pkg/vz/vz_driver_darwin.go:163:1: exported: exported method LimaVzDriver.CreateDisk should have comment or be unexported (revive)
+func (l *LimaVzDriver) CreateDisk(ctx context.Context) error {
+^
+pkg/vz/vz_driver_darwin.go:167:1: exported: exported method LimaVzDriver.Start should have comment or be unexported (revive)
+func (l *LimaVzDriver) Start(ctx context.Context) (chan error, error) {
+^
+pkg/vz/vz_driver_darwin.go:181:1: exported: exported method LimaVzDriver.CanRunGUI should have comment or be unexported (revive)
+func (l *LimaVzDriver) CanRunGUI() bool {
+^
+pkg/vz/vz_driver_darwin.go:190:1: exported: exported method LimaVzDriver.RunGUI should have comment or be unexported (revive)
+func (l *LimaVzDriver) RunGUI() error {
+^
+pkg/vz/vz_driver_darwin.go:198:1: exported: exported method LimaVzDriver.Stop should have comment or be unexported (revive)
+func (l *LimaVzDriver) Stop(_ context.Context) error {
+^
+pkg/vz/vz_driver_darwin.go:228:1: exported: exported method LimaVzDriver.GuestAgentConn should have comment or be unexported (revive)
+func (l *LimaVzDriver) GuestAgentConn(_ context.Context) (net.Conn, error) {
+^
+pkg/wsl2/fs.go:4:1: package-comments: should have a package comment (revive)
+package wsl2
+^
+pkg/wsl2/wsl_driver_others.go:15:5: exported: exported var ErrUnsupported should have comment or be unexported (revive)
+var ErrUnsupported = errors.New("vm driver 'wsl2' requires Windows 10 build 19041 or later (Hint: try recompiling Lima if you are seeing this error on Windows 10+)")
+    ^
+pkg/wsl2/wsl_driver_others.go:17:7: exported: exported const Enabled should have comment or be unexported (revive)
+const Enabled = false
+      ^
+pkg/wsl2/wsl_driver_others.go:19:6: exported: exported type LimaWslDriver should have comment or be unexported (revive)
+type LimaWslDriver struct {
+     ^
+pkg/wsl2/wsl_driver_others.go:23:1: exported: exported function New should have comment or be unexported (revive)
+func New(driver *driver.BaseDriver) *LimaWslDriver {
+^
+pkg/wsl2/wsl_driver_others.go:29:1: exported: exported method LimaWslDriver.Validate should have comment or be unexported (revive)
+func (l *LimaWslDriver) Validate() error {
+^
+pkg/wsl2/wsl_driver_others.go:33:1: exported: exported method LimaWslDriver.CreateDisk should have comment or be unexported (revive)
+func (l *LimaWslDriver) CreateDisk(_ context.Context) error {
+^
+pkg/wsl2/wsl_driver_others.go:37:1: exported: exported method LimaWslDriver.Start should have comment or be unexported (revive)
+func (l *LimaWslDriver) Start(_ context.Context) (chan error, error) {
+^
+pkg/wsl2/wsl_driver_others.go:41:1: exported: exported method LimaWslDriver.Stop should have comment or be unexported (revive)
+func (l *LimaWslDriver) Stop(_ context.Context) error {
+^
+pkg/yqutil/fuzz_test.go:4:1: package-comments: should have a package comment (revive)
+package yqutil
+^
+pkg/yqutil/yqutil.go:111:1: exported: exported function Join should have comment or be unexported (revive)
+func Join(yqExprs []string) string {
+^
+pkg/cidata/template.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package cidata
+^
+pkg/driverutil/instance.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package driverutil
+^
+pkg/executil/opts_others.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package executil
+^
+pkg/guestagent/api/client/credentials.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package client
+^
+pkg/guestagent/api/ipport.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package api
+^
+pkg/guestagent/kubernetesservice/kubernetesservice.go:143:4: QF1003: could use tagged switch on service.Spec.Type (staticcheck)
+			if service.Spec.Type == corev1.ServiceTypeNodePort {
+			^
+pkg/guestagent/procnettcp/procnettcp.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package procnettcp
+^
+pkg/hostagent/dns/dns.go:87:3: QF1006: could lift into loop condition (staticcheck)
+		if seen[cname] {
+		^
+pkg/hostagent/dns/dns.go:384:8: QF1008: could remove embedded field "HandlerOptions" from selector (staticcheck)
+		opts.HandlerOptions.TruncateReply = true
+		     ^
+pkg/hostagent/events/watcher.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package events
+^
+pkg/hostagent/hostagent.go:128:2: QF1003: could use tagged switch on *inst.Config.VMType (staticcheck)
+	if *inst.Config.VMType == limayaml.VZ {
+	^
+pkg/hostagent/hostagent_unix.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/hostagent/inotify.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/hostagent/inotify_darwin.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/hostagent/mount.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/hostagent/port.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/hostagent/port_darwin.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/hostagent/requirements.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package hostagent
+^
+pkg/httpclientutil/httpclientutil_others.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package httpclientutil
+^
+pkg/instance/create.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package instance
+^
+pkg/instance/delete.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package instance
+^
+pkg/instance/start.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package instance
+^
+pkg/instance/stop.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package instance
+^
+pkg/iso9660util/iso9660util.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package iso9660util
+^
+pkg/limatmpl/embed.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limatmpl
+^
+pkg/limatmpl/locator.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limatmpl
+^
+pkg/limatmpl/template.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limatmpl
+^
+pkg/limayaml/defaults.go:34:2: ST1001: should not use dot imports (staticcheck)
+	. "github.com/lima-vm/lima/pkg/must"
+	^
+pkg/limayaml/limayaml.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limayaml
+^
+pkg/limayaml/load.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limayaml
+^
+pkg/limayaml/marshal.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limayaml
+^
+pkg/limayaml/validate.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package limayaml
+^
+pkg/lockutil/lockutil_unix.go:23:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package lockutil
+^
+pkg/logrusutil/logrusutil_test.go:16:2: ST1003: var loggerWithoutTs should be loggerWithoutTS (staticcheck)
+	loggerWithoutTs := func(output *bytes.Buffer) *logrus.Logger {
+	^
+pkg/networks/config.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package networks
+^
+pkg/networks/const.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package networks
+^
+pkg/networks/networks.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package networks
+^
+pkg/networks/sudoers.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package networks
+^
+pkg/networks/usernet/config.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package usernet
+^
+pkg/networks/usernet/gvproxy.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package usernet
+^
+pkg/networks/usernet/recoincile.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package usernet
+^
+pkg/networks/usernet/udpfileconn.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package usernet
+^
+pkg/networks/validate.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package networks
+^
+pkg/osutil/machineid.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package osutil
+^
+pkg/osutil/osutil_others.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package osutil
+^
+pkg/osutil/osutil_others.go:19:2: ST1003: struct field Gid should be GID (staticcheck)
+	Gid uint32
+	^
+pkg/osutil/osutil_unix.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package osutil
+^
+pkg/osutil/osversion_darwin.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package osutil
+^
+pkg/osutil/rosetta_darwin.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package osutil
+^
+pkg/osutil/user.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package osutil
+^
+pkg/osutil/user.go:19:2: ST1001: should not use dot imports (staticcheck)
+	. "github.com/lima-vm/lima/pkg/must"
+	^
+pkg/osutil/user.go:28:2: ST1003: struct field Gid should be GID (staticcheck)
+	Gid   uint32
+	^
+pkg/osutil/user.go:35:2: ST1003: struct field Gid should be GID (staticcheck)
+	Gid  uint32
+	^
+pkg/osutil/user.go:98:2: ST1003: const fallbackGid should be fallbackGID (staticcheck)
+	fallbackGid  = 1000
+	^
+pkg/portfwd/control_others.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package portfwd
+^
+pkg/portfwd/forward.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package portfwd
+^
+pkg/portfwd/listener.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package portfwd
+^
+pkg/portfwd/listener_darwin.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package portfwd
+^
+pkg/qemu/entitlementutil/entitlementutil.go:77:6: ST1003: should not use underscores in Go names; func isColimaWrapper__useThisFunctionOnlyForPrintingHints__ should be isColimaWrapperUseThisFunctionOnlyForPrintingHints (staticcheck)
+func isColimaWrapper__useThisFunctionOnlyForPrintingHints__(qExe string) bool {
+     ^
+pkg/qemu/qemu_driver.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package qemu
+^
+pkg/sshutil/sshutil.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package sshutil
+^
+pkg/sshutil/sshutil.go:33:1: ST1022: comment on exported const EnvShellSSH should be of the form "EnvShellSSH ..." (staticcheck)
+// Environment variable that allows configuring the command (alias) to execute
+^
+pkg/store/instance.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package store
+^
+pkg/store/instance_unix.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package store
+^
+pkg/store/store.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package store
+^
+pkg/sysprof/sysprof_darwin.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package sysprof
+^
+pkg/vz/errors_darwin.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package vz
+^
+pkg/vz/errors_darwin.go:11:29: ST1005: error strings should not be capitalized (staticcheck)
+var errRosettaUnsupported = errors.New("Rosetta is unsupported on non-ARM64 hosts")
+                            ^
+pkg/vz/network_darwin.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package vz
+^
+pkg/vz/rosetta_directory_share_arm64.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package vz
+^
+pkg/vz/vm_darwin.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package vz
+^
+pkg/vz/vz_driver_darwin.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package vz
+^
+pkg/wsl2/wsl_driver_others.go:6:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package wsl2
+^
+pkg/yqutil/yqutil.go:4:1: ST1000: at least one file in a package should have a package comment (staticcheck)
+package yqutil
+^
+577 issues:
+* noctx: 48
+* nolintlint: 1
+* perfsprint: 5
+* revive: 449
+* staticcheck: 74

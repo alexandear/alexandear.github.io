@@ -1,0 +1,143 @@
+version: "2"
+run:
+  concurrency: 6
+linters:
+  default: none
+  enable:
+    - bodyclose
+    - copyloopvar
+    - depguard
+    - dupword
+    - errcheck
+    - errorlint
+    - forbidigo
+    - gocritic
+    - godot
+    - govet
+    - ineffassign
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - perfsprint
+    - revive
+    - staticcheck
+    - unused
+    - whitespace
+  settings:
+    depguard:
+      rules:
+        main:
+          deny:
+            - pkg: golang.org/x/net/context
+              desc: use the 'context' package from the standard library
+            - pkg: math/rand$
+              desc: use the 'math/rand/v2' package
+    errorlint:
+      asserts: false
+    forbidigo:
+      forbid:
+        - pattern: ^print(ln)?$
+          msg: Do not use builtin print functions. It's for bootstrapping only and may be removed in the future.
+        - pattern: ^fmt\.Print.*$
+          msg: Do not use fmt.Print statements.
+        - pattern: ^testing.T.Fatal.*$
+          msg: Use assert functions from the gotest.tools/v3/assert package instead.
+      analyze-types: true
+    gocritic:
+      disabled-checks:
+        - appendCombine
+        - sloppyReassign
+        - unlabelStmt
+        - rangeValCopy
+        - hugeParam
+        - importShadow
+        - sprintfQuotedString
+        - builtinShadow
+        - filepathJoin
+      enabled-tags:
+        - diagnostic
+        - performance
+        - style
+        - opinionated
+        - experimental
+      settings:
+        ifElseChain:
+          minThreshold: 3
+    perfsprint:
+      int-conversion: false
+      err-error: false
+      errorf: true
+      sprintf1: false
+      strconcat: false
+    revive:
+      confidence: 0.6
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: deep-exit
+        - name: dot-imports
+          arguments:
+            - allowedPackages:
+                - github.com/lima-vm/lima/pkg/must
+        - name: empty-block
+        - name: error-naming
+        - name: error-return
+        - name: error-strings
+        - name: errorf
+        - name: exported
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: package-comments
+        - name: range
+        - name: receiver-naming
+        - name: redefines-builtin-id
+        - name: superfluous-else
+        - name: time-naming
+        - name: unexported-return
+        - name: unreachable-code
+        - name: unused-parameter
+        - name: use-any
+        - name: var-declaration
+        - name: var-naming
+    staticcheck:
+      checks:
+        - all
+        - -SA3000
+  exclusions:
+    generated: lax
+    presets:
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - path: pkg/osutil/
+        text: uid
+      - linters:
+          - godot
+        path: _test\.go
+      - linters:
+          - revive
+        text: 'exported: comment on exported const'
+      - linters:
+          - perfsprint
+        text: fmt.Sprint.* can be replaced with faster
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

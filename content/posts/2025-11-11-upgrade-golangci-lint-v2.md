@@ -139,3 +139,266 @@ linters:
 ```
 
 {{< /comparison >}}
+
+## Example: upgrading Golangci-lint v1 configuration in the Lima project
+
+As an example of migrating a Golangci-lint v1 configuration, I chose Lima, which is hosted on [GitHub](https://github.com/lima-vm/lima).
+[Lima](https://lima-vm.io/docs/) is a tool that launches Linux virtual machines with automatic file sharing and port forwarding.
+It's a popular project with 19K stars, written in Go, that uses Golangci-lint for automatic checking.
+
+Every migration of Golangci-lint to v2 consists of the following steps:
+
+1. Install Golangci-lint v2.
+2. Run `golangci-lint migrate`.
+3. Manually migrate comments from the v1 to v2 configuration file.
+4. Execute `golangci-lint run` and deal with new lint issues.
+5. Remove the old configuration and upgrade the Golangci-lint version in CI.
+
+The PR with the Golangci-lint migration in Lima, contributed by me, can be [found here](https://github.com/lima-vm/lima/pull/3330).
+Below is a step-by-step guide showing how I did it.
+
+Let's clone the project and switch to commit `0625d0b0` with the Golangci-lint v1 [configuration](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml):
+
+```console
+$ git clone https://github.com/lima-vm/lima.git
+$ git switch 0625d0b0 -c chore/migrate-golangci-lint-v2
+Switched to a new branch 'chore/migrate-golangci-lint-v2'
+```
+
+The Golangci-lint v1 configuration file in Lima has non-default linter configurations, many comments, deprecated linters, and several settings that changed in v2.
+
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml.v1.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
+
+### Install Golangci-lint v2
+
+The installation manual on the official site is [comprehensive and understandable](https://golangci-lint.run/docs/welcome/install/#local-installation):
+
+```console
+$ brew install golangci-lint
+$ golangci-lint version
+golangci-lint has version 2.6.2 built with go1.25.4 from dc16cf4 on 2025-11-14T02:47:46Z
+```
+
+### Run `golangci-lint migrate`
+
+The following command automatically detects the [`.golangci.yml`](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml) configuration and migrates to v2 in-place:
+
+```console
+$ golangci-lint migrate
+WARN The configuration comments are not migrated. 
+WARN Details about the migration: https://golangci-lint.run/docs/product/migration-guide/ 
+WARN The configuration `run.timeout` is ignored. By default, in v2, the timeout is disabled. 
+╭───────────────────────────────────────────────────────────────────────────╮
+│                                                                           │
+│                               We need you!                                │
+│                                                                           │
+│ Donations help fund the ongoing development and maintenance of this tool. │
+│  If golangci-lint has been useful to you, please consider contributing.   │
+│                                                                           │
+│                  Donate now: https://donate.golangci.org                  │
+│                                                                           │
+╰───────────────────────────────────────────────────────────────────────────╯
+```
+
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml.migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
+
+#### Migration changes
+
+The main difference in the v2 configuration from v1 is `version: "2"` at the beginning:
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml)"
+v2title="[v2 .golangci.yml](https://github.com/lima-vm/lima/blob/cad433e25e450dab7cd0396ad6802f8c402ea407/.golangci.yml#L3)"
+>}}
+
+```yaml
+# no version information means v1
+```
+<!-- SPLIT -->
+```yaml
+version: "2"
+```
+
+{{< /comparison >}}
+
+The `run.timeout` setting is removed, which means no execution time limit by default:
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml#L21)"
+v2title="[v2 .golangci.yml](https://github.com/lima-vm/lima/blob/cad433e25e450dab7cd0396ad6802f8c402ea407/.golangci.yml#L4)"
+>}}
+
+```yaml
+run:
+  timeout: 2m
+```
+<!-- SPLIT -->
+```yaml
+run:
+  # no timeout
+```
+
+{{< /comparison >}}
+
+The next change is the setting for disabling all default linters:
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml#L23)"
+v2title="[v2 .golangci.yml](https://github.com/lima-vm/lima/blob/cad433e25e450dab7cd0396ad6802f8c402ea407/.golangci.yml#L7)"
+>}}
+
+```yaml
+linters:
+  disable-all: true
+```
+<!-- SPLIT -->
+```yaml
+linters:
+  default: none
+```
+
+{{< /comparison >}}
+
+Updated linters in the `enable` setting.
+The list is sorted alphabetically.
+`gofmt`, `gofumpt`, and `goimports` are moved to `formatters`.
+`typecheck` is [not a linter](https://golangci-lint.run/docs/product/migration-guide/#typecheck) and was removed.
+`gosimple` and `staticcheck` are combined into `staticcheck`.
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml#L25-L79)"
+v2title="[v2 .golangci.yml](https://github.com/lima-vm/lima/blob/cad433e25e450dab7cd0396ad6802f8c402ea407/.golangci.yml#L9-L28)"
+>}}
+
+```yaml
+linters:
+  enable:
+    - staticcheck
+    - gofmt
+    - gofumpt
+    - gosimple
+    - revive
+    - goimports
+    - govet
+    - typecheck
+```
+<!-- SPLIT -->
+```yaml
+linters:
+  enable:
+    - govet
+    - revive
+    - staticcheck
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+```
+
+{{< /comparison >}}
+
+`linters-settings` are moved to `linters.settings`:
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml#L80-L165)"
+v2title="[v2 .golangci.yml](https://github.com/lima-vm/lima/blob/cad433e25e450dab7cd0396ad6802f8c402ea407/.golangci.yml#L29-L120)"
+>}}
+
+```yaml
+linters-settings:
+  errorlint:
+    asserts: false
+```
+<!-- SPLIT -->
+```yaml
+linters:
+  settings:
+    errorlint:
+      asserts: false
+```
+
+{{< /comparison >}}
+
+The `issues.exclude-rules` settings are moved to `linters.exclusions.rules`.
+The `issues.include` settings are moved to `linters.exclusions.presets`.
+Note that in v2, `exclusions.paths` are added that were always excluded by v1.
+
+{{< comparison
+v1title="[v1 .golangci.yml](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.golangci.yml#L171-L189)"
+v2title="[v2 .golangci.yml](https://github.com/lima-vm/lima/blob/cad433e25e450dab7cd0396ad6802f8c402ea407/.golangci.yml#L121-L137)"
+>}}
+
+```yaml
+issues:
+  include:
+    - EXC0013
+    - EXC0014
+  exclude-rules:
+    - path: "pkg/osutil/"
+        text: "uid"
+    - path: _test\.go
+        linters:
+          - godot
+    - text: "exported: comment on exported const"
+        linters:
+          - revive
+    - text: "fmt.Sprint.* can be replaced with faster"
+        linters:
+          - perfsprint
+```
+<!-- SPLIT -->
+```yaml
+linters:
+  settings:
+  exclusions:
+    presets:
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - path: pkg/osutil/
+        text: '(?i)(uid)|(gid)'
+      - linters:
+          - godot
+        path: _test\.go
+      - linters:
+          - perfsprint
+        text: fmt.Sprint.* can be replaced with faster
+  paths:
+    - third_party$
+    - builtin$
+    - examples$
+```
+
+{{< /comparison >}}
+
+### Manually migrate comments from v1 to v2 configuration file
+
+The old v1 configuration file is kept in `.golangci.bck.yml`, so we can compare changes and add comments to the v2 configuration manually:
+
+```console
+$ git status -s
+ M .golangci.yml
+?? .golangci.bck.yml
+```
+
+### Execute `golangci-lint run` and deal with new lint issues
+
+Let's execute `golangci-lint run`:
+
+```console
+$ golangci-lint run > golangci-lint-run.txt
+$ tail -6 golangci-lint-run.txt
+577 issues:
+* noctx: 48
+* nolintlint: 1
+* perfsprint: 5
+* revive: 449
+* staticcheck: 74
+```
+
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-run.txt" target="_blank" rel="noopener noreferrer">View the full `golangci-lint run` log</a>
+
+A lot of issues, and you might feel confused, right?
+But it's not so bad. Most of them can be easily excluded and fixed later.

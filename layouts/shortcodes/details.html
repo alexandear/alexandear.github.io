@@ -65,7 +65,7 @@ Renders an HTML details element.
 
 {{- /* Render. */}}
 <details
-  {{- with $class }} class="{{ . }}" {{- end }}
+  {{- with $class }} class="{{ . }}" {{- else }} class="with-arrow" {{- end }}
   {{- with $name }} name="{{ . }}" {{- end }}
   {{- with $open }} open {{- end }}
   {{- with $title }} title="{{ . }}" {{- end -}}
@@ -73,3 +73,24 @@ Renders an HTML details element.
   <summary>{{ $summary | .Page.RenderString }}</summary>
   {{ .Inner | .Page.RenderString (dict "display" "block") -}}
 </details>
+
+<style>
+details.with-arrow > summary {
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-left: 2rem;
+}
+details.with-arrow > summary::-webkit-details-marker {
+  display: none;
+}
+details.with-arrow > summary::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  transition: transform 0.2s ease;
+}
+details.with-arrow[open] > summary::before {
+  transform: rotate(90deg);
+}
+</style>
