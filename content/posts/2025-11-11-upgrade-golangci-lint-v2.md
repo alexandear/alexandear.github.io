@@ -17,6 +17,10 @@ This article shows how to migrate Golangci-lint from v1 to v2.
 
 <br/>
 
+{{< toc >}}
+
+<br/>
+
 [I have contributed](https://github.com/golangci/golangci-lint/commits?author=alexandear) to Golangci-lint development [since 2020](https://github.com/golangci/golangci-lint/graphs/contributors),
 reviewed pull requests for v2 changes, and [wrote](https://github.com/golangci/golangci-lint/pull/5439) the migration guide.
 Therefore, I know many of the corner cases and caveats.
