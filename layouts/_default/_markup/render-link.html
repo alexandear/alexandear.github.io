@@ -1,0 +1,6 @@
+<!-- Render hook to automatically open all external links in new tabs -->
+<a href="{{ .Destination | safeURL }}"
+   {{- with .Title }} title="{{ . }}"{{ end -}}
+   {{- if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+  {{- .Text | safeHTML -}}
+</a>
