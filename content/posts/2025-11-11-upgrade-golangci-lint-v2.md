@@ -151,7 +151,7 @@ Every migration of Golangci-lint to v2 consists of the following steps:
 1. Install Golangci-lint v2.
 2. Run `golangci-lint migrate`.
 3. Manually migrate comments from the v1 to v2 configuration file.
-4. Execute `golangci-lint run` and deal with new lint issues.
+4. Run Golangci-lint and deal with new lint issues.
 5. Remove the old configuration and upgrade the Golangci-lint version in CI.
 
 The PR with the Golangci-lint migration in Lima, contributed by me, can be [found here](https://github.com/lima-vm/lima/pull/3330).
@@ -167,7 +167,7 @@ Switched to a new branch 'chore/migrate-golangci-lint-v2'
 
 The Golangci-lint v1 configuration file in Lima has non-default linter configurations, many comments, deprecated linters, and several settings that changed in v2.
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml.v1.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-v1-before-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
 
 ### Install Golangci-lint v2
 
@@ -200,7 +200,7 @@ WARN The configuration `run.timeout` is ignored. By default, in v2, the timeout 
 ╰───────────────────────────────────────────────────────────────────────────╯
 ```
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml.migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-after-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
 
 #### Migration changes
 
@@ -383,13 +383,15 @@ $ git status -s
 ?? .golangci.bck.yml
 ```
 
-### Execute `golangci-lint run` and deal with new lint issues
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-with-comments.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml after copying comments from .golangci.bck.yml</a>
 
-Let's execute `golangci-lint run`:
+### Run Golangci-lint and deal with new lint issues
+
+Run `golangci-lint run`:
 
 ```console
-$ golangci-lint run > golangci-lint-run.txt
-$ tail -6 golangci-lint-run.txt
+$ golangci-lint run > golangci-lint-run-after-migrate.txt
+$ tail -6 golangci-lint-run-after-migrate.txt
 577 issues:
 * noctx: 48
 * nolintlint: 1
@@ -398,7 +400,97 @@ $ tail -6 golangci-lint-run.txt
 * staticcheck: 74
 ```
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-run.txt" target="_blank" rel="noopener noreferrer">View the full `golangci-lint run` log</a>
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-run-after-migrate.txt" target="_blank" rel="noopener noreferrer">View the full `golangci-lint run` log</a>
 
 A lot of issues, and you might feel confused, right?
 But it's not so bad. Most of them can be easily excluded and fixed later.
+
+First, enable [`comments`](https://golangci-lint.run/docs/linters/false-positives/#preset-comments) exclusion preset to suppress comment-related issues:
+
+```yaml
+  exclusions:
+    generated: lax
+    presets:
+      - comments # <-- this line added
+      - common-false-positives
+      - legacy
+      - std-error-handling
+```
+
+This reduces the number of issues from 577 to 72:
+
+```console
+$ golangci-lint run
+...
+72 issues:
+* noctx: 48
+* nolintlint: 1
+* perfsprint: 5
+* revive: 5
+* staticcheck: 13
+```
+
+Next, apply these changes:
+
+- Exclude [`QF`](https://staticcheck.dev/docs/checks/#QF) and [`ST1001`](https://staticcheck.dev/docs/checks/#ST1001) checks from `staticcheck`.
+- Exclude new `noctx` issues for `net.Dial`, `net.Listen`, and `exec.Command`.
+- Disable the `concat-loop` check for `perfsprint`.
+- Allow using `Uid` and `Gid` in `pkg/osutil`.
+- Rename `loggerWithoutTs` to `loggerWithoutTS` to satisfy `staticcheck`.
+- Disable `staticcheck` for `isColimaWrapper__useThisFunctionOnlyForPrintingHints__` (generated code).
+- Remove the `nolint` comment to fix the `nolintlint` issue.
+
+```yaml
+linters:
+  settings:
+    perfsprint:
+      int-conversion: false
+      err-error: false
+      errorf: true
+      sprintf1: false
+      strconcat: false
+      concat-loop: false # <-- this disables concat-loop
+    staticcheck:
+      checks:
+        - all
+        - "-SA3000"
+        - "-ST1001" # <-- this disables warn about using dot imports
+        - "-QF*" # <-- this disables QF checks
+
+  exclusions:
+    generated: lax
+    rules:
+      - linters:
+          - noctx
+        text: "os/exec.Command must not be called."
+      - linters:
+          - noctx
+        text: "net.* must not be called."
+    rules:
+      # Allow using Uid, Gid in pkg/osutil.
+      - path: pkg/osutil/
+        text: '(?i)(uid)|(gid)'
+```
+
+These changes eliminate the remaining issues:
+
+```console
+$ golangci-lint run
+0 issues.
+```
+
+Additionally, you can remove [`generated`](https://golangci-lint.run/docs/configuration/file/#linters-configuration) and the default exclusion paths because they are not used in Lima:
+
+```yaml
+linters:
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+```
+
+<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-final.txt" target="_blank" rel="noopener noreferrer">View the final migrated Golangci-lint configuration</a>
+
+### Remove the old configuration and upgrade the Golangci-lint version in CI

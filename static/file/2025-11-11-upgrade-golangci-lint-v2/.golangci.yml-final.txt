@@ -1,0 +1,153 @@
+version: "2"
+run:
+  concurrency: 6
+linters:
+  default: none
+  enable:
+    - bodyclose
+    - copyloopvar
+    - depguard
+    - dupword
+    - errcheck
+    - errorlint
+    - forbidigo
+    - gocritic
+    - godot
+    - govet
+    - ineffassign
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - perfsprint
+    - revive
+    - staticcheck
+    - unused
+    - whitespace
+  settings:
+    depguard:
+      rules:
+        main:
+          deny:
+            - pkg: golang.org/x/net/context
+              desc: use the 'context' package from the standard library
+            - pkg: math/rand$
+              desc: use the 'math/rand/v2' package
+    errorlint:
+      asserts: false
+    forbidigo:
+      forbid:
+        - pattern: ^print(ln)?$
+          msg: Do not use builtin print functions. It's for bootstrapping only and may be removed in the future.
+        - pattern: ^fmt\.Print.*$
+          msg: Do not use fmt.Print statements.
+        - pattern: ^testing.T.Fatal.*$
+          msg: Use assert functions from the gotest.tools/v3/assert package instead.
+      analyze-types: true
+    gocritic:
+      # See "Tags" section in https://github.com/go-critic/go-critic#usage
+      disabled-checks:
+        - appendCombine
+        - sloppyReassign
+        - unlabelStmt
+        - rangeValCopy
+        - hugeParam
+        - importShadow
+        - sprintfQuotedString
+        - builtinShadow
+        - filepathJoin
+      enabled-tags:
+        - diagnostic
+        - performance
+        - style
+        - opinionated
+        - experimental
+      settings:
+        ifElseChain:
+          # Min number of if-else blocks that makes the warning trigger.
+          minThreshold: 3
+    perfsprint:
+      int-conversion: false
+      err-error: false
+      errorf: true
+      sprintf1: false
+      strconcat: false
+      concat-loop: false
+    revive:
+      # Set below 0.8 to enable error-strings
+      confidence: 0.6
+      # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: deep-exit
+        - name: dot-imports
+          arguments:
+            - allowedPackages:
+                - github.com/lima-vm/lima/pkg/must
+        - name: empty-block
+        - name: error-naming
+        - name: error-return
+        - name: error-strings
+        - name: errorf
+        - name: exported
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: package-comments
+        - name: range
+        - name: receiver-naming
+        - name: redefines-builtin-id
+        - name: superfluous-else
+        - name: time-naming
+        - name: unexported-return
+        - name: unreachable-code
+        - name: unused-parameter
+        - name: use-any
+        - name: var-declaration
+        - name: var-naming
+    staticcheck:
+      # https://staticcheck.dev/docs/configuration/options/#checks
+      checks:
+        - all
+        - "-SA3000"  # false positive for Go 1.15+. See https://github.com/golang/go/issues/34129
+        - "-ST1001"
+        - "-QF*"
+  exclusions:
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      # Allow using Uid, Gid in pkg/osutil.
+      - path: pkg/osutil/
+        text: '(?i)(uid)|(gid)'
+      # Disable some linters for test files.
+      - linters:
+          - godot
+        path: _test\.go
+      # Disable revive.exported for constants.
+      - linters:
+          - revive
+        text: 'exported: comment on exported const'
+      # Disable perfsprint for fmt.Sprint until https://github.com/catenacyber/perfsprint/issues/39 gets fixed.
+      - linters:
+          - perfsprint
+        text: fmt.Sprint.* can be replaced with faster
+      - linters:
+          - noctx
+        text: "os/exec.Command must not be called."
+      - linters:
+          - noctx
+        text: "net.* must not be called."
+issues:
+  # Maximum issues count per one linter.
+  max-issues-per-linter: 0
+  # Maximum count of issues with the same text.
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
