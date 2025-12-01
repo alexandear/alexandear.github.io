@@ -152,7 +152,7 @@ Every migration of Golangci-lint to v2 consists of the following steps:
 2. Run `golangci-lint migrate`.
 3. Manually migrate comments from the v1 to v2 configuration file.
 4. Run Golangci-lint and deal with new lint issues.
-5. Remove the old configuration and upgrade the Golangci-lint version in CI.
+5. Upgrade the Golangci-lint version in CI.
 
 The PR with the Golangci-lint migration in Lima, contributed by me, can be [found here](https://github.com/lima-vm/lima/pull/3330).
 Below is a step-by-step guide showing how I did it.
@@ -493,4 +493,32 @@ linters:
 
 <a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-final.txt" target="_blank" rel="noopener noreferrer">View the final migrated Golangci-lint configuration</a>
 
-### Remove the old configuration and upgrade the Golangci-lint version in CI
+Now you can remove `.golangci.bck.yml`, as it's no longer needed.
+
+### Upgrade the Golangci-lint version in CI
+
+Lima uses the following GitHub Actions workflow [configuration](https://github.com/lima-vm/lima/blob/0625d0b084450e874869dcbc9f63d4312797c3fe/.github/workflows/test.yml#L41-L45) to run Golangci-lint:
+
+```yaml
+- name: Run golangci-lint
+  uses: golangci/golangci-lint-action@55c2c1448f86e01eaae002a5a3a9624417608d84  # v6.5.2
+  version: v1.64.2
+  args: --verbose --timeout=10m
+```
+
+All you need to do is update the golangci-lint-action and the version to the latest:
+
+```yaml
+- name: Run golangci-lint
+  uses: golangci/golangci-lint-action@e7fa5ac41e1cf5b7d48e45e42232ce7ada589601  # v9.1.0
+  version: v2.6
+  args: --verbose
+```
+
+You can also remove the `--timeout` flag since this option is managed via the `.golangci.yml` configuration file.
+
+That's all. You have now migrated Golangci-lint from v1 to v2.
+
+Example PR: https://github.com/lima-vm/lima/pull/3330.
+
+Support the Golangci-lint team: https://donate.golangci.org.
