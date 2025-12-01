@@ -2,14 +2,13 @@
 title: Upgrading Golangci-lint to v2
 date: 2025-12-01
 tags: ["go", "lint", "golangci-lint", "opensource"]
-draft: true
 ---
 
-Golangci-lint is the most popular third-party linter runner for Go projects.
-It has been around since 2019.
-In March 2025, [version 2 was released](https://ldez.github.io/blog/2025/03/23/golangci-lint-v2/).
-Adoption of v2 is still low, despite the release being half a year old.
-This article shows how to migrate Golangci-lint from v1 to v2.
+Golangci-lint v2 was released in [March 2025](https://ldez.github.io/blog/2025/03/23/golangci-lint-v2/), bringing major architectural improvements and a cleaner configuration format.
+Despite being available for over seven months, adoption remains low.
+
+If you are maintaining a Go project, **now is the time to upgrade**.
+This article covers why you should make the switch and provides a step-by-step walkthrough using a real-world project.
 
 {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png" width="100%" alt="Screenshot of Golangci-lint v2 website (dark theme)" >}}
 
@@ -17,30 +16,17 @@ This article shows how to migrate Golangci-lint from v1 to v2.
 
 {{< toc >}}
 
-[I have contributed](https://github.com/golangci/golangci-lint/commits?author=alexandear) to Golangci-lint development [since 2020](https://github.com/golangci/golangci-lint/graphs/contributors),
-reviewed pull requests for v2 changes, and [wrote](https://github.com/golangci/golangci-lint/pull/5439) the migration guide.
-Therefore, I know many of the corner cases and caveats.
+**Author note**: [I have contributed](https://github.com/golangci/golangci-lint/commits?author=alexandear) to Golangci-lint development [since 2020](https://github.com/golangci/golangci-lint/graphs/contributors),
+reviewed pull requests for v2 changes, and [authored](https://github.com/golangci/golangci-lint/pull/5439) the official migration guide.
 
 ## Why migrate from v1 to v2
 
 ### v1 is deprecated
 
-The latest v1 release is [`v1.64`](https://golangci-lint.run/docs/product/changelog/#v1648) (Feb 12 2025).
-It supports Go 1.24 but will not receive further updates or support for newer Go versions.
-Development of v2 continues; the latest version is [`v2.6`](https://golangci-lint.run/docs/product/changelog/#v261) with Go 1.25 support.
-
-### New `fmt` command
-
-v2 adds the `fmt` command. It is like `gofmt` but runs multiple formatters:
-
-- gci
-- gofmt
-- gofumpt
-- goimports
-- golines
-- swaggo
-
-Get the full list with `golangci-lint formatters`.
+The final v1 release is [`v1.64`](https://golangci-lint.run/docs/product/changelog/#v1648) (Feb 12, 2025).
+It supports Go 1.24 but will not support Go 1.25 or newer.
+Staying on v1 means missing out on bug fixes, new linters, and future language support.
+The latest version is [`v2.6`](https://golangci-lint.run/docs/product/changelog/#v261).
 
 ### Revamped configuration
 
@@ -53,15 +39,20 @@ The v2 configuration is more consistent and logical:
 
 These changes make v1 and v2 configurations incompatible, but migration is straightforward.
 
-### v2 website is better
+### New `fmt` command
 
-The new v2 website looks better, is easier to navigate, and has search.
-See [this PR](https://github.com/golangci/golangci-lint/pull/5965) for details.
-The link structure changed, but old links still work.
+v2 introduces a dedicated `fmt` command. It acts like `gofmt` on steroids, running multiple formatters in a single pass:
+gci, gofmt, gofumpt, goimports, golines, and swaggo.
+
+### Better documentation
+
+The v2 website has been redesigned for easier navigation and better search functionality.
 
 | [v1](https://golangci.github.io/legacy-v1-doc/) | [v2](https://golangci-lint.run/) |
 |:-----------------------------------------------:|:--------------------------------:|
 | {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v1.png" width="100%" alt="Screenshot of Golangci-lint v1 legacy website" >}} | {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-light.png" width="100%" alt="Screenshot of Golangci-lint v2 website (light theme)" >}} |
+
+See [this PR](https://github.com/golangci/golangci-lint/pull/5965) for details.
 
 <br/>
 
@@ -72,19 +63,16 @@ The link structure changed, but old links still work.
      alt="Golangci-lint v2 website (dark theme)" width="100%" />
 </details>
 
-### Migration to v2 is easy
-
-To help users migrate, Golangci-lint includes the `migration` command and a [migration guide](https://golangci-lint.run/docs/product/migration-guide/) written primarily [by me](https://github.com/golangci/golangci-lint/pull/5439).
-
 ## Migration caveats
 
-Although the migration is as simple as running `golangci-lint migrate`, it has some pitfalls.
+To help users migrate, Golangci-lint includes the `migration` command and a [migration guide](https://golangci-lint.run/docs/product/migration-guide/).
 
-### Comments in the configuration are not migrated
+Migration is generally easy thanks to the `migration` command, but there are two main caveats.
 
-Due to a technical constraint, the Golangci-lint team can’t adapt the migration command to preserve comments from the v1 configuration.
-See this PR for detailed [explanations](https://github.com/golangci/golangci-lint/pull/5506).
-You need to manually migrate all comments from the v1 configuration file to v2.
+### Comments are not preserved
+
+The migration tool parses the YAML structure but cannot retain comments (see [this PR](https://github.com/golangci/golangci-lint/pull/5506) for explanations).
+You will need to manually copy comments from your old v1 config to the new v2 file after running the command.
 
 {{< comparison
 v1title="[v1 .golangci.yml](https://golangci.github.io/legacy-v1-doc/usage/configuration/#config-file)"
@@ -107,9 +95,9 @@ linters:
 
 {{< /comparison >}}
 
-### Deprecated options from v1 or unknown fields are not migrated
+### Deprecated options from v1 or unknown fields are removed
 
-Deprecated linters and linter settings are removed in v2.
+Deprecated linters and settings are removed entirely in v2.
 
 {{< comparison
 v1title="[v1 .golangci.yml](https://golangci.github.io/legacy-v1-doc/usage/configuration/#config-file)"
@@ -136,11 +124,11 @@ linters:
 
 {{< /comparison >}}
 
-## Example: upgrading Golangci-lint v1 configuration in the Lima project
+## Example: migrating the Lima project
 
-As an example of migrating a Golangci-lint v1 configuration, I chose Lima, which is hosted on [GitHub](https://github.com/lima-vm/lima).
-[Lima](https://lima-vm.io/docs/) is a tool that launches Linux virtual machines with automatic file sharing and port forwarding.
-It's a popular project with 19K stars, written in Go, that uses Golangci-lint for automatic checking.
+To demonstrate a real-world migration, I upgraded [Lima](https://github.com/lima-vm/lima), a popular tool (19k+ stars) for launching Linux VMs.
+
+**Note:** The steps below use Lima as an example. While the process (install, migrate, fix) is universal, the specific linter exclusions shown here are specific to the Lima codebase.
 
 Every migration of Golangci-lint to v2 consists of the following steps:
 
@@ -513,8 +501,10 @@ All you need to do is update the golangci-lint-action and the version to the lat
 
 You can also remove the `--timeout` flag since this option is managed via the `.golangci.yml` configuration file.
 
-That's all. You have now migrated Golangci-lint from v1 to v2.
+## Conclusion
 
-Example PR: https://github.com/lima-vm/lima/pull/3330.
+Migrating to Golangci-lint v2 ensures your project remains compatible with modern Go versions and benefits from a stricter, more reliable configuration system.
+
+See the PR as a migration example: https://github.com/lima-vm/lima/pull/3330.
 
 Support the Golangci-lint team: https://donate.golangci.org.
