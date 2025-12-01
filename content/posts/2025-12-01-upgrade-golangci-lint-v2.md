@@ -1,6 +1,6 @@
 ---
 title: Upgrading Golangci-lint to v2
-date: 2025-11-11
+date: 2025-12-01
 tags: ["go", "lint", "golangci-lint", "opensource"]
 draft: true
 ---
@@ -11,7 +11,7 @@ In March 2025, [version 2 was released](https://ldez.github.io/blog/2025/03/23/g
 Adoption of v2 is still low, despite the release being half a year old.
 This article shows how to migrate Golangci-lint from v1 to v2.
 
-{{< figure src="/img/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png" width="100%" alt="Screenshot of Golangci-lint v2 website (dark theme)" >}}
+{{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png" width="100%" alt="Screenshot of Golangci-lint v2 website (dark theme)" >}}
 
 <!--more-->
 
@@ -65,14 +65,14 @@ The link structure changed, but old links still work.
 
 | [v1](https://golangci.github.io/legacy-v1-doc/) | [v2](https://golangci-lint.run/) |
 |:-----------------------------------------------:|:--------------------------------:|
-| {{< figure src="/img/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-website-v1.png" width="100%" alt="Screenshot of Golangci-lint v1 legacy website" >}} | {{< figure src="/img/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-website-v2-light.png" width="100%" alt="Screenshot of Golangci-lint v2 website (light theme)" >}} |
+| {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v1.png" width="100%" alt="Screenshot of Golangci-lint v1 legacy website" >}} | {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-light.png" width="100%" alt="Screenshot of Golangci-lint v2 website (light theme)" >}} |
 
 <br/>
 
 <details>
 <summary>Screenshot of Golangci-lint v2 website (dark theme)</summary>
 
-<img src="/img/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png"
+<img src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png"
      alt="Golangci-lint v2 website (dark theme)" width="100%" />
 </details>
 
@@ -167,7 +167,7 @@ Switched to a new branch 'chore/migrate-golangci-lint-v2'
 
 The Golangci-lint v1 configuration file in Lima has non-default linter configurations, many comments, deprecated linters, and several settings that changed in v2.
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-v1-before-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-v1-before-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
 
 ### Install Golangci-lint v2
 
@@ -200,7 +200,7 @@ WARN The configuration `run.timeout` is ignored. By default, in v2, the timeout 
 ╰───────────────────────────────────────────────────────────────────────────╯
 ```
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-after-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-after-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
 
 #### Migration changes
 
@@ -383,7 +383,7 @@ $ git status -s
 ?? .golangci.bck.yml
 ```
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-with-comments.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml after copying comments from .golangci.bck.yml</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-with-comments.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml after copying comments from .golangci.bck.yml</a>
 
 ### Run Golangci-lint and deal with new lint issues
 
@@ -400,7 +400,7 @@ $ tail -6 golangci-lint-run-after-migrate.txt
 * staticcheck: 74
 ```
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/golangci-lint-run-after-migrate.txt" target="_blank" rel="noopener noreferrer">View the full `golangci-lint run` log</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-run-after-migrate.txt" target="_blank" rel="noopener noreferrer">View the full `golangci-lint run` log</a>
 
 A lot of issues, and you might feel confused, right?
 But it's not so bad. Most of them can be easily excluded and fixed later.
@@ -491,7 +491,7 @@ linters:
       - examples$
 ```
 
-<a href="/file/2025-11-11-upgrade-golangci-lint-v2/.golangci.yml-final.txt" target="_blank" rel="noopener noreferrer">View the final migrated Golangci-lint configuration</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-final.txt" target="_blank" rel="noopener noreferrer">View the final migrated Golangci-lint configuration</a>
 
 Now you can remove `.golangci.bck.yml`, as it's no longer needed.
 
