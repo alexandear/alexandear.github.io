@@ -16,8 +16,12 @@ This article covers why you should make the switch and provides a step-by-step w
 
 {{< toc >}}
 
-**Author note**: [I have contributed](https://github.com/golangci/golangci-lint/commits?author=alexandear) to Golangci-lint development [since 2020](https://github.com/golangci/golangci-lint/graphs/contributors),
+{{< note title="Author note" >}}
+
+[I have contributed](https://github.com/golangci/golangci-lint/commits?author=alexandear) to Golangci-lint development [since 2020](https://github.com/golangci/golangci-lint/graphs/contributors),
 reviewed pull requests for v2 changes, and [authored](https://github.com/golangci/golangci-lint/pull/5439) the official migration guide.
+
+{{< /note >}}
 
 ## Why migrate from v1 to v2
 
@@ -128,7 +132,10 @@ linters:
 
 To demonstrate a real-world migration, I upgraded [Lima](https://github.com/lima-vm/lima), a popular tool (19k+ stars) for launching Linux VMs.
 
-**Note:** The steps below use Lima as an example. While the process (install, migrate, fix) is universal, the specific linter exclusions shown here are specific to the Lima codebase.
+{{< note >}}
+The steps below use Lima as an example.
+While the process (install, migrate, fix) is universal, the specific linter exclusions shown here are specific to the Lima codebase.
+{{< /note >}}
 
 Every migration of Golangci-lint to v2 consists of the following steps:
 

@@ -1,0 +1,20 @@
+{{/*
+Renders a styled note/admonition block.
+
+@param {string} title (optional): Note title. Default: "Note".
+@param {string} icon  (optional): Icon/emoji. Default: "ℹ️".
+
+*/}}
+
+{{- $title := .Get "title" | default "Note" -}}
+{{- $icon := .Get "icon" | default "ℹ️" -}}
+
+<div style="border-left: 4px solid #3b82f6; padding: 0.75rem 1rem; margin: 1rem 0; border-radius: 4px;" role="note" aria-label="{{ $title }}">
+  <div style="font-weight: 600; margin-bottom: 0.5rem; display: flex; gap: 0.5rem; align-items: center;">
+    <span>{{ $icon }}</span>
+    <span>{{ $title }}</span>
+  </div>
+  <div style="margin-top: 0.25rem;">
+    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  </div>
+</div>
