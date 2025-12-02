@@ -158,7 +158,7 @@ Switched to a new branch 'chore/migrate-golangci-lint-v2'
 
 The Golangci-lint v1 configuration file in Lima has non-default linter configurations, many comments, deprecated linters, and several settings that changed in v2.
 
-<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-v1-before-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/golangci.yml-v1-before-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v1) before migration</a>
 
 ### Install Golangci-lint v2
 
@@ -191,7 +191,7 @@ WARN The configuration `run.timeout` is ignored. By default, in v2, the timeout 
 ╰───────────────────────────────────────────────────────────────────────────╯
 ```
 
-<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-after-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/golangci.yml-after-migrate.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml (v2) after `golangci-lint migrate`</a>
 
 #### Migration changes
 
@@ -374,7 +374,7 @@ $ git status -s
 ?? .golangci.bck.yml
 ```
 
-<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-with-comments.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml after copying comments from .golangci.bck.yml</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/golangci.yml-with-comments.txt" target="_blank" rel="noopener noreferrer">View .golangci.yml after copying comments from .golangci.bck.yml</a>
 
 ### Run Golangci-lint and deal with new lint issues
 
@@ -482,7 +482,7 @@ linters:
       - examples$
 ```
 
-<a href="/file/2025-12-01-upgrade-golangci-lint-v2/.golangci.yml-final.txt" target="_blank" rel="noopener noreferrer">View the final migrated Golangci-lint configuration</a>
+<a href="/file/2025-12-01-upgrade-golangci-lint-v2/golangci.yml-final.txt" target="_blank" rel="noopener noreferrer">View the final migrated Golangci-lint configuration</a>
 
 Now you can remove `.golangci.bck.yml`, as it's no longer needed.
 
