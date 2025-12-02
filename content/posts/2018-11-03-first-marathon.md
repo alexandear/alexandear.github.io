@@ -2,7 +2,6 @@
 title: My first marathon
 date: 2018-11-03
 tags: ["run", "marathon", "sport", "frankfurt"]
-draft: true
 ---
 
 Frankfurt. Sunday. "White collars" are resting on their only day off the week, but I am running.
