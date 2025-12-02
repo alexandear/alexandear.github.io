@@ -2,12 +2,12 @@
 title: "Importing commit history from GitLab to GitHub"
 date: 2023-03-08
 tags: ["gitlab", "github", "git", "go", "opensource"]
-bigimg: [{src: "/img/2023-03-08-import-gitlab-commits/contribs-after-run.png", desc: "GitHub Contribution Graph"}]
+bigimg: [{src: "/img/2023-03-08-import-gitlab-commits/contribs-after-run.webp", desc: "GitHub Contribution Graph"}]
 ---
 
 In this blog post, I will answer the question of how to enrich GitHub statistics to improve your job prospects by enriching your GitHub contribution graph.
 
-{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-after-run.png" width="100%" alt="GitHub After import-gitlab-commits" >}}
+{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-after-run.webp" width="100%" alt="GitHub After import-gitlab-commits" >}}
 
 <!--more-->
 
@@ -34,7 +34,7 @@ It's written in Go, very handy to run, and exports commits in an anonymized way 
 I will import my Clarity commits from their internal GitLab VCS [clarity.gitlab.com](https://clarity.gitlab.com).
 My GitHub statistics for 2020 before running `import-gitlab-commits` look like:
 
-{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-before-run.png" width="100%" caption="GitHub Before import-gitlab-commits" >}}
+{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-before-run.webp" width="100%" caption="GitHub Before import-gitlab-commits" >}}
 
 ### Step 1: Install import-gitlab-commits
 
@@ -75,7 +75,7 @@ The tool will perform the following operations:
 4. Create a new repo `repo.clarity.gitlab.com.oredko` on disk. Add new commits for all fetched info with
 the message `Project: <PROJECT_ID> commit: <COMMIT_HASH>` and committer `Oleksandr Redko <oleksandr.red+github@gmail.com>`:
 
-{{< figure src="/img/2023-03-08-import-gitlab-commits/anonymized-commits.png" width="50%" caption="Git Commit Anonymized Log" >}}
+{{< figure src="/img/2023-03-08-import-gitlab-commits/anonymized-commits.webp" width="50%" caption="Git Commit Anonymized Log" >}}
 
 ### Step 3: Create a GitHub repository and push to it
 
@@ -92,7 +92,7 @@ git push
 
 That's it. My empty GitHub contribution graph from 2020 became full of commits:
 
-{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-after-run.png" width="100%" caption="GitHub After import-gitlab-commits" >}}
+{{< figure src="/img/2023-03-08-import-gitlab-commits/contribs-after-run.webp" width="100%" caption="GitHub After import-gitlab-commits" >}}
 
 ## Summary
 

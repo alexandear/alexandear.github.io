@@ -10,7 +10,7 @@ the official MailerSend Go SDK [mailersend/mailersend-go](https://github.com/mai
 These programs are not very popular but are still used by some developers.
 By the time I wrote this article, I had reported the malicious repositories to GitHub support, and most of them have been deleted.
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/trojan-virustotal.png" width="80%" alt="VirusTotal scan results for the trojan `f0eee999`" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/trojan-virustotal.webp" width="80%" alt="VirusTotal scan results for the trojan `f0eee999`" >}}
 
 <!--more-->
 
@@ -62,9 +62,9 @@ First of all, this malicious program has the same functionality as the original 
 Secondly, it has 89 stars and 17 forks, whereas the original ldez/usetesting has only 26 stars and 1 fork.
 This misleads developers into thinking that a lot of stars and forks indicate a good project.
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/malicious-usetesting.png" width="80%" caption="Malicious usetesting linter repo" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/malicious-usetesting.webp" width="80%" caption="Malicious usetesting linter repo" >}}
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/original-usetesting.png" width="80%" caption="Original usetesting linter repo" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/original-usetesting.webp" width="80%" caption="Original usetesting linter repo" >}}
 
 ## What malicious actions `ultimatepate/usetesting` performs
 
@@ -116,7 +116,7 @@ This behavior is typical of malicious scripts that aim to download and execute p
 The file `f0eee999` is a kind of trojan, with a size of 9.9M.
 It can be found and investigated on [VirusTotal](https://www.virustotal.com/gui/file/b0d20a3dcb937da1ddb01684f6040bdbb920ac19446364e949ee8ba5b50a29e4).
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/trojan-virustotal.png" width="80%" caption="VirusTotal scan results for the trojan `f0eee999`" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/trojan-virustotal.webp" width="80%" caption="VirusTotal scan results for the trojan `f0eee999`" >}}
 
 ## Other malicious programs
 
@@ -138,19 +138,19 @@ Next, I looked at users who forked `ultimatepate/usetesting`:
 
 {{< /details >}}
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/forks-of-malicious-usetesting.png" width="80%" caption="Forks of the malicious `usetesting`" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/forks-of-malicious-usetesting.webp" width="80%" caption="Forks of the malicious `usetesting`" >}}
 
 And obviously, they have other malicious programs in their repository list.
 
 For example, here is one of the suspicious user profiles that has only two repositories with malicious programs.
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/suspicious-user.png" width="80%" caption="Suspicious user profile" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/suspicious-user.webp" width="80%" caption="Suspicious user profile" >}}
 
 ### Malicious `stylishorgani/hcledit`
 
 A simple check revealed that `stylishorgani/hcledit` is a malicious version of [`mercari/hcledit`](https://github.com/mercari/hcledit).
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/malicious-hcledit.png" width="80%" caption="Malicious hcledit repository" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/malicious-hcledit.webp" width="80%" caption="Malicious hcledit repository" >}}
 
 It contains a malicious function in `cmd/hcledit/internal/command/create.go`.
 
@@ -215,13 +215,13 @@ Here are a partial list:
 The full list of malicious bots and repositories can be saved to an SQLite database by running [`alexandear/botnet-searcher`](https://github.com/alexandear/botnet-searcher).
 I specifically wrote it for this article.
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/sqlite-with-botnet.png" width="80%" caption="SQLite database containing malicious users with repositories" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/sqlite-with-botnet.webp" width="80%" caption="SQLite database containing malicious users with repositories" >}}
 
 What unites these malicious programs is that they clone small Go executable programs with 20-30 stars.
 
 When someone searches for these Go programs, the malicious ones appear at the top because they have more stars.
 
-{{< figure src="/img/2025-02-28-malicious-go-programs/search-malicious-at-the-top.png" width="80%" caption="Malicious repository at the top of search results" >}}
+{{< figure src="/img/2025-02-28-malicious-go-programs/search-malicious-at-the-top.webp" width="80%" caption="Malicious repository at the top of search results" >}}
 
 ## Conclusion
 

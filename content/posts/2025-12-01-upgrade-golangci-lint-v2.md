@@ -10,7 +10,7 @@ Despite being available for over seven months, adoption remains low.
 If you are maintaining a Go project, **now is the time to upgrade**.
 This article covers why you should make the switch and provides a step-by-step walkthrough using a real-world project.
 
-{{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png" width="100%" alt="Screenshot of Golangci-lint v2 website (dark theme)" >}}
+{{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.webp" width="100%" alt="Screenshot of Golangci-lint v2 website (dark theme)" >}}
 
 <!--more-->
 
@@ -54,7 +54,7 @@ The v2 website has been redesigned for easier navigation and better search funct
 
 | [v1](https://golangci.github.io/legacy-v1-doc/) | [v2](https://golangci-lint.run/) |
 |:-----------------------------------------------:|:--------------------------------:|
-| {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v1.png" width="100%" alt="Screenshot of Golangci-lint v1 legacy website" >}} | {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-light.png" width="100%" alt="Screenshot of Golangci-lint v2 website (light theme)" >}} |
+| {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v1.webp" width="100%" alt="Screenshot of Golangci-lint v1 legacy website" >}} | {{< figure src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-light.webp" width="100%" alt="Screenshot of Golangci-lint v2 website (light theme)" >}} |
 
 See [this PR](https://github.com/golangci/golangci-lint/pull/5965) for details.
 
@@ -63,7 +63,7 @@ See [this PR](https://github.com/golangci/golangci-lint/pull/5965) for details.
 <details>
 <summary>Screenshot of Golangci-lint v2 website (dark theme)</summary>
 
-<img src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.png"
+<img src="/img/2025-12-01-upgrade-golangci-lint-v2/golangci-lint-website-v2-dark.webp"
      alt="Golangci-lint v2 website (dark theme)" width="100%" />
 </details>
 

@@ -6,7 +6,7 @@ tags: ["free", "dns", "aws", "amplify"]
 
 [NIC.UA](https://nic.ua/en) is a Ukrainian domain registrar that provides ".pp.ua" for [free](https://nic.ua/en/domains/.pp.ua). This domain is often used by individuals or small organizations looking for a web presence but who don't want to pay for a custom domain name.
 
-![Free .pp.ua](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-free-pp-ua.png)
+![Free .pp.ua](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-free-pp-ua.webp)
 
 <!--more-->
 
@@ -19,17 +19,17 @@ Unfortunately, NIC.UA doesn't have [an instruction](https://support.nic.ua/en-us
 2. For your app in the navigation pane, choose **App Settings - Domain management - Add domain**.
 3. Enter the name of your root domain, and then choose **Configure domain**. E.g., `alexandear.pp.ua`.
 
-    ![AWS add domain](/img/2023-02-14-nic-dns-aws-amplify/aws-amplify-add-domain.png)
+    ![AWS add domain](/img/2023-02-14-nic-dns-aws-amplify/aws-amplify-add-domain.webp)
 
 4. On the **Actions** menu, choose **View DNS records**. Copy all values and open the NIC.UA dashboard. Do not close the tab with the AWS Amplify console.
 
-    ![AWS copy DNS](/img/2023-02-14-nic-dns-aws-amplify/aws-amplify-copy-dns.png)
+    ![AWS copy DNS](/img/2023-02-14-nic-dns-aws-amplify/aws-amplify-copy-dns.webp)
 
 ### Configure NIC.UA
 
 1. *Change name servers in the domain.* Go to the order properties in the **Domains** section of your personal account. Then change **NS-servers** to the **NIC.UA name servers** item and press the **Change NS** button.
 
-    ![NIC domain](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-domain.png)
+    ![NIC domain](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-domain.webp)
 
 2. *Configure DNS records on name servers.* Go to the **Name Servers** section and click on the gear-shaped button next to the renew button. Click the **Edit** button next to the **DNS Records** heading and delete all existing records. Using the **Add Record** button, create three records with parameters from AWS Amplify.
 
@@ -48,13 +48,13 @@ Unfortunately, NIC.UA doesn't have [an instruction](https://support.nic.ua/en-us
     * Type: *`CNAME`*
     * Value: *`d1nh7kxfyh9s3p.cloudfront.net.`*
 
-    ![NIC create records](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-create-dns-records.png)
+    ![NIC create records](/img/2023-02-14-nic-dns-aws-amplify/nic-ua-create-dns-records.webp)
 
     Note that you should add the trailing dot `.` for values.
 
 3. Wait approximately a few hours for the information to propagate to your ISP's DNS cache.
 4. When AWS Amplify shows **Available** for **Status**, the domain is successfully configured and ready to use.
 
-![AWS domain available](/img/2023-02-14-nic-dns-aws-amplify/aws-amplify-domain-status-available.png)
+![AWS domain available](/img/2023-02-14-nic-dns-aws-amplify/aws-amplify-domain-status-available.webp)
 
 Ta-da!

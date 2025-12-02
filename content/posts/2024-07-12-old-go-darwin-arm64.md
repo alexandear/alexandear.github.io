@@ -30,7 +30,7 @@ $ uname -m
 arm64
 ```
 
-{{< figure src="/img/2024-07-12-old-go-darwin-arm64/macbook-pro-info.png" width="40%" caption="About this Mac" >}}
+{{< figure src="/img/2024-07-12-old-go-darwin-arm64/macbook-pro-info.webp" width="40%" caption="About this Mac" >}}
 
 The page “[Managing Go installations](https://go.dev/doc/manage-install)” describes installing multiple Go versions.
 The normal steps for Go 1.15:

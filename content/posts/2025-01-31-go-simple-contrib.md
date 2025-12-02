@@ -8,7 +8,7 @@ In this post, I show that contributing to Go repositories is as simple as contri
 This is a step-by-step guide to contributing to Go repositories.
 As an example, I use the main Go repository [go.googlesource.com/go](https://go.googlesource.com/go).
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/merged-change.png" width="80%" alt="Merged change" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/merged-change.webp" width="80%" alt="Merged change" >}}
 
 <!--more-->
 
@@ -16,7 +16,7 @@ As an example, I use the main Go repository [go.googlesource.com/go](https://go.
 
 I subscribed to [Boldly Go: Daily](https://boldlygo.tech/) for a year and recently received the [following email](https://boldlygo.tech/archive/2025-01-08-determining-the-size-of-a-variable/):
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/boldly-email.png" width="80%" caption="Email from the Boldly Go subscription" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/boldly-email.webp" width="80%" caption="Email from the Boldly Go subscription" >}}
 
 It says nobody cares about the grammatical mistake in the sentence
 `The functions Alignof and Sizeof take an expression x of any type and return the alignment or size, respectively, of a hypothetical variable v as if v was declared via var v = x`
@@ -41,18 +41,18 @@ I cover only the specifics that apply to most Google software projects.*
 First, sign the Google Contributor License Agreement with a valid [Google Account](https://go.dev/doc/contribute#google_account)
 at the [Google CLA](https://cla.developers.google.com/clas).
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/google-cla.png" width="80%" caption="Signed in to Google CLA" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/google-cla.webp" width="80%" caption="Signed in to Google CLA" >}}
 
 ### 2. Configure Git authentication
 
 Next, configure authentication so you can push your changes to the Go repo.
 Log in to the [Go Git repositories](https://go.googlesource.com/) with the Google account you used to sign the CLA and click Generate password.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/go-git-repos.png" width="80%" caption="Home of Go Git repositories" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/go-git-repos.webp" width="80%" caption="Home of Go Git repositories" >}}
 
 Paste the generated script into a `bash` or `zsh` shell.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/configure-git.png" width="80%" caption="Configure Git script" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/configure-git.webp" width="80%" caption="Configure Git script" >}}
 
 Now you can push to any repository in [Go Git](https://go.googlesource.com).
 
@@ -63,13 +63,13 @@ so [sign in](https://go-review.googlesource.com/login/) with your Google Account
 Gerrit differs from GitHub pull requests and can look odd at first,
 but it is powerful—you may come to like it.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/gerrit-panel.png" width="80%" caption="Typical Gerrit home page" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/gerrit-panel.webp" width="80%" caption="Typical Gerrit home page" >}}
 
 ### 4. Clone the Go repo
 
 We know the spec is located in the [go repository](https://go.googlesource.com/go).
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/go-repo-spec.png" width="80%" caption="Go specification in the Go repository" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/go-repo-spec.webp" width="80%" caption="Go specification in the Go repository" >}}
 
 Clone it locally to make changes.
 
@@ -94,7 +94,7 @@ go: downloading golang.org/x/review v1.13.0
 
 Open `doc/go_spec.html` in your editor and fix the typo.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/fix-spec-typo.png" width="80%" caption="Go spec in VS Code" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/fix-spec-typo.webp" width="80%" caption="Go spec in VS Code" >}}
 
 Create a commit on the branch `spec-fix-typo` with the following command:
 
@@ -159,23 +159,23 @@ Open the link [https://go-review.googlesource.com/c/go/+/642037](https://go-revi
 
 After some time—usually from a few hours to a couple of weeks—someone will review your change and approve it with `+2`.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/change-log.png" width="80%" caption="Change log in Gerrit" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/change-log.webp" width="80%" caption="Change log in Gerrit" >}}
 
 You can read more about the [review process](https://go.dev/doc/contribute#review).
 
 Hooray! Now the Gopher Robot can merge it into the `master` branch.
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/merged-change.png" width="80%" caption="Merged change" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/merged-change.webp" width="80%" caption="Merged change" >}}
 
 You can see the fixed typo on the Go website.
 
 [Before](https://tip.golang.org/doc/go1.17_spec#was-declared-via:~:text=variable%20v%20as-,if%20v%20was%20declared,-via%20var%20v):
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/before.png" width="80%" caption="Spec with typo" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/before.webp" width="80%" caption="Spec with typo" >}}
 
 [After](https://tip.golang.org/ref/spec#:~:text=variable%20v%20as-,if%20v%20were%20declared,-via%20var%20v):
 
-{{< figure src="/img/2025-01-31-go-simple-contrib/after.png" width="80%" caption="Spec without typo" >}}
+{{< figure src="/img/2025-01-31-go-simple-contrib/after.webp" width="80%" caption="Spec without typo" >}}
 
 ## Conclusion
 
