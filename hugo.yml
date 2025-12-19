@@ -8,13 +8,11 @@ pygmentsCodeFences: true
 pygmentsCodeFencesGuessSyntax: true
 googleAnalytics: "G-R6V0DXFJEE"
 enableGitInfo: false
-
 services:
   disqus:
     shortname: "alexandear"
     # Set to true to enable Disqus on all pages (not only on single posts)
     enableOnAllPages: false
-
 params:
   # Set a different text for the header on the home page
   homeTitle: "Oleksandr Redko"
@@ -35,7 +33,6 @@ params:
   delayDisqus: true
   showRelatedPosts: true
   hideAuthor: true
-
   author:
     # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
     name: "Oleksandr Redko"
@@ -49,7 +46,6 @@ params:
     strava: "alexandear"
     goodreads: "alexandear"
     medium: "alexandear"
-
 menu:
   main:
     - name: "Blog"

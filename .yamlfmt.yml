@@ -1,0 +1,11 @@
+# yamlfmt configuration file.
+# Reference: https://github.com/google/yamlfmt
+doublestar: true
+trim_trailing_whitespace: true
+include:
+  - "**/*.yml"
+  - "**/*.yaml"
+gitignore_excludes: true
+exclude:
+  - "public/*"
+  - "themes/**"

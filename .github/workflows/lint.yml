@@ -1,0 +1,21 @@
+name: Lint
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  lint-yml:
+    name: Lint YAML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache-dependency-path: "**/*.sum"
+      - name: Setup yamlfmt
+        working-directory: tools
+        run: go install github.com/google/yamlfmt/cmd/yamlfmt
+      - name: Verify YAML files format
+        run: |
+          yamlfmt -lint
