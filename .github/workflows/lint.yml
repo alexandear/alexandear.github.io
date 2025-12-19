@@ -13,9 +13,7 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: "**/*.sum"
-      - name: Setup yamlfmt
-        working-directory: tools
-        run: go install github.com/google/yamlfmt/cmd/yamlfmt
       - name: Verify YAML files format
+        working-directory: tools
         run: |
-          yamlfmt -lint
+          go tool yamlfmt -lint
