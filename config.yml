@@ -9,6 +9,12 @@ pygmentsCodeFencesGuessSyntax: true
 googleAnalytics: "G-R6V0DXFJEE"
 enableGitInfo: false
 
+services:
+  disqus:
+    shortname: "alexandear"
+    # Set to true to enable Disqus on all pages (not only on single posts)
+    enableOnAllPages: false
+
 params:
   # Set a different text for the header on the home page
   homeTitle: "Oleksandr Redko"
