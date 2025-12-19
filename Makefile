@@ -1,0 +1,2 @@
+fmt:
+	yamlfmt -verbose
