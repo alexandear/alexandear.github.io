@@ -1,0 +1,63 @@
+baseURL: "alexandear.github.io"
+defaultContentLanguage: "en"
+title: ""
+theme: "beautifulhugo"
+pygmentsStyle: "trac"
+pygmentsUseClasses: true
+pygmentsCodeFences: true
+pygmentsCodeFencesGuessSyntax: true
+googleAnalytics: "G-R6V0DXFJEE"
+enableGitInfo: false
+
+params:
+  # Set a different text for the header on the home page
+  homeTitle: "Oleksandr Redko"
+  since: "2013"
+  subtitle: "Software Engineer"
+  mainSections: ["posts"]
+  # Expecting square dimensions
+  logo: "img/avatar-icon.png"
+  favicon: "img/favicon.ico"
+  dateFormat: "January 2, 2006"
+  commit: "https://github.com/alexandear/website/tree/"
+  rss: false
+  comments: true
+  readingTime: true
+  wordCount: true
+  useHLJS: true
+  socialShare: true
+  delayDisqus: true
+  showRelatedPosts: true
+  hideAuthor: true
+
+  author:
+    # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
+    name: "Oleksandr Redko"
+    website: "https://alexandear.github.io/"
+    email: "oleksandr.red%2bwebsite@gmail.com?subject=Hello%20from%20alexandear.github.io"
+    facebook: "oleksandr.red"
+    github: "alexandear"
+    # gitlab = "alexandear"
+    linkedin: "alexandear"
+    telegram: "alexandear"
+    strava: "23735367"
+    goodreads: "alexandear"
+    medium: "alexandear"
+
+menu:
+  main:
+    - name: "Blog"
+      url: ""
+      weight: 1
+    - name: "Talks"
+      url: "talks/"
+      weight: 2
+    - name: "Courses"
+      url: "courses/"
+      weight: 2
+    - name: "About / Contact"
+      url: "about/"
+      weight: 2
+    - name: "Tags"
+      url: "tags"
+      weight: 3
