@@ -1,27 +1,59 @@
 # Personal Website
 
-## How to Run
+## How to develop
 
-1. Download and install [hugo](https://gohugo.io/installation/).
+Use commands from `make help`.
+
+### Run
+
+1. Install necessary tools:
+   - [Go](https://go.dev/doc/install)
+   - [Hugo](https://gohugo.io/installation/)
+
 2. Run the command:
-```sh
-hugo serve
-```
-3. Open http://localhost:1313 with a browser.
 
-## How to Lint
+    ```sh
+    make serve
+    ```
 
-1. Install [codespell](https://github.com/codespell-project/codespell).
-2. Run the command:
-```
-codespell content README.md
-```
+3. Open <http://localhost:1313> in a browser.
 
-## How to Check Links
+### Lint
 
-1. Install [linkcheck](https://github.com/filiph/linkcheck).
-2. Run the website on `http://localhost:1313`.
+1. Install necessary tools:
+   - [yamlfmt](github.com/google/yamlfmt)
+
+2. Run the command to format files:
+
+    ```sh
+    make fmt
+    ```
+
+3. Run the command to perform all lints:
+
+    ```sh
+    make lint
+    ```
+
+### Spell
+
+1. Install necessary tools:
+   - [codespell](https://github.com/codespell-project/codespell)
+
+2. Run the command to check spellings:
+
+    ```sh
+    make spell
+    ```
+
+### Check for dead links
+
+1. Install necessary tools:
+   - [linkcheck](https://github.com/filiph/linkcheck)
+
+2. Run the website locally.
 3. Execute the command:
-```
-linkcheck http://localhost:1313
-```
+
+    ```sh
+    make linkcheck
+    ```
