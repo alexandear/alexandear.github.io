@@ -57,3 +57,14 @@ Use commands from `make help`.
     ```sh
     make linkcheck
     ```
+
+### Convert images to webp format
+
+1. Install necessary tools:
+   - [cwebp](https://developers.google.com/speed/webp/docs/cwebp)
+
+2. Run the command to convert all images in the `static/img` to `WebP` file:
+
+    ```sh
+    make webp
+    ```
