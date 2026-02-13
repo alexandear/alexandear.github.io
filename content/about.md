@@ -12,11 +12,11 @@ I focus on improving processes and workflows around CI/CD, code analysis, and li
 I have worked with both microservices and monolithic architectures deployed in the cloud and on-premises. I'm passionate about [Open Source](https://github.com/alexandear/alexandear/blob/main/CONTRIBUTIONS.md) contributions.
 See my [GitHub](https://github.com/alexandear) and [GitLab](https://gitlab.com/alexandear) profiles.
 
-[![An image of @alexandear's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/alexandear)](https://holopin.io/@alexandear)
-
 ## Contact
 
 You can [email me](mailto:oleksandr.red+website@gmail.com?subject=Hello%20from%20alexandear.github.io) or find me on [LinkedIn](https://www.linkedin.com/in/alexandear) if you want to get in touch.
+
+[PGP](https://keys.openpgp.org/vks/v1/by-fingerprint/50F89811D8D83E793E7E0680A947E3F11A612A57)
 
 ## My History
 
@@ -29,3 +29,5 @@ The next year, I pivoted and started studying Computer Science at the National T
 Once upon a time, I heard about Nimses. This startup developed a worldwide system that records the time of a human being's life. Its idea excited me so much that I left my C++ position and started working on this system. Many things used in the project were new to me and I learned them from scratch: Go, microservices in the cloud, NoSQL databases, and Docker.
 
 So, writing code is neither passion nor sickness. It's a habit that I have developed over a lifetime.
+
+[![An image of @alexandear's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/alexandear)](https://holopin.io/@alexandear)
