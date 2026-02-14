@@ -5,7 +5,7 @@ tags: ["go", "panic", "opensource"]
 ---
 
 Have you found bugs in tools that you are using?
-Recently, while working on some [google/go-github](../2026-02-02-small-change-big-impact/) issues,
+Recently, while working on some [google/go-github](/posts/2026-02-02-small-change-big-impact/) issues,
 I discovered a panic in `go run`.
 It happened when I forgot to provide an argument to the `-C` flag.
 
