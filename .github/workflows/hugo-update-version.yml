@@ -1,0 +1,40 @@
+# This workflow automatically updates the Hugo version in .github/workflows/hugo.yml.
+name: Update Hugo version
+on:
+  schedule:
+    # Runs every 2 weeks at 6:00 UTC
+    - cron: "0 6 */14 * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  updateHugo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      # Fetch the latest Hugo tag from GitHub releases and patch the deploy
+      # workflow so HUGO_VERSION stays in sync with the newest release.
+      - name: Fetch Hugo release version
+        id: fetch-release
+        run: |
+          version=$(curl -sL https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r ".tag_name")
+          if [[ -z "$version" || "$version" == "null" ]]; then
+            echo "Failed to fetch latest Hugo version." >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          sed -i'' -E "s/(HUGO_VERSION: )[0-9]+\.[0-9]+\.[0-9]+/\1${version#v}/g" .github/workflows/hugo.yml
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: Bump Hugo version to ${{ steps.fetch-release.outputs.version }}
+          title: Bump Hugo version to ${{ steps.fetch-release.outputs.version }}
+          body: |
+            Bumps [Hugo][1] version to the [latest release][2].
+
+            [1]: https://github.com/gohugoio/hugo
+            [2]: https://gohugo.io/news/
+          labels: dependencies
+          branch: chore/hugo-update-version
