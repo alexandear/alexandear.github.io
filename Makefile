@@ -5,7 +5,7 @@ help:
 
 .PHONY: serve
 serve: ## Serve the site locally with drafts
-	hugo serve --buildDrafts
+	hugo serve --buildDrafts --baseURL http://localhost --openBrowser --panicOnWarning
 
 .PHONY: fmt
 fmt: fmt-yaml ## Format all files
