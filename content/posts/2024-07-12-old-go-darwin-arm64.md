@@ -9,7 +9,7 @@ If you use an Apple Silicon (M1) Mac, you will hit an issue when downloading Go 
 Here is the solution:
 
 ```console
-$ GOARCH=amd64; go run golang.org/dl/go1.15@latest download
+$ GOARCH=amd64 go run golang.org/dl/go1.15@latest download
 $ go install golang.org/dl/go1.15@latest
 $ go1.15 version
 go version go1.15 darwin/amd64
@@ -116,7 +116,7 @@ This works, but patching source is cumbersome. A simpler approach exists.
 Try:
 
 ```console
-$ GOARCH=amd64; go install golang.org/dl/go1.15@latest
+$ GOARCH=amd64 go install golang.org/dl/go1.15@latest
 go: cannot install cross-compiled binaries when GOBIN is set
 ```
 
@@ -127,7 +127,7 @@ That fails due to a known issue: “[cmd/go: allow installing cross-compiled bin
 Use `go run` with `GOARCH` to download, then `go install` normally:
 
 ```console
-$ GOARCH=amd64; go run golang.org/dl/go1.15@latest download
+$ GOARCH=amd64 go run golang.org/dl/go1.15@latest download
 $ go install golang.org/dl/go1.15@latest
 $ go1.15 version
 go version go1.15 darwin/amd64
@@ -138,7 +138,7 @@ Success.
 You can repeat this for earlier versions (1.14, 1.13, 1.12, …) that lack native `arm64` binaries:
 
 ```sh
-GOARCH=amd64; go run golang.org/dl/go1.14@latest download
+GOARCH=amd64 go run golang.org/dl/go1.14@latest download
 go install golang.org/dl/go1.14@latest
 go1.14 version
 ```
