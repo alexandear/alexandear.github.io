@@ -6,6 +6,10 @@ subtitle: Finished courses, certifications, and trainings
 This page contains a list of my completed courses and certifications that have impacted my technical knowledge.
 It's created to provide a comprehensive view of my professional development while keeping the "Licenses & Certifications" section on my [LinkedIn](https://www.linkedin.com/in/alexandear/) concise.
 
+## 2026
+
+- [Elements of AI Agents](https://academy.dair.ai/dashboard/courses/elements-of-ai-agents) [*(certificate)*](https://academy.dair.ai/verify/cmpa6mgpq003q04jmd5n8sw8o)
+
 ## 2025
 
 - [KodeKloud: Lab- Linux Tutorial](https://learn.kodekloud.com/courses/lab-linux-tutorial) [*(certificate)*](https://learn.kodekloud.com/certificate/c2a85b0f-e1c3-4d5a-a172-8385b14f9c72)
