@@ -9,6 +9,7 @@ It's created to provide a comprehensive view of my professional development whil
 ## 2026
 
 - [Elements of AI Agents](https://academy.dair.ai/dashboard/courses/elements-of-ai-agents) [*(certificate)*](https://academy.dair.ai/verify/cmpa6mgpq003q04jmd5n8sw8o)
+- [LinkedIn: Learning RabbitMQ: Efficient Message Queuing](https://www.linkedin.com/learning/learning-rabbitmq-efficient-message-queuing) [*(certificate)*](https://www.linkedin.com/learning/certificates/78986bcda21d6359697a30feb060a67cf16efa9cf9d4f6c85409aa6ea881c98f)
 
 ## 2025
 
@@ -110,3 +111,4 @@ It's created to provide a comprehensive view of my professional development whil
 ## 2014
 
 - Stepik: Programming in Python
+- Prezi: Presentation School
