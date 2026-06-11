@@ -1,5 +1,5 @@
 ---
-title: "How I Simplified go-github for Millions"
+title: "How I simplified go-github for millions"
 date: 2026-02-02
 tags: ["opensource", "github", "go", "api"]
 ---
