@@ -1,0 +1,20 @@
+{{- $img := .Params.share_img | default .Params.image -}}
+{{- if not $img -}}
+  {{- with .File -}}
+    {{- $slug := .TranslationBaseName -}}
+    {{- $imgDir := printf "static/img/%s" $slug -}}
+    {{- $stat := try (os.Stat $imgDir) -}}
+    {{- if and (not $stat.Err) $stat.Value -}}
+      {{- range readDir $imgDir -}}
+        {{- if not $img -}}
+          {{- $ext := strings.ToLower (path.Ext .Name) -}}
+          {{- if or (eq $ext ".png") (eq $ext ".jpg") (eq $ext ".jpeg") (eq $ext ".webp") (eq $ext ".gif") -}}
+            {{- $img = printf "img/%s/%s" $slug .Name -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $img = $img | default .Site.Params.logo -}}
+{{- return $img -}}
