@@ -8,13 +8,13 @@ It's created to provide a comprehensive view of my professional development whil
 
 ## 2026
 
-- [Anthropic: Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action) [*certificate*](https://verify.skilljar.com/c/fqvcdugudyut)
+- [Anthropic: Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action) [*(certificate)*](https://verify.skilljar.com/c/fqvcdugudyut)
 - [Elements of AI Agents](https://academy.dair.ai/dashboard/courses/elements-of-ai-agents) [*(certificate)*](https://academy.dair.ai/verify/cmpa6mgpq003q04jmd5n8sw8o)
 - [LinkedIn: Learning RabbitMQ: Efficient Message Queuing](https://www.linkedin.com/learning/learning-rabbitmq-efficient-message-queuing) [*(certificate)*](https://www.linkedin.com/learning/certificates/78986bcda21d6359697a30feb060a67cf16efa9cf9d4f6c85409aa6ea881c98f)
 
 ## 2025
 
-- [KodeKloud: Lab- Linux Tutorial](https://learn.kodekloud.com/courses/lab-linux-tutorial) [*(certificate)*](https://learn.kodekloud.com/certificate/c2a85b0f-e1c3-4d5a-a172-8385b14f9c72)
+- [KodeKloud: Lab - Linux Tutorial](https://learn.kodekloud.com/courses/lab-linux-tutorial) [*(certificate)*](https://learn.kodekloud.com/certificate/c2a85b0f-e1c3-4d5a-a172-8385b14f9c72)
 - [Sololearn: Python Intermediate](https://www.sololearn.com/en/learn/courses/python-intermediate) [*(certificate)*](./../../doc/certificates/sololearn/Python_Intermediate_fc95abf4-90b4-4367-838f-ee0714c8acf4.pdf)
 - [Sololearn: SQL Intermediate](https://www.sololearn.com/en/learn/courses/sql-intermediate) [*(certificate)*](./../../doc/certificates/sololearn/SQL_Intermediate_8aeb549a-6137-418e-9506-7d681b98d3ff.pdf)
 - [Sololearn: Introduction to SQL](https://www.sololearn.com/en/learn/courses/sql-introduction) [*(certificate)*](./../../doc/certificates/sololearn/Introduction_to_SQL_9f78e421-1c25-4037-a125-4c91210cb5a5.pdf)
@@ -37,8 +37,8 @@ It's created to provide a comprehensive view of my professional development whil
 - EPAM: GitHub Codespaces and GitHub Copilot: Tools of a developer
 - EPAM: Introduction to Microsoft Azure AI stack
 - EPAM: Intro to Open Source
-- [Cognite: CDF Data Engineer Basics](https://learn.cognite.com/data-engineer-basics-integrations-assessment) [*(certificate)*](https://verify.skilljar.com/c/dkn826uf5fdq)
-- [Cognite: Cognite Data Fusion Fundamentals](https://learn.cognite.com/cdf-fundamentals-assessment) [*(certificate)*](https://verify.skilljar.com/c/ejt6ys6qpcs2)
+- [Cognite Academy: CDF Data Engineer Basics](https://learn.cognite.com/data-engineer-basics-integrations-assessment) [*(certificate)*](https://verify.skilljar.com/c/dkn826uf5fdq)
+- [Cognite Academy: Data Fusion Fundamentals](https://learn.cognite.com/cdf-fundamentals-assessment) [*(certificate)*](https://verify.skilljar.com/c/ejt6ys6qpcs2)
 - [LinkedIn: Introduction to InfluxDB](https://www.linkedin.com/learning/influxdb-for-time-series-data-ingest-analyze-and-visualize-data-19238566) [*(certificate)*](https://www.linkedin.com/learning/certificates/e70a4caa2f930239e9b0d10c6d229821ab7e36ec94db0e8e9cd0adb65963adbd)
 - [LinkedIn: Azure Essential Training for Developers](https://www.linkedin.com/learning/azure-essential-training-for-developers) [*(certificate)*](https://www.linkedin.com/learning/certificates/c7f6fa37698be8fc07d2f02f668ee8e8e9314b0a44bf7e9d0e3782ba6da956ad)
 - [LinkedIn: Microsoft Azure Fundamentals (AZ-900) Exam Tips](https://www.linkedin.com/learning/microsoft-azure-fundamentals-az-900-exam-tips) [*(certificate)*](https://www.linkedin.com/learning/certificates/5c9021c463882c3ebed92b6a8781fa4a404e8de52a534aeeb88e08470ff21e9b)
@@ -77,13 +77,13 @@ It's created to provide a comprehensive view of my professional development whil
 ## 2018
 
 - [A Tour of Go](https://go.dev/tour)
-- [LinkedIn: Getting Started with C++](https://www.linkedin.com/learning/paths/getting-started-with-c-plus-plus) [(*certificate*)](https://www.linkedin.com/learning/certificates/360ca8fdae247856f3d462074d619e20ff88c421257c1a353805303c592f3365)
-- [LinkedIn: Code Clinic: C++ (2014)](https://www.linkedin.com/learning/code-clinic-c-plus-plus-2014) [(*certificate*)](https://www.linkedin.com/learning/certificates/21368f481037173ec9b0f99ca8db0685292276548982c6f07718349e66a5cb09)
-- [LinkedIn: C++: Building a String Library](https://www.linkedin.com/learning/c-plus-plus-building-a-string-library) [(*certificate*)](https://www.linkedin.com/learning/certificates/0c3f4ad9eca128776f47a332077010fba9d1bee63dfcb5fbd7c77ea4a7c76a83)
-- [LinkedIn: C++: Move Semantics](https://www.linkedin.com/learning/c-plus-plus-move-semantics) [(*certificate*)](https://www.linkedin.com/learning/certificates/f30a4837d8d660b2552e6f855d3dd343119317a16f02729659e887e9667f400b)
-- [LinkedIn: C++ Essential Training (2014)](https://www.linkedin.com/learning/c-plus-plus-essential-training-2014) [(*certificate*)](https://www.linkedin.com/learning/certificates/740c38ae6c057b696d1b27e415a19bac4aa1a2430f56c1775d0d2298c1d072a1)
-- [LinkedIn: C++: Smart Pointers](https://www.linkedin.com/learning/c-plus-plus-smart-pointers) [(*certificate*)](https://www.linkedin.com/learning/certificates/7829232e2957142ebebf2d982eefa5c1357357f49ce202cb85426074966251d5)
-- [LinkedIn: Learning C++ (2014)](https://www.linkedin.com/learning/learning-c-plus-plus-2014) [(*certificate*)](https://www.linkedin.com/learning/certificates/65432529dd902d7cad7a472d58a70bdee876c1c53bfdaed039634144d62b13a6)
+- [LinkedIn: Getting Started with C++](https://www.linkedin.com/learning/paths/getting-started-with-c-plus-plus) [*(certificate)*](https://www.linkedin.com/learning/certificates/360ca8fdae247856f3d462074d619e20ff88c421257c1a353805303c592f3365)
+- [LinkedIn: Code Clinic: C++ (2014)](https://www.linkedin.com/learning/code-clinic-c-plus-plus-2014) [*(certificate)*](https://www.linkedin.com/learning/certificates/21368f481037173ec9b0f99ca8db0685292276548982c6f07718349e66a5cb09)
+- [LinkedIn: C++: Building a String Library](https://www.linkedin.com/learning/c-plus-plus-building-a-string-library) [*(certificate)*](https://www.linkedin.com/learning/certificates/0c3f4ad9eca128776f47a332077010fba9d1bee63dfcb5fbd7c77ea4a7c76a83)
+- [LinkedIn: C++: Move Semantics](https://www.linkedin.com/learning/c-plus-plus-move-semantics) [*(certificate)*](https://www.linkedin.com/learning/certificates/f30a4837d8d660b2552e6f855d3dd343119317a16f02729659e887e9667f400b)
+- [LinkedIn: C++ Essential Training (2014)](https://www.linkedin.com/learning/c-plus-plus-essential-training-2014) [*(certificate)*](https://www.linkedin.com/learning/certificates/740c38ae6c057b696d1b27e415a19bac4aa1a2430f56c1775d0d2298c1d072a1)
+- [LinkedIn: C++: Smart Pointers](https://www.linkedin.com/learning/c-plus-plus-smart-pointers) [*(certificate)*](https://www.linkedin.com/learning/certificates/7829232e2957142ebebf2d982eefa5c1357357f49ce202cb85426074966251d5)
+- [LinkedIn: Learning C++ (2014)](https://www.linkedin.com/learning/learning-c-plus-plus-2014) [*(certificate)*](https://www.linkedin.com/learning/certificates/65432529dd902d7cad7a472d58a70bdee876c1c53bfdaed039634144d62b13a6)
 
 ## 2017
 
