@@ -1,6 +1,7 @@
 ---
 title: "Amateur Running: How to Boost Mental Productivity Through Running?"
 date: 2024-04-10
+tags: ["talk", "run", "productivity", "epam"]
 ---
 
 This lecture was given in Ukrainian to 200 colleagues at EPAM company.
@@ -10,6 +11,8 @@ Additionally, I explored why people run in the mountains, what you need to start
 
 * _Date_: April 10, 2024
 * _Event_: Social Mentoring at EPAM
+
+<!--more-->
 
 ## Slides (Ukrainian)
 

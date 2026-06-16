@@ -1,6 +1,7 @@
 ---
 title: Electronic Publishing
 date: 2014-12-07
+tags: ["talk", "publishing"]
 ---
 
 This talk is about my part-time job at the Electronic Publishing company.
@@ -8,6 +9,8 @@ This talk is about my part-time job at the Electronic Publishing company.
 * _Date_: December 7, 2014
 * _Event_: University English Lecture
 * _Location_: Ukraine, Kyiv
+
+<!--more-->
 
 ## Slides
 

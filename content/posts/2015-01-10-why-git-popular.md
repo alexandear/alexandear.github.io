@@ -1,12 +1,15 @@
 ---
 title: Why Git is so Popular?
 date: 2015-01-10
+tags: ["talk", "git", "clarity-ag"]
 ---
 
 The talk explore the differences between two popular distributed version control systems, Git and Mercurial, and compare their respective strengths and weaknesses. We delve into the fundamental concepts of these tools, such as repositories, branches, commits, and merging, and examine how they are implemented differently in Git and Mercurial.
 
 * _Date_: January 10, 2015
 * _Event_: Clarity AG Skill Sharing Session
+
+<!--more-->
 
 ## Slides
 

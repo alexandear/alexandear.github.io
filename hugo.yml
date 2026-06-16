@@ -51,9 +51,6 @@ menu:
     - name: "Blog"
       url: ""
       weight: 1
-    - name: "Talks"
-      url: "talks/"
-      weight: 2
     - name: "Courses"
       url: "courses/"
       weight: 2
