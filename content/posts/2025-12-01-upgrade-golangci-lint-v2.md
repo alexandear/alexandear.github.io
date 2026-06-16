@@ -1,7 +1,7 @@
 ---
 title: Upgrading Golangci-lint to v2
 date: 2025-12-01
-tags: ["go", "lint", "golangci-lint", "opensource"]
+tags: ["golang", "linter", "golangci-lint", "opensource"]
 ---
 
 Golangci-lint v2 was released in [March 2025](https://ldez.github.io/blog/2025/03/23/golangci-lint-v2/), bringing major architectural improvements and a cleaner configuration format.

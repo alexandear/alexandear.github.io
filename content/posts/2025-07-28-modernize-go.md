@@ -1,7 +1,7 @@
 ---
 title: "Modernizing Go programs"
 date: 2025-07-28
-tags: ["go", "opensource"]
+tags: ["golang", "opensource"]
 draft: true
 ---
 
@@ -577,5 +577,3 @@ golangci-lint run --no-config --enable-only usetesting --issues-exit-code 0 ./..
 
 
 ## Go 1.1
-
-

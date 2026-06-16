@@ -53,13 +53,13 @@ menu:
       weight: 1
     - name: "Courses"
       url: "courses/"
-      weight: 2
+      weight: 3
     - name: "About / Contact"
       url: "about/"
       weight: 2
     - name: "Tags"
       url: "tags"
-      weight: 3
+      weight: 2
 markup:
   goldmark:
     renderer:

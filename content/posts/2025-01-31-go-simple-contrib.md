@@ -1,7 +1,7 @@
 ---
 title: How to contribute to the Go language
 date: 2025-01-31
-tags: ["go", "opensource", "git"]
+tags: ["golang", "opensource", "git"]
 ---
 
 In this post, I show that contributing to Go repositories is as simple as contributing to any other open-source repo.

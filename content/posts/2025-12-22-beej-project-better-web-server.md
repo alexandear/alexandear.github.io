@@ -1,7 +1,7 @@
 ---
 title: "My adaptation of the \"A Better Web Server\" project to Go from \"Beej's Guide to Network Concepts\""
 date: 2025-12-22
-tags: ["go", "network"]
+tags: ["golang", "network"]
 draft: true
 ---
 

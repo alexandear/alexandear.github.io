@@ -1,7 +1,7 @@
 ---
 title: "Fix: no Go 1.15 binary for darwin/arm64 on Apple M1"
 date: 2024-07-12T13:52:10+02:00
-tags: ["go", "arm64", "macos"]
+tags: ["golang", "macos"]
 ---
 
 If you use an Apple Silicon (M1) Mac, you will hit an issue when downloading Go 1.15 or earlier via the [`dl`](https://go.googlesource.com/dl) tool.

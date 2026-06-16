@@ -1,7 +1,7 @@
 ---
 title: "Amateur Running: How to Boost Mental Productivity Through Running?"
 date: 2024-04-10
-tags: ["talk", "run", "productivity", "epam"]
+tags: ["talk", "running", "productivity", "epam"]
 ---
 
 This lecture was given in Ukrainian to 200 colleagues at EPAM company.

@@ -1,7 +1,7 @@
 ---
 title: "My adaptation of the \"HTTP Client and Server\" project to Go from \"Beej's Guide to Network Concepts\""
 date: 2025-12-18
-tags: ["go", "network"]
+tags: ["golang", "network"]
 ---
 
 Recently, I started learning [Beej's Guide to Network Concepts](https://beej.us/guide/bgnet0/html/split/project-http-client-and-server.html) but found that the examples were written in Python.

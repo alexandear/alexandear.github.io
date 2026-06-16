@@ -1,7 +1,7 @@
 ---
 title: "Fixing a panic in 'go run' command"
 date: 2026-02-14
-tags: ["go", "panic", "opensource"]
+tags: ["golang", "opensource"]
 ---
 
 Have you found bugs in tools that you are using?

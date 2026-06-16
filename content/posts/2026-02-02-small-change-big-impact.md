@@ -1,7 +1,7 @@
 ---
 title: "How I simplified go-github for millions"
 date: 2026-02-02
-tags: ["opensource", "github", "go", "api"]
+tags: ["opensource", "github", "golang"]
 ---
 
 How can a simple contribution to a library impact thousands of programs around the world?

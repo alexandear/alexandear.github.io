@@ -1,7 +1,7 @@
 ---
 title: "Importing commit history from GitLab to GitHub"
 date: 2023-03-08
-tags: ["gitlab", "github", "git", "go", "opensource"]
+tags: ["gitlab", "github", "git", "golang", "opensource"]
 bigimg: [{src: "/img/2023-03-08-import-gitlab-commits/contribs-after-run.webp", desc: "GitHub Contribution Graph"}]
 ---
 

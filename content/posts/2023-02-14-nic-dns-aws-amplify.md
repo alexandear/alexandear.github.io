@@ -1,7 +1,7 @@
 ---
 title: How to set up a free domain from NIC.UA on AWS Amplify
 date: 2023-02-14
-tags: ["free", "dns", "aws", "amplify"]
+tags: ["dns", "aws", "amplify"]
 ---
 
 [NIC.UA](https://nic.ua/en) is a Ukrainian domain registrar that provides ".pp.ua" for [free](https://nic.ua/en/domains/.pp.ua). This domain is often used by individuals or small organizations looking for a web presence but who don't want to pay for a custom domain name.

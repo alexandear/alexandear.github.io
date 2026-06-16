@@ -1,7 +1,7 @@
 ---
 title: "Found a group of malicious Go projects injected with trojan"
 date: 2025-02-28
-tags: ["go", "trojan", "opensource"]
+tags: ["golang", "security", "opensource"]
 ---
 
 I accidentally discovered malicious programs in the Go ecosystem that impersonate legitimate tools such

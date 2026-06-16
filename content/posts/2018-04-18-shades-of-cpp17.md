@@ -1,7 +1,7 @@
 ---
 title: 218 Shades of C++17
 date: 2018-04-18
-tags: ["talk", "cpp", "cpp17", "clarity-ag"]
+tags: ["talk", "cpp", "clarity-ag"]
 ---
 
 This talk provide an overview of the main features introduced in C++17, the latest version of the C++ programming language. We explore the most significant additions to the language, such as structured bindings, if and switch with initializers, inline variables, and fold expressions. We also examine the improvements made to the standard library, including new algorithms, string_view, shared_mutex, and std::variant. The talk include examples and code snippets to illustrate how these features can be used to simplify and improve code.

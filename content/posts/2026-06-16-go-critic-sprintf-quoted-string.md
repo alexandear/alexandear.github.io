@@ -1,7 +1,7 @@
 ---
 title: "Teaching go-critic a new trick with %#q"
 date: 2026-06-16
-tags: ["go", "lint", "gocritic", "opensource", "golangci-lint", "lima"]
+tags: ["golang", "linter", "opensource", "golangci-lint", "lima", "revive"]
 ---
 
 Recently, I learned that `%#q` in the `fmt` package wraps a string in backquotes.
