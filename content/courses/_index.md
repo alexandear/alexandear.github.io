@@ -13,6 +13,8 @@ It's created to provide a comprehensive view of my professional development whil
 - [LinkedIn: Learning RabbitMQ: Efficient Message Queuing](https://www.linkedin.com/learning/learning-rabbitmq-efficient-message-queuing) [*(certificate)*](https://www.linkedin.com/learning/certificates/78986bcda21d6359697a30feb060a67cf16efa9cf9d4f6c85409aa6ea881c98f)
 - [KodeKloud: YouTube Labs - System Design For Beginners](https://learn.kodekloud.com/learn/courses/youtube-labs-system-design-for-beginners) [*(certificate)*](https://learn.kodekloud.com/learn/certificate/6f6d49be-66a4-47ee-af00-cfdd42982d6e)
 - [KodeKloud: YouTube Labs - Database Sharding](https://learn.kodekloud.com/learn/courses/youtube-labs-database-sharding) [*(certificate)*](https://learn.kodekloud.com/learn/certificate/bf2285de-9381-4aa4-b80c-788da6195a68)
+- [KodeKloud: YouTube Labs - System Design for Interview Prep](https://learn.kodekloud.com/learn/courses/youtube-labs-system-design-for-interview-prep) [*(certificate)*](https://learn.kodekloud.com/learn/certificate/b478e403-edfd-4906-9f29-6355ca374208)
+- [Google: AI Fundamentals](https://www.coursera.org/learn/google-ai-fundamentals) [*(certificate)*](https://www.coursera.org/account/accomplishments/verify/Y8RVKOEO997K)
 
 ## 2025
 
