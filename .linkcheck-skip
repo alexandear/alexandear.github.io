@@ -1,0 +1,3 @@
+# linkcheck 3.0.0 reports "connection failed" for this valid stylesheet
+# Example: http://localhost:1313/css/print.css
+/css/print\.css$

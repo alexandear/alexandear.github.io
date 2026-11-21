@@ -31,7 +31,7 @@ spell: ## Check for spelling errors
 
 .PHONY: linkcheck
 linkcheck: ## Check for broken links
-	linkchecker --no-warnings http://localhost:1313
+	linkcheck --skip-file .linkcheck-skip http://localhost:1313/
 
 .PHONY: webp
 webp: ## Convert images to WebP format
