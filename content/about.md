@@ -5,7 +5,7 @@ subtitle: Professionally converting coffee into code since 2015
 
 {{< img src="/img/about/photo-redko.webp" width="400" title="Oleksandr Redko" >}}
 
-I'm a backend software engineer with more than 10 years of commercial experience and technical education. [Go](../tags/go) is my primary programming language, and I'm also proficient in Python with solid experience in C++, PowerShell, and C#.
+I'm a backend software engineer with more than 10 years of commercial experience and technical education. [Go](../tags/golang/) is my primary programming language, and I'm also proficient in Python with solid experience in C++, PowerShell, and C#.
 
 I focus on improving processes and workflows around CI/CD, code analysis, and linting.
 
